@@ -1,4 +1,4 @@
-from icedpygui import IPG
+from icedpygui import IPG, IpgTextParams
 
 
 # To reduce typing errors when using the ids, I like to 
@@ -60,7 +60,7 @@ class DemoScrollable:
 
         self.ipg.add_window(self.wnd_v, "Scollable - Vertical", 
                                 self.wnd_width, self.wnd_height, 
-                                pos_centered=True)
+                                pos_x=200, pos_y=100)
 
         # The header is just a title of sorts.
         self.ipg.add_container(window_id=self.wnd_v, container_id=self.cont_v_top, 
@@ -99,8 +99,8 @@ class DemoScrollable:
     
     def create_scroll_horizontal(self):
         self.ipg.add_window(self.wnd_h, "Scollable - Horizontal", self.wnd_width, 
-                                            self.wnd_height, 650, 100,
-                                            theme="dark", debug=False)
+                                            self.wnd_height,
+                                            pos_x=700, pos_y=100)
 
         self.ipg.add_container(window_id=self.wnd_h, container_id=self.cont_h_top, 
                                 align_x="center", align_y="center", 
@@ -132,12 +132,12 @@ class DemoScrollable:
         # determine the key, value of the data.
     def on_scroll_v(self, id, data):
         text = "\n".join("{}: {}".format(k, v) for k, v in data.items())
-        self.ipg.update_item(self.cb_text_v, "content", 
+        self.ipg.update_item(self.cb_text_v, IpgTextParams.Content, 
                              value=f"scrollable id = {id}\n{text}")
     
     def on_scroll_h(self, id, data):
         text = "\n".join("{}: {}".format(k, v) for k, v in data.items())
-        self.ipg.update_item(self.cb_text_h, "content", 
+        self.ipg.update_item(self.cb_text_h, IpgTextParams.Content, 
                              value=f"scrollable id = {id}\n{text}")
 
 

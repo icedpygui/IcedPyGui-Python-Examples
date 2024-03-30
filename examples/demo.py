@@ -1,5 +1,5 @@
-from icedpygui.icedpygui import IPG
-
+from icedpygui import IPG, IpgTextParams, IpgRadioDirection, IpgRadioParams
+from icedpygui import IpgButtonParams, IpgCheckboxParams, IpgProgressBarParams
 import random
 
 
@@ -198,9 +198,6 @@ class Demo:
         # Widgets in window 2
         self.date_text_id: int=0
         
-        
-        
-
     def start_gui(self):
         
         self.construct_window_1()
@@ -224,8 +221,7 @@ class Demo:
     def construct_window_1(self):
         
         self.ipg.add_window(self.wnd_1, "Demo Window 1 - Iced Wrapped in Python", 
-                                                width=600, height=500, 
-                                                pos_x=150, pos_y=100)
+                                        width=500, height=500, pos_x=350, pos_y=100)
         
         self.ipg.add_row(self.wnd_1, container_id=self.row_1, width_fill=True, height_fill=True)
         self.ipg.add_column(self.wnd_1, container_id=self.l_col_1, parent_id=self.row_1)
@@ -241,10 +237,10 @@ class Demo:
         self.btn_text_id = self.ipg.add_text(self.l_col_1, 
                                              f"A text can count too {self.button_presses}")
     
-    def button_pressed(self, id, name):
+    def button_pressed(self, id):
         self.button_presses += 1
-        self.ipg.update_item(self.btn_id, "label", f"You Pressed {self.button_presses} times!")      
-        self.ipg.update_item(self.btn_text_id, "content", f"A text can count too: {self.button_presses} times!")
+        self.ipg.update_item(self.btn_id, IpgButtonParams.Label, f"You Pressed {self.button_presses} times!")      
+        self.ipg.update_item(self.btn_text_id, IpgTextParams.Content, f"A text can count too: {self.button_presses} times!")
 
         # A checkbox is defined and a textis defined with the show value of False.
         # Unlke the button above, in this case we hid the text and then will show it
@@ -256,8 +252,8 @@ class Demo:
         self.text_id_chkbox = self.ipg.add_text(parent_id=self.l_col_1, 
                                                     content="You Checked the box above", 
                                                     show=False) # note: show is False
-    def box_checked_id(self, id, name, data):
-            self.ipg.update_item(self.text_id_chkbox, "show", data) # show set to True
+    def box_checked_id(self, id, data):
+            self.ipg.update_item(self.text_id_chkbox, IpgCheckboxParams.Show, data) # show set to True
 
         # a progress bar and a slider are defined and connected together via the callbacks
     def construct_slider_and_progress_bar(self):
@@ -276,12 +272,12 @@ class Demo:
         # if you have a costly calculation you are using, you may want to
         # not use the on_change or filter it by using a counter to select
         # only a few changes. 
-    def slider_on_change(self, id, name, data):
-        self.ipg.update_item(self.slider_text_id, "content", f"Slide = {data}")
-        self.ipg.update_item(self.bar_id, "value", data)
+    def slider_on_change(self, id, data):
+        self.ipg.update_item(self.slider_text_id, IpgTextParams.Content, f"Slide = {data}")
+        self.ipg.update_item(self.bar_id, IpgProgressBarParams.Value, data)
     
-    def slider_on_release(self, id, name, data):
-        self.ipg.update_item(self.bar_id, "value", data)    
+    def slider_on_release(self, id, data):
+        self.ipg.update_item(self.bar_id, IpgProgressBarParams.Value, data)    
 
         # A picklist is defined here width a place holder. The option list holder the selections.
     def construct_pick_list(self):
@@ -291,7 +287,7 @@ class Demo:
 
         self.picklist_text_id = self.ipg.add_text(self.l_col_1, "You picked:")
 
-    def picked_item(self, id, name, data):
+    def picked_item(self, id, data):
         self.ipg.update_item(self.picklist_text_id, "content", f"You Picked: {data}")
 
     # *****************Right Column in Window 1*************************
@@ -305,20 +301,20 @@ class Demo:
         self.radio_1_text_id = self.ipg.add_text(self.r_col_1, "You selected:")
 
         # The radio on_select returns a tuple (index, label)
-    def radio_selected_v(self, id, name, data):
+    def radio_selected_v(self, id, data):
         self.ipg.update_item(self.radio_1_text_id, "content", f"You selected: {data}")
 
     # This set of radio buttons will be horizontal
     def construct_radio_buttons_h(self):        
         self.ipg.add_radio(parent_id=self.r_col_1, labels=["A", "B", "C"],
-                           direction="horizontal", 
+                           direction=IpgRadioDirection.Horizontal, 
                            on_select=self.radio_selected_h)
 
         self.radio_2_text_id = self.ipg.add_text(self.r_col_1, "You selected:")
 
         # The radio on_select returns a tuple (index, label)
-    def radio_selected_h(self, id, name, data):
-        self.ipg.update_item(self.radio_2_text_id, "content", f"You selected: {data}")
+    def radio_selected_h(self, id, data):
+        self.ipg.update_item(self.radio_2_text_id, IpgTextParams.Content, f"You selected: {data}")
 
         # A button style can act as a selectable text but has only one callback.
         # A selectable text has a number of different callbacks for all the mouse buttons and
@@ -339,35 +335,36 @@ class Demo:
         self.selectable_text_id = self.ipg.add_text(self.r_col_1, "Selectable actions:")
 
     def selecting_text(self, id):
-        self.ipg.update_item(self.selectable_text_id, "content", f"Selectable id: {id}")
+        self.ipg.update_item(self.selectable_text_id, IpgTextParams.Content, f"Selectable id: {id}")
 
     def selecting_text_with_point(self, id, data):
-        self.ipg.update_item(self.selectable_text_id, "content", f"point: {data}")
+        self.ipg.update_item(self.selectable_text_id, IpgTextParams.Content, f"point: {data}")
 
     def construct_text_input(self):
         self.ipg.add_text_input(parent_id=self.r_col_1, 
                                 placeholder="My Placeholder",
                                 width=200.0, 
                                 on_submit=self.text_input_submitted,
-                                on_input=self.text_input_submitted)
+                                on_input=self.text_on_input)
     
         self.text_input_id = self.ipg.add_text(self.r_col_1, "Will fill while typing")
 
         # Only one callback used in this case (two could be used). Determing which callback is based on name.
         # Maybe helpful in some cases where callbacks are similar or there are many.
-    def text_input_submitted(self, id, name, data):
-        if name == "on_input":
-            self.ipg.update_item(self.text_input_id, "content", 
-                                 f"Adding while typing: {data}")
-        else:
-            self.ipg.update_item(self.text_input_id, "content", 
+    def text_input_submitted(self, id, data):
+            self.ipg.update_item(self.text_input_id, IpgTextParams.Content, 
                                  f"You submitted: {data}")
-
+            
+    def text_on_input(self, id, data):
+        self.ipg.update_item(self.text_input_id, IpgTextParams.Content, 
+                                 f"Adding while typing: {data}")
+        
     #**********************window_2***************************************************** 
+        
     def construct_window_2(self):
         self.ipg.add_window(self.wnd_2, "Demo Window 2 - Iced Wrapped in Python", 
                                                 width=500, height=500, 
-                                                pos_x=800, pos_y=100)
+                                                pos_x=900, pos_y=100)
         
         self.ipg.add_column(window_id=self.wnd_2, container_id=self.l_col_2, 
                             width_fill=True, align_items="center")
@@ -380,7 +377,7 @@ class Demo:
                                               "You selected:") 
 
     def date_selected(self, id, name, date):
-         self.ipg.update_item(self.date_text_id, "content", f"You selected: {date}")
+         self.ipg.update_item(self.date_text_id, IpgTextParams.Content, f"You selected: {date}")
 
         # A table is defined with 4 columns of random items.
         # Rust does not allow types to be mixed in a list.

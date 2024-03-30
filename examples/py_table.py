@@ -3,7 +3,7 @@ import random
 
 ipg = IPG()
 
-ipg.add_window("main", "Table Demo", width=500, height=600, 
+ipg.add_window(window_id="main", title="Table Demo", width=500, height=600, 
                                     pos_centered=True)
 
 ipg.add_container(window_id="main", container_id="cont", width=500.0, height=600.0)

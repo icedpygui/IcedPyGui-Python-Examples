@@ -53,15 +53,15 @@ def on_middle_release(id):
 
 # Add window must be the first widget. Other windows can be added
 # at anytime, as long as their widgts follow.
-ipg.add_window("main", "Selectable Text Demo", 800, 800, 
-                                    500, 100, True)
+ipg.add_window(window_id="main", title="Selectable Text Demo", 
+               width=600, height=500, pos_centered=True)
 
 # All widgets need to be added to a container, so a container
 # is the second widget needed.
-ipg.add_column("main", container_id="col", align_items="center", 
+ipg.add_column(window_id="main", container_id="col", align_items="center", 
                                 width_fill=True, height_fill=True)
 
-ipg.add_space(parent_id="col", height=150.0)
+ipg.add_space(parent_id="col", height=50.0)
 # ipg.add_container("con", parent_id="main", align_x="center", align_y="center",
 #                                         height=("fixed", 400), width=("fill", 0))
 
