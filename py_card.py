@@ -44,7 +44,8 @@ ipg.add_button("bottom_row", "Card 1", style=IpgButtonStyles.Primary,
                on_press=maximize_card)
 
 head = "Python Iced_aw Card"
-body = "\nThis is the body of the card.  \nNote how the style is add style=IpgCardStyles.Primary.  This method should cut down on typo errors versus having to type in parameters that need to match exactly."
+body = ("\nThis is the body of the card.  \nNote how the style is add style=IpgCardStyles.Primary.  This method should "
+        "cut down on typo errors versus having to type in parameters that need to match exactly.")
 
 # Styles are set by import the appropiate module, in the case IpgCardStyles, and selecting
 # the needed style from your IDE dropdown list.

@@ -1,9 +1,9 @@
 from icedpygui import IPG, IpgButtonStyles, IpgButtonArrows, IpgButtonParams
 
-
 ipg = IPG()
 
 text_id = 0
+
 
 # Since the widget construction and callbacks are handled differently
 # and at different times during this process, making a new widget in 
@@ -39,9 +39,8 @@ def update_button(id):
     ipg.update_item(show_btn, IpgButtonParams.Show, False)
 
 
-
-ipg.add_window("main", "Button Update", width=500, height=700, 
-                                    pos_centered=True)
+ipg.add_window("main", "Button Update", width=500, height=700,
+               pos_centered=True)
 
 ipg.add_container("main", "cont", align_x="center", align_y="center", width_fill=True)
 
@@ -64,7 +63,5 @@ style_btn = ipg.add_button("col", "Styling Will Change")
 arrow_btn = ipg.add_button("col", "", corner_radius=0.0, arrow_style=IpgButtonArrows.ArrowUp)
 
 show_btn = ipg.add_button("col", "This button will disappear")
-
-
 
 ipg.start_session()

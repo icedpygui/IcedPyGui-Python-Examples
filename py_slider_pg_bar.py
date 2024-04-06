@@ -7,22 +7,23 @@ def slider_on_change(id, data):
     ipg.update_item(on_change_id, IpgTextParams.Content, f"On Change value is {data}")
     ipg.update_item(bar_id, IpgProgressBarParams.Value, data)
 
+
 def slider_on_release(id, data):
-    ipg.update_item(on_release_id, IpgTextParams.Content, f"On Release value is {data}")  
+    ipg.update_item(on_release_id, IpgTextParams.Content, f"On Release value is {data}")
 
 
-ipg.add_window(window_id="main", title="Slider Demo", width=500, height=500, 
-                                    pos_centered=True)
+ipg.add_window(window_id="main", title="Slider Demo", width=500, height=500,
+               pos_centered=True)
 
-ipg.add_column("main", container_id="col", align_items="center", 
-                                width_fill=True, height_fill=True)
+ipg.add_column("main", container_id="col", align_items="center",
+               width_fill=True, height_fill=True)
 
 ipg.add_space(parent_id="col", height=50.0)
 
 bar_id = ipg.add_progress_bar(parent_id="col", min=0.0, max=100.0, value=50.0, width=300.0)
 
-ipg.add_slider(parent_id="col", min=0.0, max=100.0, step=0.5, value=50.0, 
-                    width=300.0, on_change=slider_on_change, on_release=slider_on_release)
+ipg.add_slider(parent_id="col", min=0.0, max=100.0, step=0.5, value=50.0,
+               width=300.0, on_change=slider_on_change, on_release=slider_on_release)
 
 ipg.add_space("col", height=100.0)
 

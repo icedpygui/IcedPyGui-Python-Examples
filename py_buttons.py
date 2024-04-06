@@ -6,18 +6,18 @@ from icedpygui import IpgTextParams
 class ButtonDemo:
     def __init__(self) -> None:
         self.ipg = IPG()
-        
+
         self.button_style_ids: list = []
         self.button_arrow_ids: list = []
 
         # ids - I prefer to give my string ids a variable name so that
         # it I select them from a list and it reduced spelling errors.
-        self.wnd_id: str="main"
-        self.style_col_id: str="style_col"
-        self.style_id: str="style_id"
-        self.btn_info: int=self.ipg.generate_id()
-        self.sld_col: str="sld_col"
-        self.row_id: str="padding_row"
+        self.wnd_id: str = "main"
+        self.style_col_id: str = "style_col"
+        self.style_id: str = "style_id"
+        self.btn_info: int = self.ipg.generate_id()
+        self.sld_col: str = "sld_col"
+        self.row_id: str = "padding_row"
         self.arrow_row: str = "arrow_row"
 
     # sets the gui up and starts the session.
@@ -25,17 +25,17 @@ class ButtonDemo:
 
         # The first widget added must be a window, more windows can be added at any time.
         # Windows and containers must be added before their widgets are added. 
-        self.ipg.add_window(self.wnd_id, "Button Demo", 800, 800, 
-                                        500, 100, True)
+        self.ipg.add_window(self.wnd_id, "Button Demo", 800, 800,
+                            500, 100, True)
         # Setup the styling section.
         self.setup_button_styles()
 
         # Setup the slider section.
         self.setup_slider_section()
 
-        # Seup the padding section.
+        # Setup the padding section.
         self.setup_padding_section()
-        
+
         # This function starts the gui and must be the last function that is called
         self.ipg.start_session()
 
@@ -48,7 +48,7 @@ class ButtonDemo:
         # Sometimes the alignment is not obvious but using debug=True on the window settings
         # shows the outline of the widgets which helps.  You could also used "fixed"
         # for a specific size.
-        self.ipg.add_column(self.wnd_id, container_id=self.style_col_id, 
+        self.ipg.add_column(self.wnd_id, container_id=self.style_col_id,
                             align_items="center", width_fill=True)
 
         # Just text giving info. A widget needs to be added to a container so the parent_id
@@ -66,27 +66,26 @@ class ButtonDemo:
         style_text = ["Primary", "Secondary", "Positive", "Destructive", "Text"]
         style_ipg = [IpgButtonStyles.Primary, IpgButtonStyles.Secondary, IpgButtonStyles.Positive,
                      IpgButtonStyles.Destructive, IpgButtonStyles.Text]
-        
-        for i, style in enumerate(style_text): 
-            self.button_style_ids.append(self.ipg.add_button(parent_id=self.style_id, 
-                                                                    label=style, 
-                                                                    style=style_ipg[i], 
-                                                                    on_press=self.button_pressed, 
-                                                                    user_data=style))
-        
+
+        for i, style in enumerate(style_text):
+            self.button_style_ids.append(self.ipg.add_button(parent_id=self.style_id,
+                                                             label=style,
+                                                             style=style_ipg[i],
+                                                             on_press=self.button_pressed,
+                                                             user_data=style))
+
         # The same approach as above is used here.
         arrows = ["UpArrow", "RightArrow", "DownArrow", "LeftArrow"]
         arrows_ipg = [IpgButtonArrows.ArrowUp, IpgButtonArrows.ArrowRight, IpgButtonArrows.ArrowDown,
                       IpgButtonArrows.ArrowLeft]
 
         for i, arrow in enumerate(arrows):
-            self.button_style_ids.append(self.ipg.add_button(self.arrow_row, 
-                                                                    "",
-                                                                     on_press=self.button_pressed, 
-                                                                    padding=[5.0],
-                                                                    arrow_style=arrows_ipg[i],
-                                                                    user_data=arrow))
-        
+            self.button_style_ids.append(self.ipg.add_button(self.arrow_row,
+                                                             "",
+                                                             on_press=self.button_pressed,
+                                                             padding=[5.0],
+                                                             arrow_style=arrows_ipg[i],
+                                                             user_data=arrow))
 
         # This is the text that will change when a button is pressed therefore the id is needed.
         self.ipg.add_text(parent_id=self.style_col_id, content="This will change when a button is pressed",
@@ -100,13 +99,14 @@ class ButtonDemo:
         self.ipg.add_column(window_id=self.wnd_id, container_id=self.sld_col, align_items="center")
 
         # text widget for info
-        self.ipg.add_text(parent_id=self.sld_col, content="Using the slider, see the effect of changing the corner radius")
+        self.ipg.add_text(parent_id=self.sld_col,
+                          content="Using the slider, see the effect of changing the corner radius")
 
         # A slider wiget is used to change a value which is sent to the callback, set_corner_radius.
         # The value for the slider is passed to the callback.  In this case we need some additional 
         # data sent so a list of integers are sent. You can send int, float, sting, or bool.
-        self.ipg.add_slider(parent_id=self.sld_col, min=0.0, max=20.0, step=0.5, value=10.0, 
-                            width=300.0, on_change=self.set_corner_radius, 
+        self.ipg.add_slider(parent_id=self.sld_col, min=0.0, max=20.0, step=0.5, value=10.0,
+                            width=300.0, on_change=self.set_corner_radius,
                             user_data=self.button_style_ids)
 
         # Text widget for info, since it changes as the slider is moved, the id is needed.

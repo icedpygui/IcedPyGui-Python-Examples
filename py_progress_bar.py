@@ -1,9 +1,9 @@
 from icedpygui import IPG, IpgProgressBarParams, IpgTextParams
 
-
 ipg = IPG()
 
 value = 75.0
+
 
 def change_value_plus(btn_id, pg_id):
     global value
@@ -32,34 +32,35 @@ def change_max(btn_id, max, pg_id):
 def change_height(btn_id, pg_id):
     ipg.update_item(pg_id, IpgProgressBarParams.Height, 30.0)
 
+
 def change_width(btn_id, pg_id):
     ipg.update_item(pg_id, IpgProgressBarParams.Width, 300.0)
 
+
 def change_width_to_fill(btn_id, pg_id):
     ipg.update_item(pg_id, IpgProgressBarParams.WidthFill, True)
+
 
 def hide_bar(btn_id, pg_id):
     ipg.update_item(pg_id, IpgProgressBarParams.Show, False)
 
 
-
-
 ipg.add_window("main", "CheckBox Demo",
-                800, 800, 500, 100)
-        
-ipg.add_container(window_id="main", container_id="cont", width_fill=True,
-                        height_fill=True, align_x="center", align_y="center")
+               800, 800, 500, 100)
 
-ipg.add_column("main", "col", parent_id="cont", 
+ipg.add_container(window_id="main", container_id="cont", width_fill=True,
+                  height_fill=True, align_x="center", align_y="center")
+
+ipg.add_column("main", "col", parent_id="cont",
                align_items="center", spacing=2)
 
 ipg.add_row(window_id="main", container_id="row1", parent_id="col",
-                    width=400.0, padding=[0])
+            width=400.0, padding=[0])
 
 pg_id = ipg.add_progress_bar("row1", 50.0, 100.0, value)
 
 ipg.add_row(window_id="main", container_id="row2", parent_id="col",
-                    width=400.0, padding=[0])
+            width=400.0, padding=[0])
 
 min_text = ipg.add_text("row2", "50")
 sp_id = ipg.add_space("row2", width=320.0)
@@ -82,10 +83,9 @@ ipg.add_row("main", "minmax_row", "col2")
 # These use text input that you convert in the callback
 # Numeric input widgets to come.  No error checking done.
 ipg.add_text_input("minmax_row", "Enter Min",
-               on_submit=change_min, width=150.0, user_data=pg_id)
+                   on_submit=change_min, width=150.0, user_data=pg_id)
 ipg.add_text_input("minmax_row", "Enter Max",
-               on_submit=change_max, width=150.0, user_data=pg_id)
-
+                   on_submit=change_max, width=150.0, user_data=pg_id)
 
 ipg.add_button("col2", "Press Me to shorten the bar",
                on_press=change_width, user_data=pg_id)
@@ -95,6 +95,5 @@ ipg.add_button("col2", "Press Me to to fill the bar width, do the above first",
 
 ipg.add_button("col2", "Press me to hide the bar.",
                on_press=hide_bar, user_data=pg_id)
-
 
 ipg.start_session()

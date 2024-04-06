@@ -1,6 +1,5 @@
 from icedpygui import IPG, IpgTextParams
 
-
 ipg = IPG()
 
 
@@ -23,17 +22,20 @@ def on_open(id, name, data, user_data):
     else:
         ipg.update_item(user_data[1], IpgTextParams.Content, value=f"Window 1 position {data}")
 
+
 # The on_close event only works for other windows, not window 0.  Closing window 0 shuts
 # down the system so no callback cn be performed.  If needed, maybe a special on_close event
-#  would do a calback and then shut the window down. 
+#  would do a callback and then shut the window down.
 def on_close(id, name, user_data):
     ipg.update_item(user_data[0], IpgTextParams.Content, value=f"Window 1 was closed")
+
 
 def on_moved(id, name, data, user_data):
     if "0" in name:
         ipg.update_item(user_data[0], IpgTextParams.Content, value=f"Window 0 position {data}")
     else:
         ipg.update_item(user_data[1], IpgTextParams.Content, value=f"Window 1 position {data}")
+
 
 # Resizable defaults to True so to disable this event, set it to False.
 def on_resized(id, name, data, user_data):
@@ -42,15 +44,18 @@ def on_resized(id, name, data, user_data):
     else:
         ipg.update_item(user_data[1], IpgTextParams.Content, value=f"Window 1 size {data}")
 
+
 # *******************Window 0*****************************************************
 # Add the first window, 
-ipg.add_window(window_id="main1", title="Window Handler Demo", 
-                pos_x=300, pos_y=300, width=400, height=400)
+ipg.add_window(window_id="main1", title="Window Handler Demo",
+               pos_x=300, pos_y=300, width=400, height=400)
 
-ipg.add_column(window_id="main1", container_id="col", align_items="center", 
-                                width_fill=True, height_fill=True)
+ipg.add_column(window_id="main1", container_id="col", align_items="center",
+               width_fill=True, height_fill=True)
 
-ipg.add_text(parent_id="col", content="Try moving and resizing either window. If you close the right window you will see the message in the left window")
+ipg.add_text(parent_id="col",
+             content="Try moving and resizing either window. If you close the right window you will see the message "
+                     "in the left window")
 
 ipg.add_space(parent_id="col", height=50.0)
 
@@ -59,23 +64,22 @@ wnd_1_text = ipg.add_text(parent_id="col", content="Window messages will show he
 
 # ***********************Window 1*********************************************
 
-ipg.add_window(window_id="main2", title="Window Handler Demo", width=400, height=400, 
-                                    pos_x=800, pos_y=300)
+ipg.add_window(window_id="main2", title="Window Handler Demo", width=400, height=400,
+               pos_x=800, pos_y=300)
 
-ipg.add_column("main2", container_id="col", align_items="center", 
-                                width_fill=True, height_fill=True)
+ipg.add_column("main2", container_id="col", align_items="center",
+               width_fill=True, height_fill=True)
 
 ipg.add_space(parent_id="col", height=100.0)
 
 wnd_2_text = ipg.add_text(parent_id="col", content="Window messages will show here")
 
-
 # Add the event, the callbacks are all optional, just use the ones you want
-ipg.add_event_window(enabled=True, 
-                     on_open=on_open, 
-                     on_close=on_close, 
+ipg.add_event_window(enabled=True,
+                     on_open=on_open,
+                     on_close=on_close,
                      on_moved=on_moved,
-                     on_resized=on_resized, 
+                     on_resized=on_resized,
                      user_data=[wnd_1_text, wnd_2_text])
 
 # Required to be the last widget sent to Iced,  If you start the program

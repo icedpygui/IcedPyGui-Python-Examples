@@ -1,6 +1,5 @@
 from icedpygui import IPG, IpgTextParams, IpgButtonParams, IpgDatePickerParams
 
-
 ipg = IPG()
 
 selected_date = "No selection"
@@ -15,10 +14,11 @@ def date_selected(id, date):
 
 # Another callback with some user data
 def date_selected_with_ud(id, date, user_data):
-    ipg.update_item(selected_with_ud_id, IpgTextParams.Content, 
+    ipg.update_item(selected_with_ud_id, IpgTextParams.Content,
                     f"You submitted {date} with user_data = {user_data}")
-    
+
     ipg.update_item(btn_id, IpgButtonParams.Show, True)
+
 
 # callback for the date picker.  The id is the date_picker id so you have to get
 # the id of whatever widget you want to update using a class or for small projects, a global var.
@@ -26,10 +26,11 @@ def date_selected_with_ud(id, date, user_data):
 def date_resize(id):
     ipg.update_item(dp2_id, IpgDatePickerParams.SizeFactor, 1.5)
 
-ipg.add_window("main", "Date Picker Demo", 800, 800, 
-                                    500, 100)
 
-ipg.add_container("main", container_id="cont", align_x="center", 
+ipg.add_window("main", "Date Picker Demo", 800, 800,
+               500, 100)
+
+ipg.add_container("main", container_id="cont", align_x="center",
                   align_y="center", width_fill=True, height_fill=True)
 
 ipg.add_column(window_id="main", container_id="col", parent_id="cont", align_items="center")
@@ -44,14 +45,14 @@ ipg.add_date_picker(parent_id="col", size_factor=1.2, on_submit=date_selected)
 selected_date_id = ipg.add_text(parent_id="col", content=selected_date)
 
 # Another date picker to test the user_data
-dp2_id = ipg.add_date_picker(parent_id="col", size_factor=1.2, 
-                             on_submit=date_selected_with_ud, 
+dp2_id = ipg.add_date_picker(parent_id="col", size_factor=1.2,
+                             on_submit=date_selected_with_ud,
                              user_data="Some user data")
 
 # text widget id needed for callback.
 selected_with_ud_id = ipg.add_text(parent_id="col", content=selected_date)
 
-btn_id = ipg.add_button(parent_id="col", label="Click to resize the calendar", 
-                               on_press=date_resize, show=False)
+btn_id = ipg.add_button(parent_id="col", label="Click to resize the calendar",
+                        on_press=date_resize, show=False)
 
 ipg.start_session()
