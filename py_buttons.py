@@ -3,19 +3,35 @@ from icedpygui import IpgButtonArrows, IpgButtonParams
 from icedpygui import IpgTextParams
 
 
+# In this case a class is being used to give
+# you an idea of how a more organize structure
+# look like.  In some cases where you use string
+# id a lot, you might want to include it in the
+# init so that when you start typing, you can select it.
+# This helps cut down on typos which cause error about not
+# finding the parent_id, etc.
 class ButtonDemo:
     def __init__(self) -> None:
+        # This needs to be in the init function
+        # before any ipg commands are used.
         self.ipg = IPG()
 
         self.button_style_ids: list = []
         self.button_arrow_ids: list = []
 
         # ids - I prefer to give my string ids a variable name so that
-        # it I select them from a list and it reduced spelling errors.
+        # it I select them from a list and it reduces spelling errors.
         self.wnd_id: str = "main"
         self.style_col_id: str = "style_col"
         self.style_id: str = "style_id"
+        # This is a special case scenario where you need an id for a widget
+        # before starting.  If so, generate it and use it for the optional id
+        # parameter in your widget.
         self.btn_info: int = self.ipg.generate_id()
+        # For the below text_id, a zero place holder is used.  Zero is an invalid id
+        # so if you later miss initializing it, you will get an error.  Alternately,
+        # you could use the above method.
+        self.text_id = 0
         self.sld_col: str = "sld_col"
         self.row_id: str = "padding_row"
         self.arrow_row: str = "arrow_row"
@@ -63,6 +79,7 @@ class ButtonDemo:
 
         # A row of buttons are added, the ids [b1, ...] will be used to update the style of the buttons
         # The callback is the same for each button but may be different based on needs.
+        # The user_data is the style name and just used to update a text widget in the callback.
         style_text = ["Primary", "Secondary", "Positive", "Destructive", "Text"]
         style_ipg = [IpgButtonStyles.Primary, IpgButtonStyles.Secondary, IpgButtonStyles.Positive,
                      IpgButtonStyles.Destructive, IpgButtonStyles.Text]
@@ -88,13 +105,15 @@ class ButtonDemo:
                                                              user_data=arrow))
 
         # This is the text that will change when a button is pressed therefore the id is needed.
+        # This could have been obtained at the time of it's creation by just setting the
+        # widget equal to self.btn_info.  This was just a demo of another technique.
         self.ipg.add_text(parent_id=self.style_col_id, content="This will change when a button is pressed",
                           id=self.btn_info)
 
     def setup_slider_section(self):
 
         # A column is added for center alignment of the remaining items
-        # One could have used a single column for everything, it's just a metter of 
+        # One could have used a single column for everything, it's just a matter of
         # how you want to group things and your needs 
         self.ipg.add_column(window_id=self.wnd_id, container_id=self.sld_col, align_items="center")
 
@@ -102,9 +121,10 @@ class ButtonDemo:
         self.ipg.add_text(parent_id=self.sld_col,
                           content="Using the slider, see the effect of changing the corner radius")
 
-        # A slider wiget is used to change a value which is sent to the callback, set_corner_radius.
+        # A slider widget is used to change a value which is sent to the callback, set_corner_radius.
         # The value for the slider is passed to the callback.  In this case we need some additional 
-        # data sent so a list of integers are sent. You can send int, float, sting, or bool.
+        # data sent so a list of integers are sent. You can send any type of data since it just
+        # passes through rust with no change.
         self.ipg.add_slider(parent_id=self.sld_col, min=0.0, max=20.0, step=0.5, value=10.0,
                             width=300.0, on_change=self.set_corner_radius,
                             user_data=self.button_style_ids)
@@ -124,7 +144,7 @@ class ButtonDemo:
         # All of the buttons below have different padding values.  The padding parameter
         # has 3 different type of values.  A list of a single item setting padding on all sides.
         # A list of 2 values sets padding on left and right, respectively.
-        # A list of 4 alues sets pading specifically on each of the sides,
+        # A list of 4 values sets padding specifically on each of the sides,
         # top, right, bottom, left, respectively. A clockwise pattern.
         # if you wanted just the right for example you would use all four and just adjust
         #  the second item in the list.  You will have to supply the default value for the others
@@ -143,8 +163,7 @@ class ButtonDemo:
         # The slider uses this callback and the slider id, value and any user data is
         # returned.  These parameter names can be anything you like as long
         # as you know that the order is all the same for all callbacks.
-        # The user_data can be anything.  Since the user_data is just passed through Rust,
-        # some of the issure with mixed list are not seen.
+        # The user_data can be anything.  Since the user_data is just passed through Rust.
         #  The list of all the ids were stored and each button can be changed based on their id.
         for id in user_data:
             self.ipg.update_item(id, IpgButtonParams.CornerRadius, float(value))
@@ -153,13 +172,12 @@ class ButtonDemo:
 
     def button_pressed(self, id, user_data):
         # This is a callback that occurs when the button is pressed
-        # The id equals the button that was pressed and the data
-        # for the button is None but its needed as a placeholder in the fucntion.
-        #  THe user_data_str is a list of any string that the user wants to use.
-        #  In this case, it was just the name of the button style used in the value_str below.
-
+        # The id equals the button that was pressed and the user_data, in this case,
+        # is a string for the text widget below.
         self.ipg.update_item(self.btn_info, IpgTextParams.Content, f"Last button pressed was {user_data}")
 
 
+# instantiates the class
 demo = ButtonDemo()
+# call to setup the gui
 demo.setup_gui()
