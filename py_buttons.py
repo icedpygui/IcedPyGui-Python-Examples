@@ -108,7 +108,7 @@ class ButtonDemo:
         # This could have been obtained at the time of it's creation by just setting the
         # widget equal to self.btn_info.  This was just a demo of another technique.
         self.ipg.add_text(parent_id=self.style_col_id, content="This will change when a button is pressed",
-                          id=self.btn_info)
+                          gen_id=self.btn_info)
 
     def setup_slider_section(self):
 
