@@ -9,8 +9,14 @@ class CheckboxDemo:
         self.wnd_id: str = "main"
         self.col: str = "col"
 
+        # The ids are set to zero, an invalid id. so if you use
+        # before they are initialed by the widget you'll get an error
+        # Another approach would be to use the generate_id() method
+        # and add this id to the widget.  I prefer this way since your
+        # IDE will list then in a drop down for selecting.
         self.chk_main: int = 0
         self.checked_id: int = 0
+        self.hide_text: int = 0
         self.text_id: int = 0
         self.text_user_data_id: int = 0
         self.width_id: int = 0
@@ -30,15 +36,14 @@ class CheckboxDemo:
         self.ipg.add_container(window_id=self.wnd_id, container_id="cont", width_fill=True,
                                height_fill=True, align_x="center", align_y="center")
 
-        # A coulmn is added for the widgets.  Widgets cannot be added directly to windows.
+        # A column is added for the widgets.  Widgets cannot be added directly to windows.
         self.ipg.add_column(window_id=self.wnd_id, container_id=self.col, parent_id="cont",
                             width=400.0, height=800.0)
 
         self.ipg.add_text(parent_id=self.col, content="CHECK THE CHECKBOX TO SEE THE CHANGES")
 
         # All widgets that cause an action can carry user data to the callback method.
-        # You can send data types a number of different data types.  
-        # See the item_update example for more info.
+        # You can send any data types you like, they just pass through rust and return as is.
         self.chk_main = self.ipg.add_checkbox(parent_id=self.col, label="Check Me!!!",
                                               on_toggle=self.on_toggled,
                                               user_data="Some string data")
@@ -46,10 +51,10 @@ class CheckboxDemo:
         # These text widgets will show some content when the checkbox is checked.
         # Currently they show a placeholder of an empty string.  You could have set the 
         # show parameter to false also and have the same effect, at least for the text widget.
-
         self.text_id = self.ipg.add_text(parent_id=self.col, content="The callback name is show here")
 
-        self.text_user_data_id = self.ipg.add_text(parent_id=self.col, content="The callback user data will show here")
+        self.text_user_data_id = self.ipg.add_text(parent_id=self.col,
+                                                   content="The callback user data will show here")
 
         self.checked_id = self.ipg.add_checkbox(self.col, label="My icon will change",
                                                 is_checked=True)
@@ -66,11 +71,12 @@ class CheckboxDemo:
                                             text_line_height=1.3)
 
         self.show_id = self.ipg.add_checkbox(parent_id=self.col, label="This checkbox will be hidden")
+
         self.hide_text = self.ipg.add_text(self.col, "")
 
         self.ipg.start_session()
 
-    def on_toggled(self, id, is_checked, user_data):
+    def on_toggled(self, _chk_id, is_checked, user_data):
         # This is the callback for the checkbox.  The id parameter is the id of the checkbox
         # that is checked, so if other widgets need to be manipulated, as in this case, 
         # you must obtain their ids by equating them and storing them in a class or using them globally.  
@@ -95,7 +101,8 @@ class CheckboxDemo:
 
             # Changing the width of the label with a tuple (string, float) value
             self.ipg.update_item(self.width_id, IpgCheckboxParams.Width, 200.0)
-            self.ipg.update_item(self.width_id, IpgCheckboxParams.Label, "Width Shrank and label wrapped")
+            self.ipg.update_item(self.width_id, IpgCheckboxParams.Label,
+                                 "Width Shrank and label wrapped")
             self.ipg.update_item(self.width_id, IpgCheckboxParams.IsChecked, True)
 
             # Changing the size of the box with a float value
@@ -153,12 +160,14 @@ class CheckboxDemo:
 
             # Changing the spacing between box and label with a float value
             self.ipg.update_item(self.spacing_id, IpgCheckboxParams.Spacing, 15.0)
-            self.ipg.update_item(self.spacing_id, IpgCheckboxParams.Label, "Checkbox spacing will change")
+            self.ipg.update_item(self.spacing_id, IpgCheckboxParams.Label,
+                                 "Checkbox spacing will change")
             self.ipg.update_item(self.spacing_id, IpgCheckboxParams.IsChecked, False)
 
             # Changing the text_size with a float value
             self.ipg.update_item(self.txt_size_id, IpgCheckboxParams.TextSize, 16.0)
-            self.ipg.update_item(self.txt_size_id, IpgCheckboxParams.Label, "Checkbox text size will change")
+            self.ipg.update_item(self.txt_size_id, IpgCheckboxParams.Label,
+                                 "Checkbox text size will change")
             self.ipg.update_item(self.txt_size_id, IpgCheckboxParams.IsChecked, False)
 
             # Changing the text_line_height which increases space around the text label.

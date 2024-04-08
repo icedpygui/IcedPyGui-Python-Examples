@@ -1,14 +1,16 @@
 from icedpygui import IPG, IpgTextParams
 
+# First command needed to instantiate the IPG
 ipg = IPG()
 
 
-def key_pressed(id, name, key, user_data):
+# Callback for when a key is pressed
+def key_pressed(_event_id, key, user_data):
     ipg.update_item(text_pressed, IpgTextParams.Content, f"{name}: {key.get('modifier')} {key.get('key')}")
     ipg.update_item(text_user_data, IpgTextParams.Content, f"user data is {user_data}")
 
 
-def key_released(id, name, key, user_data):
+def key_released(_event_id, key, _user_data):
     ipg.update_item(text_released, IpgTextParams.Content, f"{name}: {key.get('modifier')} {key.get('key')}")
 
 
