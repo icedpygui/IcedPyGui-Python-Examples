@@ -1,4 +1,5 @@
 from icedpygui import IPG, IpgTextParams
+from icedpygui import IpgColumnAlignment
 
 
 # To reduce typing errors when using the ids, I like to 
@@ -14,12 +15,11 @@ from icedpygui import IPG, IpgTextParams
 # and not a string.  Hopefully I can fixed in the future. 
 
 # Note on scrolling:
-# Sometimes getting the windows sized correctly takes a bit
-# of patiences using fill, fixed, shrink, fillportion
-# When using scrolling, size the scrollable and let the container,
-# if horizontal be fill and the length be shrink.
-# if vertical scrolling, let the container width be shrink and
-#  the length can be shrink or fill.
+# Sometimes getting the containers sized correctly takes a bit
+# of patience's.  When using scrolling, the size of the scrollable
+# should always be smaller than the container size.  The container
+# will be the default shrink and you set the size of the scrollable
+# to be something less than the size of your data or container items.
 
 
 class DemoScrollable:
@@ -31,7 +31,7 @@ class DemoScrollable:
         # To help reduce spelling errors,
         # you can set up you variables
         # and select from your ide's dropdown list
-        # without havin to type in the string.
+        # without having to type in the string.
         self.wnd_v: str = "window_v"
         self.cont_v_top: str = "cont_v_top"
         self.scroll_v: str = "scroll_v"
@@ -48,9 +48,11 @@ class DemoScrollable:
         self.cb_text_h: int = 0
 
     # start_session must be the last function called
-    def start_session(self):
+    def create_gui(self):
         self.create_scroll_vertical()
         self.create_scroll_horizontal()
+        # Required to be the last widget sent to Iced,  If you start the program
+        # and nothing happens, it might mean you forgot to add this command.
         self.ipg.start_session()
 
     # ***************Window 1-scrolling a column container vertically**********************************
@@ -68,20 +70,22 @@ class DemoScrollable:
 
         self.ipg.add_text(self.cont_v_top, "Try Scrolling a Column Container.")
 
-        # a scrollable is the outside of a container, wraps it, so it needs to be added first
-        # The width and height should controll the size and let the internal container be fill
-        # If you have multiple containers inside the scrollable, try using fillportion or fixed
-        # The disadvantage of using fixed is that you'll need to recalc your sizes on a callback
-        # and update each container.
+        # A container is put into a scrollable, so it needs to be added first.
+        # The width and height should be used control the size of the scrollable,
+        # depending if its horizontal or vertical.  In this case, we control
+        # the height by setting it a value.  If you used height_fill=True in this case,
+        # the container and text widget would be pushed out of the window but you
+        # could still scroll because the height is less than the data height.
         self.ipg.add_scrollable(window_id=self.wnd_v, container_id=self.scroll_v,
                                 width_fill=True, height=150.0, on_scroll=self.on_scroll_v)
 
         # A column is next added since the expectation is that you have a long list of
-        # items that need to be scrolled.  The could be anything like buttons, radios, text, etc.
-        # Note that the column height shoulb be shrink which is the default.  The scrollable will
-        # control the size of the scrollable container.
-        self.ipg.add_column(window_id=self.wnd_v, container_id=self.cont_v_middle, parent_id=self.scroll_v,
-                            width_fill=True, align_items="center")
+        # items that need to be scrolled.  This could be anything like buttons, radios, text, etc.
+        # Note that the column height should be shrink which is the default, i.e no alue.
+        # The scrollable size will control the size of the scrollable container.
+        self.ipg.add_column(window_id=self.wnd_v, container_id=self.cont_v_middle,
+                            parent_id=self.scroll_v, width_fill=True,
+                            align_items=IpgColumnAlignment.Center)
 
         for i in range(0, 25):
             self.ipg.add_text(self.cont_v_middle, content="Scroll Me Up and Down!")
@@ -107,13 +111,17 @@ class DemoScrollable:
 
         self.ipg.add_text(self.cont_h_top, "Try Scrolling a Row Container.")
 
+        # Unlike for the vertical scroller above, it's ok to use the full width
+        # screen because nothing is in the way and the data is larger than the
+        # window width.  However, we wanted to keep the scrollable height small
+        # since there is only a single line of text.
         self.ipg.add_scrollable(window_id=self.wnd_h, container_id=self.scroll_h,
                                 direction="horizontal",
                                 width_fill=True, height=50.0,
                                 on_scroll=self.on_scroll_h)
 
         self.ipg.add_row(window_id=self.wnd_h, container_id=self.cont_h_middle,
-                         parent_id=self.scroll_h, align_items="start")
+                         parent_id=self.scroll_h)
 
         for i in range(0, 25):
             self.ipg.add_text(self.cont_h_middle, content="Scroll Me left or Right!")
@@ -126,9 +134,8 @@ class DemoScrollable:
         self.cb_text_h = self.ipg.add_text(parent_id=self.cont_h_bottom,
                                            content=f"Some data when scrolled")
 
-        # The data in this case in a dictionary, check the docs or print data to 
-        # determine the key, value of the data.
-
+    # The data in this case in a dictionary, check the docs or print data to
+    # determine the key, value of the data.
     def on_scroll_v(self, id, data):
         text = "\n".join("{}: {}".format(k, v) for k, v in data.items())
         self.ipg.update_item(self.cb_text_v, IpgTextParams.Content,
@@ -140,5 +147,7 @@ class DemoScrollable:
                              value=f"scrollable id = {id}\n{text}")
 
 
+# instantiate the class
 ds = DemoScrollable()
-ds.start_session()
+
+ds.create_gui()

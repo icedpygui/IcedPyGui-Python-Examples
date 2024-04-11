@@ -56,6 +56,7 @@ class CheckboxDemo:
         self.text_user_data_id = self.ipg.add_text(parent_id=self.col,
                                                    content="The callback user data will show here")
 
+        # These checkboxes will change as the label indicates
         self.checked_id = self.ipg.add_checkbox(self.col, label="My icon will change",
                                                 is_checked=True)
 
@@ -74,6 +75,7 @@ class CheckboxDemo:
 
         self.hide_text = self.ipg.add_text(self.col, "")
 
+        # Start the gui, last function to be executed.
         self.ipg.start_session()
 
     def on_toggled(self, _chk_id, is_checked, user_data):
@@ -82,7 +84,7 @@ class CheckboxDemo:
         # you must obtain their ids by equating them and storing them in a class or using them globally.  
         # To update a widget, you provide the parameter name as a string, followed by the value.
         # The type of the value must correspond to the parameter type.
-        # Only function with the starting anme of update_ can be used in a callback.
+        # The only ipg function that can currently be call in a callback is update_item().
 
         if is_checked:
             # changing the checkbox label.  Since this was the checkbox that was checked,
@@ -184,5 +186,9 @@ class CheckboxDemo:
             self.ipg.update_item(self.hide_text, IpgTextParams.Content, "")
 
 
+# instantiate the class
 demo = CheckboxDemo()
+
+# Required to be the last widget sent to Iced,  If you start the program
+# and nothing happens, it might mean you forgot to add this command.
 demo.setup_gui()

@@ -1,7 +1,10 @@
 from icedpygui import IPG, IpgButtonParams, IpgTextParams
+from icedpygui import IpgColumnAlignment
+
 
 ipg = IPG()
 
+# Some global vars for this short demo
 left_button_pcount = 0
 left_button_rcount = 0
 
@@ -17,7 +20,7 @@ middle_button_rcount = 0
 # occur like incrementing a non-initialized variable.  Comment out the global
 # statement below and you should get an error about parameter count.  However, 
 # this is a non-fatal python error, in this case.  You can figure this out by
-# commenting out your code adding None as a placehold and running it.  If the
+# commenting out your code adding None as a placeholder and running it.  If the
 # error doesn't happen, look for python non-fatal error.
 def on_press(id):
     global left_button_pcount
@@ -62,7 +65,8 @@ ipg.add_window(window_id="main", title="Selectable Text Demo",
 
 # All widgets need to be added to a container, so a container
 # is the second widget needed.
-ipg.add_column(window_id="main", container_id="col", align_items="center",
+ipg.add_column(window_id="main", container_id="col",
+               align_items=IpgColumnAlignment.Center,
                width_fill=True, height_fill=True)
 
 ipg.add_space(parent_id="col", height=50.0)
@@ -93,5 +97,7 @@ right_released_id = ipg.add_text(parent_id="col", content=f"Left button released
 middle_pressed_id = ipg.add_text(parent_id="col", content=f"Middle button pressed {middle_button_pcount} times")
 middle_released_id = ipg.add_text(parent_id="col", content=f"Middle button released {middle_button_rcount} times")
 
-# Always the last item processed.
+
+# Required to be the last widget sent to Iced,  If you start the program
+# and nothing happens, it might mean you forgot to add this command.
 ipg.start_session()

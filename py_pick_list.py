@@ -1,9 +1,10 @@
 from icedpygui import IPG, IpgPickListParams, IpgTextParams
+from icedpygui import IpgColumnAlignment
+
 
 ipg = IPG()
 
 
-# Callback used by the picklist.  The id is the picklist id.
 # The data returns the item selected and can be named anything.
 # The update items uses the text widget id and the "content" parameter
 # to update.  The value is what you want the content parameter to equal.
@@ -18,16 +19,16 @@ def picked_item(pl_id, data):
 # generated, followed by user_data.  If no data is generated, don't use a placeholder
 # just skip putting it in or you will get an error needing only 2 parameters.
 def picked_item_with_ud(pl_id, data, user_data):
-    ipg.update_item(text_id_with_ud, IpgTextParams.Content, value=f"You picked <{data}> with user data <{user_data}>")
+    ipg.update_item(text_id_with_ud, IpgTextParams.Content,
+                    value=f"You picked <{data}> with user data <{user_data}>")
 
 
 # Float data returned in user_data
 def picked_item_with_float(pl_id, data):
     ipg.update_item(text_id_3, IpgTextParams.Content, value=f"You picked <{data}>")
 
-    # A boolean in this case
 
-
+# A boolean in this case
 def picked_item_with_bool(pl_id, data):
     ipg.update_item(text_id_4, IpgTextParams.Content, value=f"You picked <{data}>")
 
@@ -69,7 +70,7 @@ def change_width(btn_id, pl_id):
 
 
 def change_width_fill(btn_id, pl_id):
-    ipg.update_item(pl_id, IpgPickListParams.WidthFill, True)
+    ipg.update_item(pl_id, IpgPickListParams.Width, 100.0)
 
 
 def add_first_row():
@@ -151,7 +152,8 @@ ipg.add_window("main", "Pick List Demo", 800, 800,
 
 # all widgets need to be added to a container, so a container
 # is the second widget needed.
-ipg.add_column("main", container_id="col", align_items="center", width_fill=True)
+ipg.add_column("main", container_id="col",
+               align_items=IpgColumnAlignment.Center, width_fill=True)
 
 # Just adding som space at the top of the column
 ipg.add_space(parent_id="col", height=100.0)
@@ -181,5 +183,6 @@ add_fourth_row()
 
 text_id_4 = ipg.add_text(parent_id="col", content="Nothing Picked From Above Yet")
 
-# Always the last item processed.
+# Required to be the last widget sent to Iced,  If you start the program
+# and nothing happens, it might mean you forgot to add this command.
 ipg.start_session()

@@ -1,4 +1,6 @@
 from icedpygui import IPG, IpgButtonStyles, IpgCardStyles, IpgCardParams
+from icedpygui import IpgColumnAlignment
+
 
 # Needed first, see other demos for using a class
 ipg = IPG()
@@ -7,17 +9,24 @@ ipg = IPG()
 # Callback function for changing the card style
 # The update function is (wid, param, value)
 # wid = widget id
-def update_card(btn_id):
+def update_card(_btn_id):
     global card_id
     # The card_id is the first card in the series.  The only one that is changed.
+    # The btn_id is not used.
     ipg.update_item(card_id, IpgCardParams.Head, "This is a new head with Danger style")
     ipg.update_item(card_id, IpgCardParams.Body, "This is a new body.")
     ipg.update_item(card_id, IpgCardParams.Foot, "This is a new foot")
     ipg.update_item(card_id, IpgCardParams.Style, IpgCardStyles.Danger)
 
 
-# minimizes the first card, the button at the bottom left will maximize it.
+# The callback will minimizes the first card, the button at the bottom left will maximize it.
 def minimize_card(card_id):
+    # In this case the card has a built in button, it can trigger the minimization.
+    # Therefore, unlike most other widgets, the id is the card_id needed.
+    # The update widget will always need a type where the correct
+    # parameter can be selected.  In this case is was IsOpen.
+    # id you look at the Card widget docs, you will know what the value
+    # type will be, in this case a boolean.
     ipg.update_item(card_id, IpgCardParams.IsOpen, False)
 
 
@@ -34,6 +43,8 @@ ipg.add_window(window_id="main", title="Card Demo", width=800, height=800,
                pos_x=500, pos_y=100)
 
 # add a container for the first button to center it.
+# A width_fill is used but the height remains a shrink
+# We have center aligned along the x axis.
 ipg.add_container(window_id="main", container_id="btn_cont", align_x="center",
                   align_y="center", width_fill=True)
 
@@ -43,26 +54,27 @@ ipg.add_button("btn_cont",
                      "restore it by pressing on the bottom button.",
                on_press=update_card)
 
-# add another container to center the column of cards to follow
+# add another is added container to center the column of cards to follow
 ipg.add_container(window_id="main", container_id="cont", align_x="center",
                   align_y="center", width_fill=True, height_fill=True)
 
 # put a scrollable in the container since the column will be larger than the container
 ipg.add_scrollable(window_id="main", container_id="scroller", parent_id="cont", height_fill=True)
 
-# put the column in the scrollable.  Note that the height of the scrollable is fill
-# and then the column has to be shorter that the scrollable.  This seems to work
-# most of the time but in some situations you'll need touse the window debug setting
+# Put a column in the scrollable.  Note that the height of the scrollable is fill
+# and then the column is made shorter that the scrollable.  This seems to work
+# most of the time but in some situations you'll need to use the window debug setting
 # to see how things line up and getting the contents to scroll.  Just remember the
 # scrollable has to be larger than the container, column, or row.
 ipg.add_column(window_id="main", container_id="col", parent_id="scroller",
-               align_items="center", width=400.0, spacing=0.0)
+               align_items=IpgColumnAlignment.Center, width=400.0, spacing=0.0)
 
 # Add a row at the bottom to hold the button
 ipg.add_row("main", "bottom_row", parent_id="main",
             width_fill=True, spacing=0.0)
 
-# add the button, this could have been hidden and when the card is minimized, the show it.
+# Add the button. This button could have been hidden and when the card is minimized, then show it.
+# You could also have changed the label to min or max.
 ipg.add_button("bottom_row", "Card 1", style=IpgButtonStyles.Primary,
                on_press=maximize_card)
 
@@ -98,5 +110,6 @@ ipg.add_card("col", head, "Default: " + body, foot="Foot",
 # if you use no style, them this is what you get, which is Default.
 ipg.add_card("col", head, "Default: If you use no style setting.\n" + body, foot="Foot")
 
-# Finally start the session, last command to be executed
+# Required to be the last widget sent to Iced,  If you start the program
+# and nothing happens, it might mean you forgot to add this command.
 ipg.start_session()

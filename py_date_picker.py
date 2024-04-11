@@ -1,8 +1,8 @@
 from icedpygui import IPG, IpgTextParams, IpgButtonParams, IpgDatePickerParams
+from icedpygui import IpgColumnAlignment
+
 
 ipg = IPG()
-
-selected_date = "No selection"
 
 
 # Callback for the date picker.  The id is the date_picker id so you have to get
@@ -35,19 +35,20 @@ ipg.add_container("main", container_id="cont", align_x="center",
                   align_y="center", width_fill=True, height_fill=True)
 
 # Add a column to hold more than one widget and put this into the container/
-ipg.add_column(window_id="main", container_id="col", parent_id="cont", align_items="center")
+ipg.add_column(window_id="main", container_id="col", parent_id="cont",
+               align_items=IpgColumnAlignment.Center)
 
 # Add info text
-ipg.add_text(parent_id="col", content="Press the calendar buttons to access the calendar selection"
+ipg.add_text(parent_id="col", content="Press the first calendar buttons to access the calendar.  "
              "Select a date then press submit.  Do the same for the second button and you will see another button to "
                                       "resize the calendar")
 
 # The date picker size can be scaled from > 1.0.  Anything less than 1 will
 # give an error and is not readable anyway.
-ipg.add_date_picker(parent_id="col", size_factor=1.2, on_submit=date_selected)
+ipg.add_date_picker(parent_id="col", size_factor=1.2, on_submit="No selection")
 
 # text widget id needed for callback.
-selected_date_id = ipg.add_text(parent_id="col", content=selected_date)
+selected_date_id = ipg.add_text(parent_id="col", content="No selection")
 
 # Another date picker to test the user_data
 dp2_id = ipg.add_date_picker(parent_id="col", size_factor=1.2,
@@ -55,11 +56,12 @@ dp2_id = ipg.add_date_picker(parent_id="col", size_factor=1.2,
                              user_data="Some user data")
 
 # text widget id needed for callback.
-selected_with_ud_id = ipg.add_text(parent_id="col", content=selected_date)
+selected_with_ud_id = ipg.add_text(parent_id="col", content="No selection")
 
 # Add the button for the resize but hide it until the second calendar is opened
 btn_id = ipg.add_button(parent_id="col", label="Click to resize the calendar",
                         on_press=date_resize, show=False)
 
-# Last command to start everything up.
+# Required to be the last widget sent to Iced,  If you start the program
+# and nothing happens, it might mean you forgot to add this command.
 ipg.start_session()
