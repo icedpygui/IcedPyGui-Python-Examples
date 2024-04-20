@@ -31,8 +31,8 @@ ipg.add_window("main", "Date Picker Demo", 800, 800,
                500, 100)
 
 # Add the container to center both x and y.  Holds only one widget.
-ipg.add_container("main", container_id="cont", align_x="center",
-                  align_y="center", width_fill=True, height_fill=True)
+ipg.add_container("main", container_id="cont",
+                  width_fill=True, height_fill=True)
 
 # Add a column to hold more than one widget and put this into the container/
 ipg.add_column(window_id="main", container_id="col", parent_id="cont",

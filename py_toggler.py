@@ -1,12 +1,12 @@
 from icedpygui import IPG, IpgAlignment, IpgTogglerParams, IpgTextParams
 from icedpygui import IpgColumnAlignment
 
-
 ipg = IPG()
+
 
 # Callback from toggler, updated a text widget
 def toggled(_tog_id, is_toggled):
-    ipg.update_item(is_tog_id, IpgTextParams.Content, f"The toggler is {is_toggled}.")
+    ipg.update_item(text_id, IpgTextParams.Content, f"The toggler is {is_toggled}.")
 
 
 # The remaining callback are from the button which updates a parameter of the toggler
@@ -52,7 +52,7 @@ ipg.add_column("main", container_id="col_top", parent_id="col",
 
 tog_id = ipg.add_toggler("col_top", toggled=toggled)
 
-is_tog_id = ipg.add_text("col_top", "The toggler is False.")
+text_id = ipg.add_text("col_top", "The toggler is False.")
 
 # Add another column to hold the remaining buttons
 ipg.add_column("main", container_id="col_bot", parent_id="col",

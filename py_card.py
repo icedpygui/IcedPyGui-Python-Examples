@@ -45,8 +45,7 @@ ipg.add_window(window_id="main", title="Card Demo", width=800, height=800,
 # add a container for the first button to center it.
 # A width_fill is used but the height remains a shrink
 # We have center aligned along the x axis.
-ipg.add_container(window_id="main", container_id="btn_cont", align_x="center",
-                  align_y="center", width_fill=True)
+ipg.add_container(window_id="main", container_id="btn_cont", width_fill=True)
 
 # add a button with a callback on_press to update the first card.
 ipg.add_button("btn_cont",
@@ -55,8 +54,8 @@ ipg.add_button("btn_cont",
                on_press=update_card)
 
 # add another is added container to center the column of cards to follow
-ipg.add_container(window_id="main", container_id="cont", align_x="center",
-                  align_y="center", width_fill=True, height_fill=True)
+ipg.add_container(window_id="main", container_id="cont",
+                  width_fill=True, height_fill=True)
 
 # put a scrollable in the container since the column will be larger than the container
 ipg.add_scrollable(window_id="main", container_id="scroller", parent_id="cont", height_fill=True)

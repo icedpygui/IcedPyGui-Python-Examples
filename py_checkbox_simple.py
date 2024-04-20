@@ -25,7 +25,7 @@ ipg.add_window("main", "CheckBox Demo",
 
 # Add a container to center the widgets in the middle
 ipg.add_container(window_id="main", container_id="cont", width_fill=True,
-                  height_fill=True, align_x="center", align_y="center")
+                  height_fill=True)
 
 # Since a container can only hold one widget, use a column to hold the
 # two checkboxes.  We let the width and height default to shrink, so no entry.

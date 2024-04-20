@@ -147,8 +147,8 @@ def change_height(chk_id: int, checked: bool, radio_ids: list[int]):
 ipg.add_window("main", "Radio Demo", 500, 650,
                300, 100)
 
-ipg.add_container("main", container_id="cont", align_x="center",
-                  align_y="center", width_fill=True, height_fill=True)
+ipg.add_container("main", container_id="cont",
+                  width_fill=True, height_fill=True)
 
 ipg.add_column(window_id="main", container_id="col", parent_id="cont",
                align_items=IpgColumnAlignment.Center, height=600.0, width=500.0)
@@ -182,8 +182,8 @@ ipg.add_space(parent_id="col", height=90)
 ipg.add_window("main2", "Radio Demo", 600, 650,
                850, 100)
 
-ipg.add_container("main2", container_id="cont", align_x="center",
-                  align_y="center", width_fill=True, height_fill=True)
+ipg.add_container("main2", container_id="cont",
+                  width_fill=True, height_fill=True)
 
 ipg.add_column(window_id="main2", container_id="chk_col", parent_id="cont")
 

@@ -24,7 +24,7 @@ ipg.add_window("main", "Timer Demo",
 
 # Add the container to center everything
 ipg.add_container(window_id="main", container_id="cont", width_fill=True,
-                  height_fill=True, align_x="center", align_y="center")
+                  height_fill=True)
 
 # Add the column to hold the widgets
 ipg.add_column(window_id="main", container_id="col", parent_id="cont")

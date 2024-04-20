@@ -34,7 +34,7 @@ class CheckboxDemo:
                             800, 800, 500, 100)
 
         self.ipg.add_container(window_id=self.wnd_id, container_id="cont", width_fill=True,
-                               height_fill=True, align_x="center", align_y="center")
+                               height_fill=True)
 
         # A column is added for the widgets.  Widgets cannot be added directly to windows.
         self.ipg.add_column(window_id=self.wnd_id, container_id=self.col, parent_id="cont",

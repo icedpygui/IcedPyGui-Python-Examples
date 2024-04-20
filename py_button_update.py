@@ -1,5 +1,5 @@
 from icedpygui import IPG, IpgButtonStyles, IpgButtonArrows, IpgButtonParams
-from icedpygui import IpgColumnAlignment
+from icedpygui import IpgColumnAlignment, IpgContainerAlignment
 
 
 # Normally in larger project, a class or classes would be used.
@@ -51,11 +51,13 @@ def update_button(btn_id):
 ipg.add_window("main", "Button Update", width=500, height=700,
                pos_centered=True)
 
-# adding a container helps in aligning widget since it has an x and y centering
+# Adding a container helps in aligning widgets since it has an x and y centering.
+# The IpgContainerAlignment.Center is used to center widgets.  The container defaults
+# to center so these are not needed in this case but put in to show use.
 # A container can have only one widget, so generally a column or row follows.
 # THis container may or may not be needed, it depends on your layout.
-ipg.add_container("main", "cont", align_x="center",
-                  align_y="center", width_fill=True, height_fill=True)
+ipg.add_container("main", "cont", align_x=IpgContainerAlignment.Center,
+                  align_y=IpgContainerAlignment.Center, width_fill=True, height_fill=True)
 
 # A column is added next because the plan is to arrange then in a column.
 # If you  set the width_fill or height_fill to true when the outer container

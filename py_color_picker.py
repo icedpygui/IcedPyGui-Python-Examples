@@ -18,8 +18,8 @@ ipg.add_window(window_id="main", title="ColorPicker Demo", width=600, height=600
                pos_centered=True)
 
 # add a container to align widgets center both x and y.
-ipg.add_container(window_id="main", container_id="cont", align_x="center",
-                  align_y="center", width_fill=True, height_fill=True)
+ipg.add_container(window_id="main", container_id="cont",
+                  width_fill=True, height_fill=True)
 
 # Since a container only holds one widget, a column is add next.
 # The column will be center based on the container settings, but the

@@ -65,7 +65,6 @@ class DemoScrollable:
 
         # The header is just a title of sorts.
         self.ipg.add_container(window_id=self.wnd_v, container_id=self.cont_v_top,
-                               align_x="center", align_y="center",
                                width_fill=True, height=200.0, padding=[20])
 
         self.ipg.add_text(self.cont_v_top, "Try Scrolling a Column Container.")
@@ -92,8 +91,7 @@ class DemoScrollable:
 
         # Container for the callback text
         self.ipg.add_container(window_id=self.wnd_v, container_id=self.cont_v_bottom, parent_id=self.wnd_v,
-                               width_fill=True, height_fill=True,
-                               align_x="center", align_y="center")
+                               width_fill=True, height_fill=True)
 
         self.cb_text_v = self.ipg.add_text(parent_id=self.cont_v_bottom,
                                            content=f"Some data when scrolled")
@@ -106,7 +104,6 @@ class DemoScrollable:
                             pos_x=700, pos_y=100)
 
         self.ipg.add_container(window_id=self.wnd_h, container_id=self.cont_h_top,
-                               align_x="center", align_y="center",
                                width_fill=True, height=200.0, padding=[20])
 
         self.ipg.add_text(self.cont_h_top, "Try Scrolling a Row Container.")
@@ -128,8 +125,7 @@ class DemoScrollable:
 
         # The final mostly empty container is added at the bottom
         self.ipg.add_container(window_id=self.wnd_h, container_id=self.cont_h_bottom,
-                               parent_id=self.wnd_h, width_fill=True, height=200,
-                               align_x="center", align_y="center")
+                               parent_id=self.wnd_h, width_fill=True, height=200)
 
         self.cb_text_h = self.ipg.add_text(parent_id=self.cont_h_bottom,
                                            content=f"Some data when scrolled")

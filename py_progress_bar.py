@@ -62,7 +62,7 @@ ipg.add_window("main", "CheckBox Demo",
 
 # Add the container to help with aligment
 ipg.add_container(window_id="main", container_id="cont", width_fill=True,
-                  height_fill=True, align_x="center", align_y="center")
+                  height_fill=True)
 
 # Add a column for the widgets
 ipg.add_column("main", "col", parent_id="cont",

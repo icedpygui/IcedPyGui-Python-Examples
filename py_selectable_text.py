@@ -70,8 +70,6 @@ ipg.add_column(window_id="main", container_id="col",
                width_fill=True, height_fill=True)
 
 ipg.add_space(parent_id="col", height=50.0)
-# ipg.add_container("con", parent_id="main", align_x="center", align_y="center",
-#                                         height=("fixed", 400), width=("fill", 0))
 
 # A selectable is a bit more versatile than using a button styled as text.
 # In this case, you can detect the left, right, and muddle buttons of the mouse.
