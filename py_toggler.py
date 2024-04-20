@@ -1,5 +1,5 @@
 from icedpygui import IPG, IpgAlignment, IpgTogglerParams, IpgTextParams
-from icedpygui import IpgColumnAlignment
+from icedpygui import IpgColumnAlignment, IpgRowAlignment
 
 ipg = IPG()
 
@@ -10,31 +10,31 @@ def toggled(_tog_id, is_toggled):
 
 
 # The remaining callback are from the button which updates a parameter of the toggler
-def update_label(btn_id):
+def update_label(_btn_id):
     ipg.update_item(tog_id, IpgTogglerParams.Label, "New Toggle Label")
 
 
-def update_width(btn_id):
+def update_width(_btn_id):
     ipg.update_item(tog_id, IpgTogglerParams.Width, 100.0)
 
 
-def update_width_fill(btn_id):
+def update_width_fill(_btn_id):
     ipg.update_item(tog_id, IpgTogglerParams.WidthFill, True)
 
 
-def update_alignment(btn_id):
+def update_alignment(_btn_id):
     ipg.update_item(tog_id, IpgTogglerParams.Alignment, IpgAlignment.Left)
 
 
-def update_size(btn_id):
+def update_size(_btn_id):
     ipg.update_item(tog_id, IpgTogglerParams.Size, 30.0)
 
 
-def update_text_size(btn_id):
+def update_text_size(_btn_id):
     ipg.update_item(tog_id, IpgTogglerParams.TextSize, 30.0)
 
 
-def update_line_height(btn_id):
+def update_line_height(_btn_id):
     ipg.update_item(tog_id, IpgTogglerParams.LineHeight, 2.0)
 
 
@@ -76,7 +76,7 @@ ipg.add_button(parent_id="col_bot", label="Setting the alignment to Left\n This 
 ipg.add_button(parent_id="col_bot", label="Setting the size\n This makes the toggler bigger", on_press=update_size)
 
 # putting last two buttons in a row to make more room on screen
-ipg.add_row(window_id="main", container_id="row", parent_id="col_bot", align_items="center",
+ipg.add_row(window_id="main", container_id="row", parent_id="col_bot", align_items=IpgRowAlignment.Center,
             width_fill=True)
 
 ipg.add_button(parent_id="row", label="Increasing the TextSize", on_press=update_text_size)

@@ -170,7 +170,7 @@ rd_right_id = ipg.add_radio(parent_id="row1", labels=["five", "six", "seven"],
                             on_select=selected_radio_2, user_data="Some data")
 
 # add a row for the text associated with the above radio groups
-ipg.add_row("main", "row2", "col", spacing=50.0)
+ipg.add_row("main", "row2", parent_id="col", spacing=50.0)
 
 rd_text_id_1 = ipg.add_text("row2", content="Radio callback data:")
 rd_text_id_2 = ipg.add_text("row2", content="Radio callback data:")
