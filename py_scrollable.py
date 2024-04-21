@@ -1,5 +1,6 @@
 from icedpygui import IPG, IpgTextParams
 from icedpygui import IpgColumnAlignment
+from icedpygui import IpgScrollableAlignment, IpgScrollableDirection, IpgScrollableParams
 
 
 # To reduce typing errors when using the ids, I like to 
@@ -44,13 +45,33 @@ class DemoScrollable:
         self.cont_h_middle: str = "rcont_h_middle"
         self.cont_h_bottom: str = "cont_h_bottom"
 
+        self.wnd_b: str = "window_b"
+        self.cont_b_top: str = "cont_b_top"
+        self.scroll_b: str = "scroll_b"
+        self.cont_b: str = "cont_b"
+        self.col_b: str = "col_b"
+
         self.cb_text_v: int = 0
         self.cb_text_h: int = 0
+        self.cb_text_b: int = 0
+
+        self.scroll_id_1: int = 0
+        self.scroll_id_3: int = 0
+
+        self.h_bar_width: float = 10.0
+        self.v_bar_width: float = 10.0
+        self.h_bar_margin: float = 0.0
+        self.v_bar_margin: float = 0.0
+        self.h_scroller_width: float = 10.0
+        self.v_scroller_width: float = 10.0
+        self.h_alignmnet = IpgScrollableAlignment.Start
+        self.v_alignmnet = IpgScrollableAlignment.Start
 
     # start_session must be the last function called
     def create_gui(self):
         self.create_scroll_vertical()
         self.create_scroll_horizontal()
+        self.create_scroll_both()
         # Required to be the last widget sent to Iced,  If you start the program
         # and nothing happens, it might mean you forgot to add this command.
         self.ipg.start_session()
@@ -65,7 +86,7 @@ class DemoScrollable:
 
         # The header is just a title of sorts.
         self.ipg.add_container(window_id=self.wnd_v, container_id=self.cont_v_top,
-                               width_fill=True, height=200.0, padding=[20])
+                               width_fill=True, height=100.0, padding=[20])
 
         self.ipg.add_text(self.cont_v_top, "Try Scrolling a Column Container.")
 
@@ -75,19 +96,19 @@ class DemoScrollable:
         # the height by setting it a value.  If you used height_fill=True in this case,
         # the container and text widget would be pushed out of the window but you
         # could still scroll because the height is less than the data height.
-        self.ipg.add_scrollable(window_id=self.wnd_v, container_id=self.scroll_v,
-                                width_fill=True, height=150.0, on_scroll=self.on_scroll_v)
+        self.scroll_id_1 = self.ipg.add_scrollable(window_id=self.wnd_v, container_id=self.scroll_v,
+                                                   width_fill=True, height=150.0, on_scroll=self.on_scroll_v)
 
         # A column is next added since the expectation is that you have a long list of
         # items that need to be scrolled.  This could be anything like buttons, radios, text, etc.
-        # Note that the column height should be shrink which is the default, i.e no alue.
+        # NOTE that the column height should be shrink which is the default, i.e no value.
         # The scrollable size will control the size of the scrollable container.
         self.ipg.add_column(window_id=self.wnd_v, container_id=self.cont_v_middle,
                             parent_id=self.scroll_v, width_fill=True,
                             align_items=IpgColumnAlignment.Center)
 
         for i in range(0, 25):
-            self.ipg.add_text(self.cont_v_middle, content="Scroll Me Up and Down!")
+            self.ipg.add_text(self.cont_v_middle, content="Scroll Me Up and Down! Scroll Me Up and Down!")
 
         # Container for the callback text
         self.ipg.add_container(window_id=self.wnd_v, container_id=self.cont_v_bottom, parent_id=self.wnd_v,
@@ -95,6 +116,19 @@ class DemoScrollable:
 
         self.cb_text_v = self.ipg.add_text(parent_id=self.cont_v_bottom,
                                            content=f"Some data when scrolled")
+
+        # Adding row for buttons to change things
+        self.ipg.add_row(window_id=self.wnd_v, container_id="row_v")
+        self.ipg.add_button(parent_id="row_v", label="Press to Change Width",
+                            on_press=self.change_width)
+        self.ipg.add_button(parent_id="row_v", label="Press to Change Height",
+                            on_press=self.change_height)
+
+    def change_width(self, btn_id):
+        self.ipg.update_item(self.scroll_id_1, IpgScrollableParams.Width, 300.0)
+
+    def change_height(self, btn_id):
+        self.ipg.update_item(self.scroll_id_1, IpgScrollableParams.Height, 200.0)
 
     # ************Window 2 scrolling a row container horizontally**********************************************
 
@@ -113,10 +147,11 @@ class DemoScrollable:
         # window width.  However, we wanted to keep the scrollable height small
         # since there is only a single line of text.
         self.ipg.add_scrollable(window_id=self.wnd_h, container_id=self.scroll_h,
-                                direction="horizontal",
+                                direction=IpgScrollableDirection.Horizontal,
                                 width_fill=True, height=50.0,
                                 on_scroll=self.on_scroll_h)
 
+        # NOTE: The row width and height should be left at default, no value.
         self.ipg.add_row(window_id=self.wnd_h, container_id=self.cont_h_middle,
                          parent_id=self.scroll_h)
 
@@ -141,6 +176,124 @@ class DemoScrollable:
         text = "\n".join("{}: {}".format(k, v) for k, v in data.items())
         self.ipg.update_item(self.cb_text_h, IpgTextParams.Content,
                              value=f"scrollable id = {id}\n{text}")
+
+    # ***************Window 3-scrolling both directions with other property setting**********************************
+
+    def create_scroll_both(self):
+        # Add the 3rd window
+        self.ipg.add_window(window_id=self.wnd_b, title="Scollable - Both",
+                            width=self.wnd_width + 100, height=self.wnd_height,
+                            pos_x=1200, pos_y=100)
+
+        # The container is added to center the contents below.
+        self.ipg.add_container(window_id=self.wnd_b, container_id=self.cont_b,
+                               width_fill=True, height_fill=True)
+
+        # Add a column to hold all the widgets
+        self.ipg.add_column(window_id=self.wnd_b, container_id="col", parent_id=self.cont_b,
+                            spacing=5)
+
+        # The scrollable size controls the viewport for the column container.
+        self.scroll_id_3 = self.ipg.add_scrollable(window_id=self.wnd_b, container_id=self.scroll_b,
+                                                   parent_id="col",
+                                                   width=250, height=100.0,
+                                                   direction=IpgScrollableDirection.Both)
+
+        # NOTE:  The column width and height should default to shrink, no value.
+        self.ipg.add_column(window_id=self.wnd_b, container_id=self.col_b, parent_id=self.scroll_b,
+                            align_items=IpgColumnAlignment.Center)
+
+        for _ in range(0, 25):
+            self.ipg.add_text(parent_id=self.col_b, content="Scroll Me Up, Down, left, or Right!"
+                                                            "Scroll Me Up, Down, left, or Right!")
+
+        # Add row to hold the buttons.
+        self.ipg.add_row(window_id=self.wnd_b, container_id="row_1", parent_id="col")
+
+        self.ipg.add_button(parent_id="row_1", label="Press to + H Bar Width",
+                            on_press=self.inc_dec_h_bar_width, padding=[5], user_data=1)
+        self.ipg.add_button(parent_id="row_1", label="Press to - H Bar Width",
+                            on_press=self.inc_dec_h_bar_width, padding=[5], user_data=-1)
+
+        self.ipg.add_row(window_id=self.wnd_b, container_id="row_2", padding=[5], parent_id="col")
+
+        self.ipg.add_button(parent_id="row_2", label="Press to + V Bar Width",
+                            on_press=self.inc_dec_v_bar_width, padding=[5], user_data=1)
+        self.ipg.add_button(parent_id="row_2", label="Press to - V Bar Width",
+                            on_press=self.inc_dec_v_bar_width, padding=[5], user_data=-1)
+
+        self.ipg.add_row(window_id=self.wnd_b, container_id="row_3", parent_id="col")
+
+        self.ipg.add_button(parent_id="row_3", label="Press to + H Bar Margin",
+                            on_press=self.inc_dec_h_bar_margin, padding=[5], user_data=1)
+        self.ipg.add_button(parent_id="row_3", label="Press to - H Bar Margin",
+                            on_press=self.inc_dec_h_bar_margin, padding=[5], user_data=-1)
+
+        self.ipg.add_row(window_id=self.wnd_b, container_id="row_4", parent_id="col")
+
+        self.ipg.add_button(parent_id="row_4", label="Press to + V Bar Margin",
+                            on_press=self.inc_dec_v_bar_margin, padding=[5], user_data=1)
+        self.ipg.add_button(parent_id="row_4", label="Press to - V Bar Margin",
+                            on_press=self.inc_dec_v_bar_margin, padding=[5], user_data=-1)
+
+        self.ipg.add_row(window_id=self.wnd_b, container_id="row_5", parent_id="col")
+
+        self.ipg.add_button(parent_id="row_5", label="Press to + H Scroller Width",
+                            on_press=self.inc_dec_h_scroller_width, padding=[5], user_data=1)
+        self.ipg.add_button(parent_id="row_5", label="Press to - H Scroller Width",
+                            on_press=self.inc_dec_h_scroller_width, padding=[5], user_data=-1)
+
+        self.ipg.add_row(window_id=self.wnd_b, container_id="row_6", parent_id="col")
+
+        self.ipg.add_button(parent_id="row_6", label="Press to Change V Scroller Width",
+                            on_press=self.inc_dec_v_scroller_width, padding=[5], user_data=1)
+        self.ipg.add_button(parent_id="row_6", label="Press to - V Scroller Width",
+                            on_press=self.inc_dec_v_scroller_width, padding=[5], user_data=-1)
+
+        self.ipg.add_row(window_id=self.wnd_b, container_id="row_7", parent_id="col")
+
+        self.ipg.add_button(parent_id="row_7", label="Press to Toggle H Alignment",
+                            on_press=self.toggle_h_alignment, padding=[5])
+        self.ipg.add_button(parent_id="row_7", label="Press to Toggle V Alignment",
+                            on_press=self.toggle_v_alignment, padding=[5])
+
+    def inc_dec_h_bar_width(self, btn_id, inc_dec):
+        self.h_bar_width += inc_dec
+        self.ipg.update_item(self.scroll_id_3, IpgScrollableParams.HBarWidth, self.h_bar_width)
+
+    def inc_dec_v_bar_width(self, btn_id, inc_dec):
+        self.v_bar_width += inc_dec
+        self.ipg.update_item(self.scroll_id_3, IpgScrollableParams.VBarWidth, self.v_bar_width)
+
+    def inc_dec_h_bar_margin(self, btn_id, inc_dec):
+        self.h_bar_margin += inc_dec
+        self.ipg.update_item(self.scroll_id_3, IpgScrollableParams.HBarMargin, self.h_bar_margin)
+
+    def inc_dec_v_bar_margin(self, btn_id, inc_dec):
+        self.v_bar_margin += inc_dec
+        self.ipg.update_item(self.scroll_id_3, IpgScrollableParams.VBarMargin, self.v_bar_margin)
+
+    def inc_dec_h_scroller_width(self, btn_id, inc_dec):
+        self.h_scroller_width += inc_dec
+        self.ipg.update_item(self.scroll_id_3, IpgScrollableParams.HScrollerWidth, self.h_scroller_width)
+
+    def inc_dec_v_scroller_width(self, btn_id, inc_dec):
+        self.v_scroller_width += inc_dec
+        self.ipg.update_item(self.scroll_id_3, IpgScrollableParams.VScrollerWidth, self.v_scroller_width)
+
+    def toggle_h_alignment(self, btn_id):
+        if self.h_alignmnet == IpgScrollableAlignment.Start:
+            self.h_alignmnet = IpgScrollableAlignment.End
+        else:
+            self.h_alignmnet = IpgScrollableAlignment.Start
+        self.ipg.update_item(self.scroll_id_3, IpgScrollableParams.HBarAlignment, self.h_alignmnet)
+
+    def toggle_v_alignment(self, btn_id):
+        if self.v_alignmnet == IpgScrollableAlignment.Start:
+            self.v_alignmnet = IpgScrollableAlignment.End
+        else:
+            self.v_alignmnet = IpgScrollableAlignment.Start
+        self.ipg.update_item(self.scroll_id_3, IpgScrollableParams.VBarAlignment, self.v_alignmnet)
 
 
 # instantiate the class
