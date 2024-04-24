@@ -9,7 +9,7 @@ ipg = IPG()
 # Callback function for changing the card style
 # The update function is (wid, param, value)
 # wid = widget id
-def update_card(_btn_id):
+def update_card(_btn_id: int):
     global card_id
     # The card_id is the first card in the series.  The only one that is changed.
     # The btn_id is not used.
@@ -20,7 +20,7 @@ def update_card(_btn_id):
 
 
 # The callback will minimizes the first card, the button at the bottom left will maximize it.
-def minimize_card(card_id):
+def minimize_card(card_id: int):
     # In this case the card has a built in button, it can trigger the minimization.
     # Therefore, unlike most other widgets, the id is the card_id needed.
     # The update widget will always need a type where the correct
@@ -33,7 +33,7 @@ def minimize_card(card_id):
 # Pressing the bottom button will maximize the card, returning it to the top.
 # Note the callback is from the button so the card_id has to be global.
 # Normally, you would use a class or dataclass to store these ids.
-def maximize_card(btn_id):
+def maximize_card(_btn_id: int):
     global card_id
     ipg.update_item(card_id, IpgCardParams.IsOpen, True)
 

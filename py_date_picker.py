@@ -9,12 +9,12 @@ ipg = IPG()
 # the id of whatever widget you want to update using a class or for small projects,
 # a global variable.  Dataclass is not supported at this time but you can use a class
 # as seen in other demo files.
-def date_selected(_dp_id, date):
+def date_selected(_dp_id: int, date: str):
     ipg.update_item(selected_date_id, IpgTextParams.Content, f"You submitted {date}")
 
 
 # Another callback with some user data
-def date_selected_with_ud(_dp_id, date, user_data):
+def date_selected_with_ud(_dp_id: int, date: str, user_data: any):
     ipg.update_item(selected_with_ud_id, IpgTextParams.Content,
                     f"You submitted {date} with user_data = {user_data}")
 
@@ -22,7 +22,7 @@ def date_selected_with_ud(_dp_id, date, user_data):
 
 
 # Another callback for the date picker that changes its size.
-def date_resize(_dp_id):
+def date_resize(_dp_id: int):
     ipg.update_item(dp2_id, IpgDatePickerParams.SizeFactor, 1.5)
 
 

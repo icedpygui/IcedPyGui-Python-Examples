@@ -10,7 +10,7 @@ ipg = IPG()
 # So to reduce confusion with the text widget values, when the command key is first pressed,
 # the modifier is set to "" versus printing out a "None".
 # user_data was set in this case just to show how it works.
-def key_pressed(id, name, key, user_data):
+def key_pressed(_event_id, name: str, key: dict, user_data: any):
     modifier = key.get("modifier")
     if key.get("modifier") == "None":
         modifier = ""
@@ -21,7 +21,7 @@ def key_pressed(id, name, key, user_data):
 
 # key released callback.  Even though user_data is not used, it still needs to be
 # in the parameters because it was supplied as a parameter when added
-def key_released(id, name, key, user_data):
+def key_released(_event_id, name: str, key: dict, _user_data: any):
     ipg.update_item(text_released, IpgTextParams.Content, f"{name}: {key.get('modifier')} {key.get('key')}")
 
 

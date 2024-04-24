@@ -9,7 +9,11 @@ def toggled(_tog_id, is_toggled):
     ipg.update_item(text_id, IpgTextParams.Content, f"The toggler is {is_toggled}.")
 
 
-# The remaining callback are from the button which updates a parameter of the toggler
+# The callbacks below allow you to change all of the parameters for a widget.
+# They may or may not have frequent usage but it makes the gui very flexible
+# when the data that may be loaded effects the placement, sizes, etc. used.
+# These callbacks also demonstrate the usage of the widget parameters and
+# are used in the testing of the code to make sure it behaves as expected.
 def update_label(_btn_id):
     ipg.update_item(tog_id, IpgTogglerParams.Label, "New Toggle Label")
 

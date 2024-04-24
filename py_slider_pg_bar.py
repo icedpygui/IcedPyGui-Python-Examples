@@ -17,6 +17,11 @@ def slider_on_release(_slider_id, data):
     ipg.update_item(on_release_id, IpgTextParams.Content, f"On Release value is {data}")
 
 
+# The callbacks below allow you to change all of the parameters for a widget.
+# They may or may not have frequent usage but it makes the gui very flexible
+# when the data that may be loaded effects the placement, sizes, etc. used.
+# These callbacks also demonstrate the usage of the widget parameters and
+# are used in the testing of the code to make sure it behaves as expected.
 def change_width(btn_id):
     ipg.update_item(sl_id, IpgSliderParams.Width, 200.0)
     # change bar too

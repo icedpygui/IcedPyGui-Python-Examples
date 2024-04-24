@@ -15,7 +15,7 @@ x_id = ipg.generate_id()
 # needed ids for later use.
 # The is_checked is a boolean which will toggle each time the
 # checkbox is clicked.
-def on_toggle(_chkbx_id, is_checked):
+def on_toggle(_chkbx_id: int, is_checked: bool):
     ipg.update_item(x_id, IpgCheckboxParams.IconX, is_checked)
 
 

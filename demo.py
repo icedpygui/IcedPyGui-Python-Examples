@@ -7,7 +7,7 @@ import random
     IcedPyGui is based on Rust Iced gui at https://github.com/iced-rs/iced.
     Some code is used from Iced_aw at https://github.com/iced-rs/iced_aw.
     Pyo3 is used as the python wrapper at https://github.com/pyo3/pyo3.
-    Maturin is used uild and publish the module at https://github.com/PyO3/maturin.
+    Maturin is used to build and publish the module at https://github.com/PyO3/maturin.
     
     IPG is easy to use.  The syntax used follows closely with
     that found using dearpygui, my inspiration for this.  
@@ -20,7 +20,7 @@ import random
     have distinct data types like {string, List[int]} or 
     {String, List[float]}, etc.  The only mixed list is a tuple but even
     that has to be strictly defined in rust like (int, string) or (string, int).
-    The user data is special becuase it is only passed through to rust and 
+    The user data is special because it is only passed through to rust and 
     back out as a PyObject or PyAny.  Therefore any python data can be used
     since it is never extracted into a rusr type.     
     
@@ -33,7 +33,7 @@ import random
         If you start your program and nothing happens, it might mean that
         you aren't executing start_session() or you forgot to add it in.    
         
-        Ever widget needs to have a parent container previously defined and 
+        Every widget needs to have a parent container previously defined and 
         every container needs to have a window and optionally a parent container 
         defined.  If the container is placed into a window then no parent_id is required.
         Therefore at least one window needs to be added first and at least 
@@ -59,7 +59,7 @@ import random
     for the centering of your Column or Row.
 
     A Column aligns your widget vetically.  So as you add widgets, they are
-    placed top to bottom.  The Column has spacing options and you can add
+    placed top to bottom.  The Column has a spacing parameter but you can add
     the spacing widget, if you have other spacing requirements.
 
     A Row is like the Column except it aligns the widgets horizontally.
@@ -124,7 +124,8 @@ import random
 
     Callbacks are the only way to update your windows, as discussed above,
     Iced uses a messaging system and these are processed and sent back to 
-    python by calling the specified function set by the user.  
+    python by calling the specified function set by the user.  For example,
+    a button has an on_press=a user supplied function, on_press=button_pressed.
     
     The returning callback data varies depending on the widget.  
     For example, a button has no data so the callback only sends back 
@@ -137,32 +138,33 @@ import random
     id of the calling widget, which may or may not be the id you want to use
     for updating an item.  Try not to use the term id in the parameter list because
     that is a python element.  Also, name the id after the calling widget so that
-    you remeber what the widget is and if that's the id you want to use.
+    you remember what the widget is and if that's the id you want to use.
 
     For example, if you have a callback for the button widget and want to change
     a text widget to read "Button Pressed" then to update the text widget,
     you'll need the text widget id.  You can get this by equating the text
     widget to a variable which you would use as the id in update_item.
 
-    def create_button():
+    def create_button_and_text():
         ipg.add_button(parent_id="col", "Press Me", on_press=button_pressed)
         text_id = ipg.add_text(parent_id="col", content="Some text")
 
     Your callback function
     def button_pressed(btn_ id):
-        ipg.update(id=text_id, param=IpgTextParam.Content, value="Button Pressed")
+        ipg.update(text_id, IpgTextParam.Content, "Button was Pressed")
 
     In this callback function you only have one returning parameter, btn_id.
-    Most other widget have a second data paramter.  The user_data parameters 
+    Most other widgets have a second data paramter.  The user_data parameters 
     depends on if you use the user_data option on the widget.  If you don't use 
-    the user_data option,make sure and not put that parameter in the callback function 
+    the user_data option,make sure and not to put that parameter in the callback function 
     or you'll get an error.  You'll also get an error if you use the user_data and forget 
     to add that parameter to your callback function.  The names of the parameters
-    can be whatever you like.
+    can be whatever you like, the order is the most important:
+    calling widget id, data(if present), user_data.
 
     It's important to look through all the demos to get a feel for how things operate.
     I tried to vary up things a bit to include different ideas.  However, a demo doesn't
-    really do mush just use a lot of text widgets to show the results.  Give it a try with
+    really do mutch just use a lot of text widgets to show the results.  Give it a try with
     with a real program and let me know through the git repository if you have problems, 
     questions, or suggestions.
     

@@ -78,7 +78,7 @@ class CheckboxDemo:
         # Start the gui, last function to be executed.
         self.ipg.start_session()
 
-    def on_toggled(self, _chk_id, is_checked, user_data):
+    def on_toggled(self, _chk_id: int, is_checked: bool, user_data: any):
         # This is the callback for the checkbox.  The id parameter is the id of the checkbox
         # that is checked, so if other widgets need to be manipulated, as in this case, 
         # you must obtain their ids by equating them and storing them in a class or using them globally.  

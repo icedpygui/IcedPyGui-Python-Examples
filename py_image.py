@@ -5,7 +5,7 @@ import os
 
 ipg = IPG()
 
-# Note: The image is put into a mouse container, within IPG, where these
+# Note: The image is put into a mouse area container, within IPG, where these
 # callbacks can be executed.  If you are using the event_mouse,
 # things will get confusing.  Therefore, you'll need to disable
 # the event_mouse on image entering and then enabling it on image exit.

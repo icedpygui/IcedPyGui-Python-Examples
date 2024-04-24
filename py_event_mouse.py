@@ -13,7 +13,7 @@ scroll_total = 0
 # The user_data is not used here, but needed since it was supplied as a parameter
 # The mouse_id is not used since we're just updating the text widget.
 # The move data is a dictionary as all of the events data are.
-def mouse_move(mouse_id, name, point, _user_data):
+def mouse_move(_mouse_id: int, name: str, point: dict, _user_data: any):
     ipg.update_item(text_for_moved, IpgTextParams.Content, f"{name} {point}")
 
 
@@ -21,18 +21,18 @@ def mouse_move(mouse_id, name, point, _user_data):
 # Even if not used, you need to have it as a parameter, otherwise you'll get an error.
 # In this case, I used the same callback for all of the mouse buttons.  The name will give
 # you an option to use one callback are a callback for each type of event.
-def mouse_button_pressed(mouse_id, name, user_data):
+def mouse_button_pressed(_mouse_id: int, name: str, user_data: any):
     ipg.update_item(text_for_pressed, IpgTextParams.Content, f"{name}")
     ipg.update_item(text_for_user_data, IpgTextParams.Content, f"user data = {user_data}")
 
 
 # Essentially the same as above.
-def mouse_button_released(mouse_id, name, user_data):
+def mouse_button_released(_mouse_id: int, name: str, _user_data: any):
     ipg.update_item(text_for_released, IpgTextParams.Content, f"{name}")
 
 
 # The scroll data is a dictionary
-def mouse_button_scrolled(mouse_id, name, scroll, _user_data):
+def mouse_button_scrolled(_mouse_id: int, name: str, scroll: dict, _user_data: any):
     global scroll_total
     scroll_total += scroll.get("y")
     ipg.update_item(text_for_scroll, IpgTextParams.Content, f"{name} {scroll} total = {scroll_total}")

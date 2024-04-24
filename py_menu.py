@@ -13,6 +13,12 @@ def menu_pressed(menu_id, data, user_data):
     ipg.update_item(text_id2, IpgTextParams.Content, f"Your user data - {user_data}")
 
 
+# The callbacks below allow you to change all of the parameters for a widget.
+# They may or may not have frequent usage but it makes the gui very flexible
+# when the data that may be loaded effects the placement, sizes, etc. used.
+# These callbacks also demonstrate the usage of the widget parameters and
+# are used in the testing of the code to make sure it behaves as expected.
+
 # Update the menu by adding a new dictionary.
 # This may not be a common scenario but for completion, it's included.
 # Since the dictionary needs to maintain its order, user OrderedDict.

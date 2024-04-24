@@ -7,7 +7,7 @@ ipg = IPG()
 # This callback sets the text content for the color selected.
 # The cp_id is the color_picker id, not used, so the color_id is
 # a global variable obtained from the widget needing to changed.
-def color_submitted(_cp_id, color):
+def color_submitted(_cp_id: int, color: list):
     value = f"Color selected = {color}"
     # We are changing the content of a text widget
     ipg.update_item(color_id, IpgTextParams.Content, value=value)

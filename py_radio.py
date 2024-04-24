@@ -26,8 +26,14 @@ def selected_radio_2(rd_id: int, data: list[int, str], user_data: str):
                     f"Radio callback id = {rd_id}, \n index = {data[0]}, \nlabel = {data[1]} \n user_data = {user_data}")
 
 
+# The callbacks below allow you to change all of the parameters for a widget.
+# They may or may not have frequent usage but it makes the gui very flexible
+# when the data that may be loaded effects the placement, sizes, etc. used.
+# These callbacks also demonstrate the usage of the widget parameters and
+# are used in the testing of the code to make sure it behaves as expected.
+
 # The user_data is called radio_ids and is a list [ids]
-# The second parameter for update_item is from the imported enums.
+# The second parameter for update_item is from the imported params class.
 # This is the case for all widgets being updated.
 def change_direction(chk_id: int, checked: bool, radio_ids: list[int]):
     radio1 = IpgRadioDirection.Vertical
@@ -136,10 +142,10 @@ def change_height(chk_id: int, checked: bool, radio_ids: list[int]):
     ipg.update_item(radio_ids[0], IpgRadioParams.Height, ht)
     ipg.update_item(radio_ids[1], IpgRadioParams.Height, ht)
 
-    # Note:  Changing the height to HeightFill doesn't work in thes case.
+    # Note:  Changing the height to HeightFill doesn't work in this case.
     # It seems to happens sometimes when there is a clash between the
     # widget and the containers.  In this case, it's easily solved by
-#     using a set value for the radios or defaulting to the Shrink value.
+    # using a set value for the radios or defaulting to the Shrink value.
 
 
 # **************Window Constructions Starts Here*************************

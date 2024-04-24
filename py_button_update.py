@@ -16,7 +16,7 @@ ipg = IPG()
 # false and then update it to true in the callback.
 # A callback id is the id of the widget making the callback.  If you need
 # update other widgets, use their ids as show in this callback.
-def update_button(btn_id):
+def update_button(_btn_id: int):
     # changing the radius using a float
     ipg.update_item(radius_btn, IpgButtonParams.CornerRadius, 5.0)
     ipg.update_item(radius_btn, IpgButtonParams.Label, "Corner Radius Changed")

@@ -27,12 +27,12 @@ def on_open(_event_id: int, name: str, data: dict, user_data: any):
 # The on_close event only works for other windows, not window 0.  Closing window 0 shuts
 # down the system so no callback can be performed.  A special callback may be implemented
 # in the future if there are requests.
-def on_close(_event_id, name, user_data):
+def on_close(_event_id: int, name: str, user_data: any):
     ipg.update_item(user_data[0], IpgTextParams.Content, value=f"Window 1 was closed")
 
 
 # A slightly different if statement was used in this case just to demonstrate another way.
-def on_moved(event_id, name, data, user_data):
+def on_moved(event_id: int, name: str, data: dict, user_data: any):
     if "0" in name:
         ipg.update_item(user_data[0], IpgTextParams.Content, value=f"Window 0 position {data}")
     else:
@@ -40,7 +40,7 @@ def on_moved(event_id, name, data, user_data):
 
 
 # The resized event
-def on_resized(event_id, name, data, user_data):
+def on_resized(event_id: int, name: str, data: dict, user_data: any):
     if "0" in name:
         ipg.update_item(user_data[0], IpgTextParams.Content, value=f"Window 0 size {data}")
     else:
