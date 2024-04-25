@@ -88,9 +88,7 @@ This project is the first I have published and so I expect I'll learn a lot and 
 
 Rust's strict typing is mostly shielded from the python user but if you venture too far, you'll get burned with an error, so behave yourselves :)
 
-Iced uses a messaging system which acts like a callback and no widget ids are used except for the containers and windows.  This posed a bit of a problem in IPG but in most cases it was solved by mapping an id to the widget.  In cases where this was not possible, the code was pull into IPG and an id was added in with fairly simple changes so it shouldn't be hard to keep those few items updated.
-
-Iced doesn't use the concept of user data being passed around but when using DPG, sometimes the ability to send user data was very helpful.  Therefore, this concept was added to IPG.
+Iced doesn't use the concept of user data being passed around but when using DearPyGui, sometimes the ability to send user data was very helpful.  Therefore, this concept was added to IPG.
 
 The user data is special because it is only passed through to rust and  back out as a PyObject or PyAny.  Therefore any python data can be used since it is never extracted into a rust type.    
 
