@@ -250,13 +250,9 @@ ipg.start_session()
 
 Hopefully you were able to run the program successfully.  If not, try one of the examples and see if it will work.  All of the examples are run before publishing to make sure the code works.  Unlike standard functions, a GUI is a bit difficult to test since you are visually making sure it all goes as expected. 
 
-The examples are found in a separate repositiory as indicated above and here 
-https://github.com/icedpygui/IcedPyGui-Python-Examples
 
-## Contributing / Feedback
+## Issues / Feedback
 
-Contributions are greatly appreciated! If you want to contribute, please
-read our [contributing guidelines] for more details.
+If you have issues, click on the issues tab and create one.  Follow the template.
 
-Feedback is also welcome! You can create a new topic in [our Discourse forum] or
-come chat to [our Discord server].
+Feedback/Discussion is also welcome! You can come chat in the discord server.
