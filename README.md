@@ -251,8 +251,8 @@ ipg.start_session()
 Hopefully you were able to run the program successfully.  If not, try one of the examples and see if it will work.  All of the examples are run before publishing to make sure the code works.  Unlike standard functions, a GUI is a bit difficult to test since you are visually making sure it all goes as expected. 
 
 
-## Issues / Feedback
+## Issues / Questions / Feedback
 
-If you have issues, click on the issues tab and create one.  Follow the template.
+Feedback/Discussions/Questions are welcomed! You can come chat in the [Discord server](https://discord.com/channels/1233081452447666270/1233085181448032458).
 
-Feedback/Discussion is also welcome! You can come chat in the discord server.
+If you have errors not cleared up in questions, click on the issues tab and create a new one.  Follow the template.
