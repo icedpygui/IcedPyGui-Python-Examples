@@ -51,7 +51,14 @@ https://github.com/icedpygui/IcedPyGui-Python-Examples/assets/163431522/ae248470
     * SelectableText - all mouse buttons supported
     * Table - Currently simple version, easily loaded with a list of dictionaries
 
-* More to come in the near future
+* Python issues to be addressed
+    * Need to incorporate using with statement in python.  Using with would allow one to not have to supply the window or parent id if those follow closely.  For example:
+    ``` python
+        with window(...):
+            with container(...):
+                add_widget(...)
+    ```
+    * @dataclass needs to be supported (support soon)
 
 
 ## Installation (PiPy)
