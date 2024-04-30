@@ -71,17 +71,16 @@ pip install icedpygui
 
 ## Installation (Rust)
 
-See the Rust code at https://github.com/icedpygui/IcedPyGui
+See the Rust code at [IcedPyGui](https://github.com/icedpygui/IcedPyGui).
 
 ## Overview
-
-* IcedPyGui is based on Rust Iced https://github.com/iced-rs/iced.
-* Widgets for Iced_aw are used too https://github.com/iced-rs/iced_aw.
-* Pyo3 is used as the python wrapper https://github.com/pyo3/pyo3.
-* Maturin is used to build and publish the module https://github.com/PyO3/maturin.
-* The syntax and the design of the callbacks were inspired by the python wrapper of Dear ImGui, DearPyGui(DPG) https://github.com/hoffstadt/DearPyGui.
-* The icon above was a merge of Python and Iced icons by Deep Dream Generator https://deepdreamgenerator.com/
-
+* IcedPyGui is based on [Rust Iced](https://github.com/iced-rs/iced).
+* Widgets for [Iced_aw](https://github.com/iced-rs/iced_aw) are used too .
+* [Pyo3](https://github.com/pyo3/pyo3) is used as the python wrapper.
+* [Maturin](https://github.com/PyO3/maturin) is used to build and publish the module .
+* The syntax and the design of the callbacks were inspired by the python wrapper of Dear ImGui, [DearPyGui(DPG)](https://github.com/hoffstadt/DearPyGui).
+* The icon above was a merge of Python and Iced icons by [Deep Dream Generator](https://deepdreamgenerator.com)
+* [Python Examples are here](https://github.com/icedpygui/IcedPyGui-Python-Examples).
 
 ## Intro
 IcedPyGui is based on Iced which is written in Rust.  I think Rust is a great language but has a fairly steep learning curve.  Therefore putting rust and python together seems like a good fit.  You get the speed and code security of rust and the simplicity of python.
