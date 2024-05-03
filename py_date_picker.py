@@ -45,7 +45,7 @@ ipg.add_text(parent_id="col", content="Press the first calendar buttons to acces
 
 # The date picker size can be scaled from > 1.0.  Anything less than 1 will
 # give an error and is not readable anyway.
-ipg.add_date_picker(parent_id="col", size_factor=1.2, on_submit="No selection")
+ipg.add_date_picker(parent_id="col", size_factor=1.2, on_submit=date_selected)
 
 # text widget id needed for callback.
 selected_date_id = ipg.add_text(parent_id="col", content="No selection")
