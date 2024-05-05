@@ -260,4 +260,4 @@ Hopefully you were able to run the program successfully.  If not, try one of the
 
 Feedback/Discussions/Questions are welcomed! You can come chat in the [Discord server](https://discord.com/channels/1233081452447666270/1233085181448032458).
 
-If you have errors not cleared up in questions in the Discord server, go to the [IcedPyGui](https://github.com/icedpygui/IcedPyGui) click on the issues tab and create a new one.  Follow the template.
+If you have errors not cleared up in questions in the Discord server, go to the [IcedPyGui](https://github.com/icedpygui/IcedPyGui/issues) click on the issues tab and create a new one.  Follow the template.
