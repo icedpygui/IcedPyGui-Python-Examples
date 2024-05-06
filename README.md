@@ -62,11 +62,11 @@ https://github.com/icedpygui/IcedPyGui-Python-Examples/assets/163431522/ae248470
 
 
 ## Installation (PiPy)
-
+* Code not published to PiPy yet.  Download one of the wheels attached to the release page or see below for installation via rust
 * Open one of the example using your favorite IDE.
 * Create and activate a virtual environment
  ```python
-pip install icedpygui
+pip install --force-reinstall path to wheel
  ```
 
 ## Installation (Rust)
