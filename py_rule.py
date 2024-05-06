@@ -6,7 +6,7 @@ ipg = IPG()
 
 # Add the window
 ipg.add_window("main", "Rule Demo", 500, 600,
-               pos_centered=True)
+                pos_x=100, pos_y=25)
 
 # Add a container for alignment
 ipg.add_container("main", "cont", width_fill=True, height_fill=True)
@@ -16,7 +16,7 @@ ipg.add_column("main", container_id="col", parent_id="cont",
                align_items=IpgColumnAlignment.Center)
 
 # Add some spacing
-ipg.add_space(parent_id="col", width=500, height=20.0)
+ipg.add_space(parent_id="col", width_fill=True, height=20.0)
 
 # Add the rules
 ipg.add_rule_vertical("col", height=250)

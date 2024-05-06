@@ -150,8 +150,8 @@ def change_height(chk_id: int, checked: bool, radio_ids: list[int]):
 
 # **************Window Constructions Starts Here*************************
 
-ipg.add_window("main", "Radio Demo", 500, 650,
-               300, 100)
+ipg.add_window("main", "Radio Demo", 500, 600,
+                pos_x=100, pos_y=25)
 
 ipg.add_container("main", container_id="cont",
                   width_fill=True, height_fill=True)
@@ -185,8 +185,8 @@ ipg.add_space(parent_id="col", height=90)
 
 # ********** Adding Window 2 with Checkboxes ****************************************
 
-ipg.add_window("main2", "Radio Demo", 600, 650,
-               850, 100)
+ipg.add_window("main2", "Radio Demo", 400, 600,
+                pos_x=650, pos_y=25)
 
 ipg.add_container("main2", container_id="cont",
                   width_fill=True, height_fill=True)

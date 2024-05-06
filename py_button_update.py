@@ -48,8 +48,8 @@ def update_button(_btn_id: int):
 
 
 # A window widget needs to be added first.
-ipg.add_window("main", "Button Update", width=500, height=700,
-               pos_centered=True)
+ipg.add_window("main", "Button Update", width=500, height=600,
+               pos_x=100, pos_y=25)
 
 # Adding a container helps in aligning widgets since it has an x and y centering.
 # The IpgContainerAlignment.Center is used to center widgets.  The container defaults

@@ -94,16 +94,13 @@ def change_line_height(_btn_id):
 
 
 # add the window
-ipg.add_window("main", "Text Input Demo", 800, 800,
-               pos_centered=True)
+ipg.add_window("main", "Text Input Demo", 600, 600,
+                pos_x=100, pos_y=25)
 
 # add the column for the widgets, centered
 ipg.add_column("main", container_id="col",
                align_items=IpgColumnAlignment.Center,
-               height_fill=True, width_fill=True)
-
-# Add some space at the top
-ipg.add_space(parent_id="col", height=50.0)
+               height_fill=True, width_fill=True, spacing=10)
 
 # Add some instructions
 ipg.add_text(parent_id="col", content="It's best to see the effects by pressing the buttons left to right and top to "

@@ -28,7 +28,7 @@ def set_debug(_btn_id):
 
 #  The default position is center so a specific position is used to avoid overlaying.
 wnd_id_1 = ipg.add_window("window1", "Window 1", 400, 400,
-                          300, 100,
+                           pos_x=100, pos_y=25,
                           theme=IpgWindowThemes.Nord)
 
 # A column container is added first since all widgets must be placed into a container, column, or row.
@@ -56,7 +56,7 @@ ipg.add_button(parent_id="col_1", label="Debug", on_press=set_debug)
 
 # Second window added with the light theme
 wnd_id_2 = ipg.add_window("window2", "Window 2", 400, 400,
-                          800, 100,
+                           pos_x=600, pos_y=25,
                           theme=IpgWindowThemes.SolarizedLight)
 
 ipg.add_column(window_id="window2", container_id="col_1",

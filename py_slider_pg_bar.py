@@ -58,7 +58,7 @@ def toggle_show(btn_id):
 
 # Add the window
 ipg.add_window(window_id="main", title="Slider Demo", width=600, height=600,
-               pos_centered=True)
+                pos_x=100, pos_y=25)
 
 # Add the column and center the widgets in it.
 ipg.add_column("main", container_id="col",

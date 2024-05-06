@@ -31,8 +31,8 @@ ipg.add_event_keyboard(enabled=True, on_key_press=key_pressed, on_key_release=ke
 
 # Unlike widgets, the events can be added at any time since they are not widgets
 # A window is added before any widgets
-ipg.add_window("main", "KeyBoard Handler Demo", 800, 800,
-               500, 100, True)
+ipg.add_window("main", "KeyBoard Handler Demo", 800, 600,
+                pos_x=100, pos_y=25)
 
 # A column is added to hold the widgets
 ipg.add_column("main", container_id="col",

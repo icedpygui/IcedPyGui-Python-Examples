@@ -53,7 +53,7 @@ ipg.add_event_mouse(enabled=True,
 
 # Adding a window
 ipg.add_window("main", "Mouse Handler Demo", 600, 600,
-               pos_centered=True)
+                pos_x=100, pos_y=25)
 
 # Add a column to hold the widgets
 ipg.add_column("main", container_id="col",

@@ -20,7 +20,7 @@ def on_stop(timer_id, counter):
 
 # Add a window
 ipg.add_window("main", "Timer Demo",
-               600, 600, pos_centered=True)
+               400, 400,  pos_x=100, pos_y=25)
 
 # Add the container to center everything
 ipg.add_container(window_id="main", container_id="cont", width_fill=True,

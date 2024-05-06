@@ -228,7 +228,7 @@ class Demo:
 
     def construct_window_1(self):
         self.ipg.add_window(self.wnd_1, "Demo Window 1 - Iced Wrapped in Python",
-                            width=500, height=600, pos_x=350, pos_y=100)
+                            width=500, height=500, pos_x=100, pos_y=25)
 
         self.ipg.add_row(self.wnd_1, container_id=self.row_1, width_fill=True, height_fill=True)
         self.ipg.add_column(self.wnd_1, container_id=self.l_col_1, parent_id=self.row_1)
@@ -376,7 +376,7 @@ class Demo:
     def construct_window_2(self):
         self.ipg.add_window(self.wnd_2, "Demo Window 2 - Iced Wrapped in Python",
                             width=500, height=500,
-                            pos_x=900, pos_y=100)
+                            pos_x=650, pos_y=25)
 
         self.ipg.add_column(window_id=self.wnd_2, container_id=self.l_col_2,
                             width_fill=True, align_items=IpgColumnAlignment.Center)

@@ -39,8 +39,8 @@ def maximize_card(_btn_id: int):
 
 
 # window added first
-ipg.add_window(window_id="main", title="Card Demo", width=800, height=800,
-               pos_x=500, pos_y=100)
+ipg.add_window(window_id="main", title="Card Demo", width=800, height=600,
+               pos_x=100, pos_y=25)
 
 # add a container for the first button to center it.
 # A width_fill is used but the height remains a shrink

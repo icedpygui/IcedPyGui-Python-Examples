@@ -42,8 +42,8 @@ class ButtonDemo:
 
         # The first widget added must be a window, more windows can be added at any time.
         # Windows and containers must be added before their widgets are added. 
-        self.ipg.add_window(self.wnd_id, "Button Demo", 800, 800,
-                            500, 100, True)
+        self.ipg.add_window(window_id=self.wnd_id, title="Button Demo", width=800, height=600,
+                            pos_x=100, pos_y=25)
         # Setup the styling section.
         self.setup_button_styles()
 

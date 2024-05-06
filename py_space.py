@@ -4,7 +4,7 @@ ipg = IPG()
 
 # Add the window, debug is set to true to be able to see the space widget.
 ipg.add_window(window_id="main1", title="Space Demo 1", width=400, height=600,
-               pos_x=200, pos_y=100, debug=True)
+               pos_x=100, pos_y=25, debug=True)
 
 # Add the column for the widgets, centered
 ipg.add_column("main1", container_id="col1",
@@ -22,7 +22,7 @@ ipg.add_text(parent_id="col1", content="\nThere is a space outlined above,"
 
 # Add another window
 ipg.add_window(window_id="main2", title="Space Demo 2", width=400, height=600,
-               pos_x=700, pos_y=100, debug=True)
+               pos_x=600, pos_y=25, debug=True)
 
 # Add the column for the widgets, centered
 ipg.add_column("main2", container_id="col2",

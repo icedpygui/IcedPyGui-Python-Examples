@@ -106,7 +106,7 @@ def toggle_debug(btn_id):
 # Add window must be the first widget. Other windows can be added
 # at anytime, as long as their widgts follow.
 wnd_id = ipg.add_window(window_id="main", title="Selectable Text Demo",
-                        width=800, height=600, pos_centered=True)
+                        width=800, height=600,  pos_x=100, pos_y=25)
 
 # All widgets need to be added to a container, so a container
 # is the second widget needed.

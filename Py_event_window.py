@@ -50,7 +50,7 @@ def on_resized(event_id: int, name: str, data: dict, user_data: any):
 # *******************Window 0*****************************************************
 # Add the first window, 
 ipg.add_window(window_id="main1", title="Window Handler Demo",
-               pos_x=300, pos_y=300, width=400, height=400)
+               pos_x=100, pos_y=25, width=400, height=400)
 
 # add column to hold the widgets
 ipg.add_column(window_id="main1", container_id="col",
@@ -71,7 +71,7 @@ wnd_1_text = ipg.add_text(parent_id="col", content="Window messages will show he
 # ***********************Window 1*********************************************
 # Add second window
 ipg.add_window(window_id="main2", title="Window Handler Demo", width=400, height=400,
-               pos_x=800, pos_y=300)
+               pos_x=600, pos_y=25)
 
 # Add the column for the widgets
 ipg.add_column("main2", container_id="col",

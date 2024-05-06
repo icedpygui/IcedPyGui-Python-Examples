@@ -15,7 +15,7 @@ def color_submitted(_cp_id: int, color: list):
 
 # window added first
 ipg.add_window(window_id="main", title="ColorPicker Demo", width=600, height=600,
-               pos_centered=True)
+                pos_x=100, pos_y=25)
 
 # add a container to align widgets center both x and y.
 ipg.add_container(window_id="main", container_id="cont",

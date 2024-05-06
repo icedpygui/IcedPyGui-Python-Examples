@@ -54,8 +54,8 @@ def show_happy(image_id):
 
 
 # Add the window
-ipg.add_window(window_id="main", title="Date Picker Demo", width=800, height=800,
-               pos_x=500, pos_y=100)
+ipg.add_window(window_id="main", title="Date Picker Demo", width=600, height=500,
+               pos_x=100, pos_y=25)
 
 # Add a column to hold the widgets
 ipg.add_column(window_id="main", container_id="col", parent_id="main",

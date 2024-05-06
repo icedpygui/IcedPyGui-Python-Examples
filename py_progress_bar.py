@@ -64,7 +64,7 @@ def hide_bar(_btn_id: int, pg_id: any):
 
 # Add the window
 ipg.add_window("main", "CheckBox Demo",
-               800, 800, 500, 100)
+               600, 600, 100, 25)
 
 # Add the container to help with aligment
 ipg.add_container(window_id="main", container_id="cont", width_fill=True,

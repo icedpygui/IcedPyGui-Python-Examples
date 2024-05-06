@@ -31,7 +31,7 @@ class CheckboxDemo:
         # The window must be the first item added.  More than one window can be added
         # now or at other times.
         self.ipg.add_window(self.wnd_id, "CheckBox Demo",
-                            800, 800, pos_centered=True)
+                            800, 600,  pos_x=100, pos_y=25)
 
         self.ipg.add_container(window_id=self.wnd_id, container_id="cont", width_fill=True,
                                height_fill=True)

@@ -21,7 +21,7 @@ def on_toggle(_chkbx_id: int, is_checked: bool):
 
 # Add a window first
 ipg.add_window("main", "CheckBox Demo",
-               600, 600, pos_centered=True)
+               600, 600,  pos_x=100, pos_y=25)
 
 # Add a container to center the widgets in the middle
 ipg.add_container(window_id="main", container_id="cont", width_fill=True,
