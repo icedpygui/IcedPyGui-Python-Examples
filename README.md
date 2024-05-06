@@ -62,7 +62,7 @@ https://github.com/icedpygui/IcedPyGui-Python-Examples/assets/163431522/ae248470
 
 
 ## Installation (PiPy)
-* Code not published to PiPy yet.  Download one of the wheels attached to the [release page] (https://github.com/icedpygui/IcedPyGui-Python-Examples/releases) or see below for installation via rust
+* Code not published to PiPy yet.  Download one of the wheels attached to the [release page](https://github.com/icedpygui/IcedPyGui-Python-Examples/releases) or see below for installation via rust
 * Open one of the example using your favorite IDE.
 * Create and activate a virtual environment
  ```python
