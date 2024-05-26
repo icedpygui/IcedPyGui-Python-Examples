@@ -20,7 +20,7 @@ def menu_pressed(_menu_id, data, user_data):
 # are used in the testing of the code to make sure it behaves as expected.
 
 # Update the menu by adding a new dictionary.
-# This may not be a common scenario but for completion, it's included.
+# This update may not be a common scenario but for completion, it's included.
 # Since the dictionary needs to maintain its order, user OrderedDict.
 # Once the dictionary is made, update the menu using the update command.
 # This action will remove all separators, so these will need to be added

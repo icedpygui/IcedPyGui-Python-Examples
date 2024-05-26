@@ -27,7 +27,7 @@ def date_resize(_dp_id: int):
 
 
 # Add a window first
-ipg.add_window("main", "Date Picker Demo", 800, 600,
+ipg.add_window("main", "Date Picker Demo", 800, 700,
                 pos_x=100, pos_y=25)
 
 # Add the container to center both x and y.  Holds only one widget.
