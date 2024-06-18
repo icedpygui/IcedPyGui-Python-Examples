@@ -9,6 +9,10 @@ https://github.com/icedpygui/IcedPyGui-Python-Examples/assets/163431522/ae248470
 
 </div>
 
+## Releases/Revisions
+* Upcoming release 0.2.0 estimated to be June 28
+* Iced has undergone significant changes since 0.12.0 release, so a lot of changes along with adding styling.
+
 ## Features
 
 * Supported Iced widgets
