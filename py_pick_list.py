@@ -1,5 +1,5 @@
-from icedpygui import IPG, IpgPickListParams, IpgTextParams
-from icedpygui import IpgColumnAlignment
+from icedpygui import IPG, IpgPickListParam, IpgTextParam
+from icedpygui import IpgAlignment
 
 
 ipg = IPG()
@@ -9,7 +9,7 @@ ipg = IPG()
 # The update items uses the text widget id and the "content" parameter
 # to update.  The value is what you want the content parameter to equal.
 def picked_item(_pl_id, data):
-    ipg.update_item(text_id, IpgTextParams.Content, value=f"You picked <{data}>")
+    ipg.update_item(text_id, IpgTextParam.Content, value=f"You picked <{data}>")
 
 
 # In this case, some user_data was sent with the on_select callback.
@@ -19,23 +19,23 @@ def picked_item(_pl_id, data):
 # generated, followed by user_data.  If no data is generated, don't use a placeholder
 # just skip putting it in or you will get an error needing only 2 parameters.
 def picked_item_with_ud(_pl_id, data, user_data):
-    ipg.update_item(text_id_with_ud, IpgTextParams.Content,
+    ipg.update_item(text_id_with_ud, IpgTextParam.Content,
                     value=f"You picked <{data}> with user data <{user_data}>")
 
 
 # Float data returned in user_data
 def picked_item_with_float(_pl_id, data):
-    ipg.update_item(text_id_3, IpgTextParams.Content, value=f"You picked <{data}>")
+    ipg.update_item(text_id_3, IpgTextParam.Content, value=f"You picked <{data}>")
 
 
 # A boolean in this case
 def picked_item_with_bool(_pl_id, data):
-    ipg.update_item(text_id_4, IpgTextParams.Content, value=f"You picked <{data}>")
+    ipg.update_item(text_id_4, IpgTextParam.Content, value=f"You picked <{data}>")
 
 
 # the pl_id is the user_data passed in by the button
 def change_option_list(_btn_id, pl_id):
-    ipg.update_item(pl_id, IpgPickListParams.Options, ["four", "five", "six"])
+    ipg.update_item(pl_id, IpgPickListParam.Options, ["four", "five", "six"])
 
 
 # The callbacks below allow you to change all of the parameters for a widget.
@@ -46,37 +46,37 @@ def change_option_list(_btn_id, pl_id):
 
 # Change the placeholder
 def change_placeholder(_btn_id, pl_id):
-    ipg.update_item(pl_id, IpgPickListParams.Placeholder, "New Placeholder")
+    ipg.update_item(pl_id, IpgPickListParam.Placeholder, "New Placeholder")
 
 
 # Change the padding, a padding is a list of values, see the picklist docs
 # for the possible values and how they fit.
 def change_padding(_btn_id, pl_id):
-    ipg.update_item(pl_id, IpgPickListParams.Padding, [20])
+    ipg.update_item(pl_id, IpgPickListParam.Padding, [20])
 
 
 # Hiding the widget
 def change_show(_btn_id, pl_id):
-    ipg.update_item(pl_id, IpgPickListParams.Show, False)
+    ipg.update_item(pl_id, IpgPickListParam.Show, False)
 
 
 # Change the text_size
 def change_text_size(_btn_id, pl_id):
-    ipg.update_item(pl_id, IpgPickListParams.TextSize, 30.0)
+    ipg.update_item(pl_id, IpgPickListParam.TextSize, 30.0)
 
 
 # Change the text_line_height
 def change_text_line_height(_btn_id, pl_id):
-    ipg.update_item(pl_id, IpgPickListParams.TextLineHeight, 3.0)
+    ipg.update_item(pl_id, IpgPickListParam.TextLineHeight, 3.0)
 
 
 # Change the width
 def change_width(_btn_id, pl_id):
-    ipg.update_item(pl_id, IpgPickListParams.Width, 150.0)
+    ipg.update_item(pl_id, IpgPickListParam.Width, 150.0)
 
 
 def change_width_fill(_btn_id, pl_id):
-    ipg.update_item(pl_id, IpgPickListParams.Width, 100.0)
+    ipg.update_item(pl_id, IpgPickListParam.Width, 100.0)
 
 
 def add_first_row():
@@ -159,7 +159,7 @@ ipg.add_window("main", "Pick List Demo", 800, 600,
 # all widgets need to be added to a container, so a container
 # is the second widget needed.
 ipg.add_column("main", container_id="col",
-               align_items=IpgColumnAlignment.Center, width_fill=True)
+               align_items=IpgAlignment.Center, width_fill=True)
 
 # Adding some explanation text.
 ipg.add_text(parent_id="col", content="Select an item to see the results.")

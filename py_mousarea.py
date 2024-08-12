@@ -1,5 +1,4 @@
 from icedpygui import IPG
-from icedpygui import IpgColumnAlignment
 
 
 # Since user data is include, it will need to be
@@ -29,7 +28,7 @@ def on_middle_release(id, _user_data):
 
 
 def on_enter(id, user_data):
-    print("entered", id, user_data)    
+    print("entered", id, user_data)
 
 
 def on_move(id: int, point: dict, _user_data):
@@ -40,14 +39,16 @@ def on_exit(id, _user_data):
     print("on exit", id)
 
 
-    
-
 ipg = IPG()
 
-ipg.add_window(window_id="main", title="Main", width=400, height=400, 
+ipg.add_window(window_id="main", title="Main", width=400, height=400,
                pos_centered=True, debug=True)
 
-ipg.add_mousearea(window_id="main", container_id="ma",
+ipg.add_container(window_id="main", container_id="cont",
+                  width_fill=True, height_fill=True,
+                  )
+
+ipg.add_mousearea(window_id="main", container_id="ma", parent_id="cont",
                   on_enter=on_enter,
                   on_exit=on_exit,
                   on_move=on_move,

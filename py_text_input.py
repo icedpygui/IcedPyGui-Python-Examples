@@ -1,5 +1,5 @@
-from icedpygui import IPG, IpgTextParams
-from icedpygui import IpgColumnAlignment, IpgTextInputParams
+from icedpygui import IPG, IpgTextParam
+from icedpygui import IpgAlignment, IpgTextInputParam, IpgColor
 
 ipg = IPG()
 
@@ -18,18 +18,18 @@ secure = False
 # widget is not used.
 # When you type in the text, this fires each time
 def on_input(_txt_input_id, data):
-    ipg.update_item(text_on_input_id, IpgTextParams.Content, value=data)
+    ipg.update_item(text_on_input_id, IpgTextParam.Content, value=data)
 
 
 # This only fires when you press enter to submit
 def on_submit(_txt_input_id, data):
-    ipg.update_item(text_on_submit_id, IpgTextParams.Content, value=data)
+    ipg.update_item(text_on_submit_id, IpgTextParam.Content, value=data)
 
 
 # This fired when you paste something into the field
 # To submit it, press enter.
 def on_paste(_txt_input_id, data):
-    ipg.update_item(text_on_paste_id, IpgTextParams.Content, value=data)
+    ipg.update_item(text_on_paste_id, IpgTextParam.Content, value=data)
 
 
 # The callbacks below allow you to change all of the parameters for a widget.
@@ -40,12 +40,12 @@ def on_paste(_txt_input_id, data):
 
 # Based on some action, you may want to change the placeholder instructions.
 def change_placeholder(_btn_id):
-    ipg.update_item(ti_id, IpgTextInputParams.Placeholder, "Replaced Placeholder")
+    ipg.update_item(ti_id, IpgTextInputParam.Placeholder, "Replaced Placeholder")
 
 
 # Changing the value or creating an entry for the user
 def change_value(_btn_id):
-    ipg.update_item(ti_id, IpgTextInputParams.Value, "New Value")
+    ipg.update_item(ti_id, IpgTextInputParam.Value, "New Value")
 
 
 # Lets make the value secure, you could have a button to show or hide the entry.
@@ -53,13 +53,13 @@ def toggle_secure(_btn_id):
     global secure
     secure = not secure
     # Let's make sure a value is there
-    ipg.update_item(ti_id, IpgTextInputParams.Value, "New Value")
+    ipg.update_item(ti_id, IpgTextInputParam.Value, "New Value")
     # Let's secure it.
-    ipg.update_item(ti_id, IpgTextInputParams.IsSecure, secure)
+    ipg.update_item(ti_id, IpgTextInputParam.IsSecure, secure)
 
 
 def change_width(_btn_id):
-    ipg.update_item(ti_id, IpgTextInputParams.Width, 300.0)
+    ipg.update_item(ti_id, IpgTextInputParam.Width, 300.0)
 
 
 # Note padding is a list, effects the space around the text
@@ -68,29 +68,34 @@ def change_width(_btn_id):
 # 4 elements effect [Top, Right, Bottom, Left]
 def change_padding(_btn_id):
     # Let's make sure a value is there
-    ipg.update_item(ti_id, IpgTextInputParams.Value, "A Value for the Padding")
+    ipg.update_item(ti_id, IpgTextInputParam.Value, "A Value for the Padding")
     # let's make it bigger to hold the text
-    ipg.update_item(ti_id, IpgTextInputParams.Width, 300.0)
+    ipg.update_item(ti_id, IpgTextInputParam.Width, 300.0)
     # Use only two entries for the list
-    ipg.update_item(ti_id, IpgTextInputParams.Padding, [0.0, 30.0])
+    ipg.update_item(ti_id, IpgTextInputParam.Padding, [0.0, 30.0])
 
 
 # Change the size of the text
 def change_size(_btn_id):
     # Let's make sure a value is there
-    ipg.update_item(ti_id, IpgTextInputParams.Value, "A Value for the Sizing")
+    ipg.update_item(ti_id, IpgTextInputParam.Value, "A Value for the Sizing")
     # let's make it bigger to hold the text
-    ipg.update_item(ti_id, IpgTextInputParams.Width, 400.0)
-    ipg.update_item(ti_id, IpgTextInputParams.Size, 30.0)
+    ipg.update_item(ti_id, IpgTextInputParam.Width, 400.0)
+    ipg.update_item(ti_id, IpgTextInputParam.Size, 30.0)
 
 
 # Change the line height
 def change_line_height(_btn_id):
     # Let's make sure a value is there
-    ipg.update_item(ti_id, IpgTextInputParams.Value, "A Value for the LineHeight")
+    ipg.update_item(ti_id, IpgTextInputParam.Value, "A Value for the LineHeight")
     # let's make it bigger to hold the text
-    ipg.update_item(ti_id, IpgTextInputParams.Width, 450.0)
-    ipg.update_item(ti_id, IpgTextInputParams.LineHeight, 3.0)
+    ipg.update_item(ti_id, IpgTextInputParam.Width, 450.0)
+    ipg.update_item(ti_id, IpgTextInputParam.LineHeightRelative, 3.0)
+
+
+# Add some styling
+def add_style(_btn_id):
+    ipg.update_item(ti_id, IpgTextInputParam.StyleId, "ti_style")
 
 
 # add the window
@@ -99,7 +104,7 @@ ipg.add_window("main", "Text Input Demo", 600, 600,
 
 # add the column for the widgets, centered
 ipg.add_column("main", container_id="col",
-               align_items=IpgColumnAlignment.Center,
+               align_items=IpgAlignment.Center,
                height_fill=True, width_fill=True, spacing=10)
 
 # Add some instructions
@@ -137,6 +142,22 @@ ipg.add_button(parent_id="row_3", label="Press Me to Change the Size", on_press=
 
 ipg.add_row(window_id="main", container_id="row_4", parent_id="col")
 ipg.add_button(parent_id="row_4", label="Press Me to Change the LineHeight", on_press=change_line_height)
+
+ipg.add_row(window_id="main", container_id="row_5", parent_id="col")
+ipg.add_button(parent_id="row_5", label="Press Me to Add Some Styling", on_press=add_style)
+
+# the add style functions can be place anywhere as long as they are before the start_session
+ipg.add_text_input_style(style_id="ti_style", 
+                         background_color=IpgColor.CADET_BLUE,
+                         border_color=IpgColor.YELLOW,
+                         border_color_focused=IpgColor.PALE_GOLDEN_ROD,
+                         border_color_hovered=IpgColor.CHARTREUSE,
+                         border_width=5.0,
+                         border_radius=[8.0],
+                         placeholder_color=IpgColor.BLACK,
+                         value_color=IpgColor.LIGHT_STEEL_BLUE,
+                         selection_color=IpgColor.DARK_SLATE_GRAY
+                         )
 
 
 # Required to be the last widget sent to Iced,  If you start the program

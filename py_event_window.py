@@ -1,5 +1,5 @@
-from icedpygui import IPG, IpgTextParams
-from icedpygui import IpgColumnAlignment
+from icedpygui import IPG, IpgTextParam
+from icedpygui import IpgAlignment
 
 
 ipg = IPG()
@@ -19,32 +19,32 @@ ipg = IPG()
 def on_open(_event_id: int, name: str, data: dict, user_data: any):
     # The same text widget was used for of the events
     if "Id(0)" == name:
-        ipg.update_item(user_data[0], IpgTextParams.Content, value=f"Window 0 position {data}")
+        ipg.update_item(user_data[0], IpgTextParam.Content, value=f"Window 0 position {data}")
     else:
-        ipg.update_item(user_data[1], IpgTextParams.Content, value=f"Window 1 position {data}")
+        ipg.update_item(user_data[1], IpgTextParam.Content, value=f"Window 1 position {data}")
 
 
 # The on_close event only works for other windows, not window 0.  Closing window 0 shuts
 # down the system so no callback can be performed.  A special callback may be implemented
 # in the future if there are requests.
 def on_close(_event_id: int, name: str, user_data: any):
-    ipg.update_item(user_data[0], IpgTextParams.Content, value=f"Window 1 was closed")
+    ipg.update_item(user_data[0], IpgTextParam.Content, value=f"Window 1 was closed")
 
 
 # A slightly different if statement was used in this case just to demonstrate another way.
 def on_moved(event_id: int, name: str, data: dict, user_data: any):
     if "0" in name:
-        ipg.update_item(user_data[0], IpgTextParams.Content, value=f"Window 0 position {data}")
+        ipg.update_item(user_data[0], IpgTextParam.Content, value=f"Window 0 position {data}")
     else:
-        ipg.update_item(user_data[1], IpgTextParams.Content, value=f"Window 1 position {data}")
+        ipg.update_item(user_data[1], IpgTextParam.Content, value=f"Window 1 position {data}")
 
 
 # The resized event
 def on_resized(event_id: int, name: str, data: dict, user_data: any):
     if "0" in name:
-        ipg.update_item(user_data[0], IpgTextParams.Content, value=f"Window 0 size {data}")
+        ipg.update_item(user_data[0], IpgTextParam.Content, value=f"Window 0 size {data}")
     else:
-        ipg.update_item(user_data[1], IpgTextParams.Content, value=f"Window 1 size {data}")
+        ipg.update_item(user_data[1], IpgTextParam.Content, value=f"Window 1 size {data}")
 
 
 # *******************Window 0*****************************************************
@@ -54,7 +54,7 @@ ipg.add_window(window_id="main1", title="Window Handler Demo",
 
 # add column to hold the widgets
 ipg.add_column(window_id="main1", container_id="col",
-               align_items=IpgColumnAlignment.Center,
+               align_items=IpgAlignment.Center,
                width_fill=True, height_fill=True)
 
 # Add some text
@@ -75,7 +75,7 @@ ipg.add_window(window_id="main2", title="Window Handler Demo", width=400, height
 
 # Add the column for the widgets
 ipg.add_column("main2", container_id="col",
-               align_items=IpgColumnAlignment.Center,
+               align_items=IpgAlignment.Center,
                width_fill=True, height_fill=True)
 
 ipg.add_space(parent_id="col", height=100.0)

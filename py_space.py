@@ -1,4 +1,4 @@
-from icedpygui import IPG, IpgColumnAlignment
+from icedpygui import IPG, IpgAlignment
 
 ipg = IPG()
 
@@ -8,7 +8,7 @@ ipg.add_window(window_id="main1", title="Space Demo 1", width=400, height=600,
 
 # Add the column for the widgets, centered
 ipg.add_column("main1", container_id="col1",
-               align_items=IpgColumnAlignment.Center,
+               align_items=IpgAlignment.Center,
                width_fill=True, height_fill=True)
 
 # Add the space
@@ -26,7 +26,7 @@ ipg.add_window(window_id="main2", title="Space Demo 2", width=400, height=600,
 
 # Add the column for the widgets, centered
 ipg.add_column("main2", container_id="col2",
-               align_items=IpgColumnAlignment.Center,
+               align_items=IpgAlignment.Center,
                width_fill=True, height_fill=True)
 
 # Add the space, since the window debug=True you will be able to see it.

@@ -1,4 +1,4 @@
-from icedpygui import IPG, IpgCheckboxParams, IpgColumnAlignment
+from icedpygui import IPG, IpgCheckboxParam, IpgAlignment
 
 # This is a simple demo to change the checkmark of the checkbox to an x.
 ipg = IPG()
@@ -16,7 +16,7 @@ x_id = ipg.generate_id()
 # The is_checked is a boolean which will toggle each time the
 # checkbox is clicked.
 def on_toggle(_chkbx_id: int, is_checked: bool):
-    ipg.update_item(x_id, IpgCheckboxParams.IconX, is_checked)
+    ipg.update_item(x_id, IpgCheckboxParam.IconX, is_checked)
 
 
 # Add a window first
@@ -32,7 +32,7 @@ ipg.add_container(window_id="main", container_id="cont", width_fill=True,
 # The alignment defaults to Start but for demonstration purpose, we
 # added the IpgColumnAlignment.Start
 ipg.add_column(window_id="main", container_id="col", parent_id="cont",
-               align_items=IpgColumnAlignment.Start)
+               align_items=IpgAlignment.Start)
 
 # Add the first checkbox with the callback on_toggle.
 ipg.add_checkbox(parent_id="col", label="Check Me!!!",

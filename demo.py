@@ -1,7 +1,7 @@
-from icedpygui import IPG, IpgTextParams, IpgRadioDirection, IpgRadioParams
-from icedpygui import IpgButtonParams, IpgProgressBarParams
-from icedpygui import IpgColumnAlignment
-from icedpygui import TableWidget, TableRowHighLight
+from icedpygui import IPG, IpgTextParam, IpgRadioDirection
+from icedpygui import IpgButtonParam, IpgProgressBarParam
+from icedpygui import IpgAlignment
+from icedpygui import IpgTableRowHighLight
 import random
 
 """
@@ -23,7 +23,7 @@ import random
     that has to be strictly defined in rust like (int, string) or (string, int).
     The user data is special because it is only passed through to rust and 
     back out as a PyObject or PyAny.  Therefore any python data can be used
-    since it is never extracted into a rusr type.     
+    since it is never extracted into a rust type.     
     
     A few simple rules need to be followed.   
         import IPG as indicated above in this demo.      
@@ -55,27 +55,23 @@ import random
     There are some non-obvious containers like Scrollable.  It's not only a 
     container but a widget too, because it has callbacks. 
 
-    Besides width and height, the Container has a centering option which
+    Besides width and height, the Container defaults to centering which
     aligns the item in the center of the Container.  This is very handy
-    for the centering of your Column or Row.
+    for the centering of your Column or Row.  Other options are available.
 
-    A Column aligns your widget vetically.  So as you add widgets, they are
+    A Column aligns your widget vertically.  So as you add widgets, they are
     placed top to bottom.  The Column has a spacing parameter but you can add
     the spacing widget, if you have other spacing requirements.
 
     A Row is like the Column except it aligns the widgets horizontally.
     As you place your widgets into a row, they are placed left to right.
 
-    A Column and Row have alignment options, start, center, and end.
-    Start and center are obvious but end means basically align right 
-    for Row or align at the bottom for Column.
-
     The alignment depends a lot on the width and height of the container.
     The 3 basic options for setting the width and height are:
         1. Shrink (default): container shrinks to the size of the largest widget. 
         2. Specific value using a float.
         3. Setting the width_fill  or height_fill parameters to True which 
-            overides the float, fills available space container its in.
+            overrides the float, fills available space container its in.
 
     The interaction of the above setting can be a bit difficult to figure out
     sometimes.  However, by using the debug=True option in the window parameters, 
@@ -151,11 +147,11 @@ import random
         text_id = ipg.add_text(parent_id="col", content="Some text")
 
     Your callback function
-    def button_pressed(btn_ id):
+    def button_pressed(btn_id):
         ipg.update(text_id, IpgTextParam.Content, "Button was Pressed")
 
     In this callback function you only have one returning parameter, btn_id.
-    Most other widgets have a second data paramter.  The user_data parameters 
+    Most other widgets have a second data parameter.  The user_data parameters 
     depends on if you use the user_data option on the widget.  If you don't use 
     the user_data option,make sure and not to put that parameter in the callback function 
     or you'll get an error.  You'll also get an error if you use the user_data and forget 
@@ -164,9 +160,9 @@ import random
     calling widget id, data(if present), user_data.
 
     It's important to look through all the demos to get a feel for how things operate.
-    I tried to vary up things a bit to include different ideas.  However, a demo doesn't
-    really do mutch just use a lot of text widgets to show the results.  Give it a try with
-    with a real program and let me know through the git repository if you have problems, 
+    I tried to vary up things to include different ideas.  However, a demo doesn't
+    really do much just use a lot of text widgets to show the results.  Give it a try with
+    with a real program and let me know through the git repository or discord if you have problems, 
     questions, or suggestions.
     
     Have fun with IPG!! 
@@ -193,14 +189,14 @@ class Demo:
         self.btn_id: int = 0
         self.button_presses: int = 0
         self.btn_text_id: int = 0
-        self.text_id_chkbox: int = 0
+        self.text_id_checkbox: int = 0
         self.bar_id: int = 0
         self.slider_text_id: int = 0
         self.picklist_text_id: int = 0
         self.radio_1_text_id: int = 0
         self.radio_2_text_id: int = 0
         self.selectable_text_id: int = 0
-        self.text_input_id: int= 0
+        self.text_input_id: int = 0
 
         # containers for window 2
         self.l_col_2: str = "left_col_2"
@@ -246,8 +242,8 @@ class Demo:
 
     def button_pressed(self, btn_id):
         self.button_presses += 1
-        self.ipg.update_item(btn_id, IpgButtonParams.Label, f"You Pressed {self.button_presses} times!")
-        self.ipg.update_item(self.btn_text_id, IpgTextParams.Content,
+        self.ipg.update_item(btn_id, IpgButtonParam.Label, f"You Pressed {self.button_presses} times!")
+        self.ipg.update_item(self.btn_text_id, IpgTextParam.Content,
                              f"A text can count too: {self.button_presses} times!")
 
     # A checkbox is defined and a text is defined with the show value of False.
@@ -257,12 +253,12 @@ class Demo:
         self.ipg.add_checkbox(parent_id=self.l_col_1, label="Check Me",
                               on_toggle=self.box_checked_id)
 
-        self.text_id_chkbox = self.ipg.add_text(parent_id=self.l_col_1,
-                                                content="You Checked the box above",
-                                                show=False)  # note: show is False
+        self.text_id_checkbox = self.ipg.add_text(parent_id=self.l_col_1,
+                                                  content="You Checked the box above",
+                                                  show=False)  # note: show is False
 
     def box_checked_id(self, _chk_id, data):
-        self.ipg.update_item(self.text_id_chkbox, IpgTextParams.Show, data)  # show set to True
+        self.ipg.update_item(self.text_id_checkbox, IpgTextParam.Show, data)  # show set to True
 
     # a progress bar and a slider are defined and connected together via the callbacks
     def construct_slider_and_progress_bar(self):
@@ -276,19 +272,19 @@ class Demo:
 
         self.slider_text_id = self.ipg.add_text(self.l_col_1, "Slider content here.")
 
-    # Both callbacks were used in this case for demonstration but it is
+    # Both callbacks were used in this case for demonstration, but it is
     # expected that you probably only will use the release mostly.
     # if you have a costly calculation you are using, you may want to
     # not use the on_change or filter it by using a counter to select
     # only a few changes.
     def slider_on_change(self, _slider_id, data):
-        self.ipg.update_item(self.slider_text_id, IpgTextParams.Content, f"Slide = {data}")
-        self.ipg.update_item(self.bar_id, IpgProgressBarParams.Value, data)
+        self.ipg.update_item(self.slider_text_id, IpgTextParam.Content, f"Slide = {data}")
+        self.ipg.update_item(self.bar_id, IpgProgressBarParam.Value, data)
 
     def slider_on_release(self, _slider_id, data):
-        self.ipg.update_item(self.bar_id, IpgProgressBarParams.Value, data)
+        self.ipg.update_item(self.bar_id, IpgProgressBarParam.Value, data)
 
-        # A picklist is defined here width a place holder. The option list holder the selections.
+        # A picklist is defined here width a placeholder. The option list holder the selections.
 
     def construct_pick_list(self):
         self.ipg.add_pick_list(parent_id=self.l_col_1, options=["one", "two", "three"],
@@ -297,8 +293,8 @@ class Demo:
 
         self.picklist_text_id = self.ipg.add_text(self.l_col_1, "You picked:")
 
-    def picked_item(self, id, data):
-        self.ipg.update_item(self.picklist_text_id, IpgTextParams.Content, f"You Picked: {data}")
+    def picked_item(self, _id, data):
+        self.ipg.update_item(self.picklist_text_id, IpgTextParam.Content, f"You Picked: {data}")
 
     # *****************Right Column in Window 1*************************
     # Two groups of radio buttons are defined, one vertical and one horizontal
@@ -312,7 +308,7 @@ class Demo:
 
     # The radio on_select returns a tuple (index, label)
     def radio_selected_v(self, _radio_id, data):
-        self.ipg.update_item(self.radio_1_text_id, IpgTextParams.Content, f"You selected: {data}")
+        self.ipg.update_item(self.radio_1_text_id, IpgTextParam.Content, f"You selected: {data}")
 
     # This set of radio buttons will be horizontal
     def construct_radio_buttons_h(self):
@@ -325,7 +321,7 @@ class Demo:
         # The radio on_select returns a tuple (index, label)
 
     def radio_selected_h(self, _radio_id, data):
-        self.ipg.update_item(self.radio_2_text_id, IpgTextParams.Content, f"You selected: {data}")
+        self.ipg.update_item(self.radio_2_text_id, IpgTextParam.Content, f"You selected: {data}")
 
         # A button style can act as a selectable text but has only one callback.
         # A selectable text has a number of different callbacks for all the mouse buttons and
@@ -347,10 +343,10 @@ class Demo:
         self.selectable_text_id = self.ipg.add_text(self.r_col_1, "Selectable actions:")
 
     def selecting_text(self, sel_txt_id):
-        self.ipg.update_item(self.selectable_text_id, IpgTextParams.Content, f"Selectable id: {sel_txt_id}")
+        self.ipg.update_item(self.selectable_text_id, IpgTextParam.Content, f"Selectable id: {sel_txt_id}")
 
     def selecting_text_with_point(self, _sel_txt_id, data):
-        self.ipg.update_item(self.selectable_text_id, IpgTextParams.Content, f"point: {data}")
+        self.ipg.update_item(self.selectable_text_id, IpgTextParam.Content, f"point: {data}")
 
     def construct_text_input(self):
         self.ipg.add_text_input(parent_id=self.r_col_1,
@@ -361,15 +357,15 @@ class Demo:
 
         self.text_input_id = self.ipg.add_text(self.r_col_1, "Will fill while typing")
 
-        # Only one callback used in this case (two could be used). Determing which callback is based on name.
+        # Only one callback used in this case (two could be used). Determine which callback is based on name.
         # Maybe helpful in some cases where callbacks are similar or there are many.
 
     def text_input_submitted(self, _input_id, data):
-        self.ipg.update_item(self.text_input_id, IpgTextParams.Content,
+        self.ipg.update_item(self.text_input_id, IpgTextParam.Content,
                              f"You submitted: {data}")
 
     def text_on_input(self, _input_id, data):
-        self.ipg.update_item(self.text_input_id, IpgTextParams.Content,
+        self.ipg.update_item(self.text_input_id, IpgTextParam.Content,
                              f"Adding while typing: {data}")
 
     # **********************window_2*****************************************************
@@ -380,17 +376,16 @@ class Demo:
                             pos_x=650, pos_y=25)
 
         self.ipg.add_column(window_id=self.wnd_2, container_id=self.l_col_2,
-                            width_fill=True, align_items=IpgColumnAlignment.Center)
+                            width_fill=True, align_items=IpgAlignment.Center)
 
     # A date picker is defined and the results are put in a text widget.
     def construct_date_picker(self):
         self.ipg.add_date_picker(self.l_col_2, on_submit=self.date_selected)
 
-        self.date_text_id = self.ipg.add_text(self.l_col_2,
-                                              "You selected:")
+        self.date_text_id = self.ipg.add_text(self.l_col_2, "You selected:")
 
     def date_selected(self, _date_id, date):
-        self.ipg.update_item(self.date_text_id, IpgTextParams.Content, f"You selected: {date}")
+        self.ipg.update_item(self.date_text_id, IpgTextParam.Content, f"You selected: {date}")
 
     # A table is defined with 6 columns of widgets and random items.
     # Rust does not allow types to be mixed in a list.
@@ -405,7 +400,6 @@ class Demo:
         col3 = []
         col4 = []
         col5 = []
-        col6 = []
 
         # Add some random data of different types
         for i in range(0, 20):
@@ -413,64 +407,56 @@ class Demo:
             col0.append("Button")
             # labels for the checkboxes
             col1.append("")
-            # make a selectable text
-            col2.append("Select Me")
             # make a float random number
-            col3.append(random.randrange(10, 99) + random.randrange(10, 99) / 100)
-            col4.append(random.choice(["one", "two", "three", "four", "five", "six", "seven"]))
-            col5.append(random.randrange(10, 99))
-            col6.append(random.choice([True, False]))
+            col2.append(random.randrange(10, 99) + random.randrange(10, 99) / 100)
+            col3.append(random.choice(["one", "two", "three", "four", "five", "six", "seven"]))
+            col4.append(random.randrange(10, 99))
+            col5.append(random.choice([True, False]))
 
         # Create the table, the requirement is a list of dictionaries.
         # Rust does not have dictionaries but a similar type is called a HashMap.
         # The reason for the list of dictionaries is that you cannot extract a
         # mixed dictionary into a Rust HashMap.  The HashMap has to have predefined
-        # types.  In this case they are <>String, Vec<Widgets>, <String, Vec<f64>>, <String, Vec<String>>,
-        # <String, Vec<i64>>, and <String, Vec<bool>>.  As one iterates through the list,
-        # each type is tested to see if it can be extracted in one of the types above.  If found,
-        # the extraction occurs and life is wonderful.  If no existing type is found, then an error occurs.
+        # types.  In this case they are types dict[str, list[Widgets]], dict[str, list[float or int]], 
+        # list[str, list[str]], and list[str], list[bool].
+        # Each column is extracted based on a single type.  If a mixed column occurs, then an error
+        # will be generated.  If no existing type is found, then an error occurs or just skipped.
         # Currently, not every variation is covered but that can be improved in future versions.
         # This probably covers the vast majority of needs.  If you need that mixed column, convert
-        # the list to a string.  When the final version is displayed, it's converted to  a string anyway.
+        # the list to a string.  When the final version is displayed, it's converted to a string anyway.
         data = [{"Button": col0},
                 {"ChkBox": col1},
-                {"Selectable": col2},
+                {"Col2": col2},
                 {"Col3": col3},
                 {"Col4": col4},
-                {"Col5": col5},
-                {"Col6": col6}]
-
-
-        # The column widgets are prepared
-        btn_widgets = []
-        chkbox_widgets = []
-        selectable = []
-
-        for _ in range(0, len(col0)):
-            btn_widgets.append(TableWidget.Button)
-            chkbox_widgets.append(TableWidget.Checkbox)
-            selectable.append(TableWidget.Text)
+                {"Col5": col5}]
 
         # The table is added.
-        self.ipg.add_table(self.l_col_2, "My Table", data, 
-                    width=600.0, height=300.0, 
-                    row_highlight=TableRowHighLight.Lighter,
-                    table_length=len(col1),
-                    widgets_using_columns= {0: btn_widgets, 1: chkbox_widgets, 2: selectable},
-                    on_press_button=self.widget_button,
-                    on_toggle_checkbox=self.widget_checkbox,
-                    on_enter=self.on_text_enter,
-                    )
+        self.ipg.add_table(window_id=self.wnd_2,
+                           table_id="table",
+                           title="My Table",
+                           data=data,
+                           column_widths=[75.0, 50.0, 100.0, 100.0, 100.0, 100.0],
+                           width=600.0, height=300.0,
+                           row_highlight=IpgTableRowHighLight.Lighter,
+                           data_length=len(col0),
+                           button_fill_columns=[0],
+                           checkbox_fill_columns=[1],
+                           on_button=widget_button,
+                           on_checkbox=widget_checkbox,
+                           )
 
-    def widget_button(self, tbl_id: int, wid_index: tuple[int, int]):
-        print(tbl_id, wid_index)
 
-    def widget_checkbox(self, tbl_id: int, wid_index: tuple[int, int], is_checked: bool):
-        print(tbl_id, wid_index, is_checked)
+def widget_button(tbl_id: int, wid_index: tuple[int, int]):
+    print(tbl_id, wid_index)
 
-    def on_text_enter(self, tbl_id, text_index: tuple[int, int]):
-        print(tbl_id, text_index)
 
+def widget_checkbox(tbl_id: int, wid_index: tuple[int, int], is_checked: bool):
+    print(tbl_id, wid_index, is_checked)
+
+
+def on_text_enter(tbl_id, text_index: tuple[int, int]):
+    print(tbl_id, text_index)
 
 
 demo = Demo()

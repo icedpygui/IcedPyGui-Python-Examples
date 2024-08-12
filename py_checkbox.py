@@ -1,4 +1,4 @@
-from icedpygui import IPG, IpgCheckboxParams, IpgTextParams
+from icedpygui import IPG, IpgCheckboxParam, IpgTextParam
 
 
 class CheckboxDemo:
@@ -89,101 +89,101 @@ class CheckboxDemo:
         if is_checked:
             # changing the checkbox label.  Since this was the checkbox that was checked,
             # the id of the callback is the id to use for updating.
-            self.ipg.update_item(self.chk_main, IpgCheckboxParams.Label, "Check Me Again!!!")
+            self.ipg.update_item(self.chk_main, IpgCheckboxParam.Label, "Check Me Again!!!")
 
-            self.ipg.update_item(self.text_id, IpgTextParams.Content,
+            self.ipg.update_item(self.text_id, IpgTextParam.Content,
                                  f"is_checked = {is_checked}")
-            self.ipg.update_item(self.text_user_data_id, IpgTextParams.Content,
+            self.ipg.update_item(self.text_user_data_id, IpgTextParam.Content,
                                  value=f"user data = {user_data}")
 
             # changing the icon to a x
-            self.ipg.update_item(self.checked_id, IpgCheckboxParams.IconX, True)
-            self.ipg.update_item(self.checked_id, IpgCheckboxParams.Label, "My icon changed to a X")
-            self.ipg.update_item(self.checked_id, IpgCheckboxParams.IsChecked, True)
+            self.ipg.update_item(self.checked_id, IpgCheckboxParam.IconX, True)
+            self.ipg.update_item(self.checked_id, IpgCheckboxParam.Label, "My icon changed to a X")
+            self.ipg.update_item(self.checked_id, IpgCheckboxParam.IsChecked, True)
 
             # Changing the width of the label with a tuple (string, float) value
-            self.ipg.update_item(self.width_id, IpgCheckboxParams.Width, 200.0)
-            self.ipg.update_item(self.width_id, IpgCheckboxParams.Label,
+            self.ipg.update_item(self.width_id, IpgCheckboxParam.Width, 200.0)
+            self.ipg.update_item(self.width_id, IpgCheckboxParam.Label,
                                  "Width Shrank and label wrapped")
-            self.ipg.update_item(self.width_id, IpgCheckboxParams.IsChecked, True)
+            self.ipg.update_item(self.width_id, IpgCheckboxParam.IsChecked, True)
 
             # Changing the size of the box with a float value
-            self.ipg.update_item(self.size_id, IpgCheckboxParams.Size, 50.0)
-            self.ipg.update_item(self.size_id, IpgCheckboxParams.Label, "Size Changed of box")
-            self.ipg.update_item(self.size_id, IpgCheckboxParams.IsChecked, True)
+            self.ipg.update_item(self.size_id, IpgCheckboxParam.Size, 50.0)
+            self.ipg.update_item(self.size_id, IpgCheckboxParam.Label, "Size Changed of box")
+            self.ipg.update_item(self.size_id, IpgCheckboxParam.IsChecked, True)
 
             # Changing the spacing between box and label with a float value
-            self.ipg.update_item(self.spacing_id, IpgCheckboxParams.Spacing, 100.0)
-            self.ipg.update_item(self.spacing_id, IpgCheckboxParams.Label, "Spacing Changed")
-            self.ipg.update_item(self.spacing_id, IpgCheckboxParams.IsChecked, True)
+            self.ipg.update_item(self.spacing_id, IpgCheckboxParam.Spacing, 100.0)
+            self.ipg.update_item(self.spacing_id, IpgCheckboxParam.Label, "Spacing Changed")
+            self.ipg.update_item(self.spacing_id, IpgCheckboxParam.IsChecked, True)
 
             # Changing the text_size with a float value
-            self.ipg.update_item(self.txt_size_id, IpgCheckboxParams.TextSize, 20.0)
-            self.ipg.update_item(self.txt_size_id, IpgCheckboxParams.Label, "Text size Changed")
-            self.ipg.update_item(self.txt_size_id, IpgCheckboxParams.IsChecked, True)
+            self.ipg.update_item(self.txt_size_id, IpgCheckboxParam.TextSize, 20.0)
+            self.ipg.update_item(self.txt_size_id, IpgCheckboxParam.Label, "Text size Changed")
+            self.ipg.update_item(self.txt_size_id, IpgCheckboxParam.IsChecked, True)
 
             # Changing the text_line_height which increases space around the text label.
-            self.ipg.update_item(self.tlh_id, IpgCheckboxParams.TextLineHeight, 5.0)
-            self.ipg.update_item(self.tlh_id, IpgCheckboxParams.Label,
+            self.ipg.update_item(self.tlh_id, IpgCheckboxParam.TextLineHeight, 5.0)
+            self.ipg.update_item(self.tlh_id, IpgCheckboxParam.Label,
                                  "Text_line_Height: set window debug=True to see the size better")
-            self.ipg.update_item(self.tlh_id, IpgCheckboxParams.IsChecked, True)
+            self.ipg.update_item(self.tlh_id, IpgCheckboxParam.IsChecked, True)
 
             # TODO text_shaping
 
             # TODO Changing the style
 
             # Hide the checkbox
-            self.ipg.update_item(self.show_id, IpgCheckboxParams.Show, False)
-            self.ipg.update_item(self.hide_text, IpgTextParams.Content,
+            self.ipg.update_item(self.show_id, IpgCheckboxParam.Show, False)
+            self.ipg.update_item(self.hide_text, IpgTextParam.Content,
                                  "The checkbox above above me is hidden")
 
         if not is_checked:
-            self.ipg.update_item(self.chk_main, IpgCheckboxParams.Label, "Check Me!!!")
+            self.ipg.update_item(self.chk_main, IpgCheckboxParam.Label, "Check Me!!!")
 
-            self.ipg.update_item(self.text_id, IpgTextParams.Content,
+            self.ipg.update_item(self.text_id, IpgTextParam.Content,
                                  "The callback name is show here")
 
-            self.ipg.update_item(self.text_user_data_id, IpgTextParams.Content,
+            self.ipg.update_item(self.text_user_data_id, IpgTextParam.Content,
                                  value="The callback user data will show here")
 
             # changing the icon to a check
-            self.ipg.update_item(self.checked_id, IpgCheckboxParams.IconX, False)
-            self.ipg.update_item(self.checked_id, IpgCheckboxParams.Label, "My icon will change")
+            self.ipg.update_item(self.checked_id, IpgCheckboxParam.IconX, False)
+            self.ipg.update_item(self.checked_id, IpgCheckboxParam.Label, "My icon will change")
 
             # Changing the width of the label with value=None which is shrink
-            self.ipg.update_item(self.width_id, IpgCheckboxParams.Width, 0)
-            self.ipg.update_item(self.width_id, IpgCheckboxParams.Label, "Checkbox width will change")
-            self.ipg.update_item(self.width_id, IpgCheckboxParams.IsChecked, False)
+            self.ipg.update_item(self.width_id, IpgCheckboxParam.Width, 0)
+            self.ipg.update_item(self.width_id, IpgCheckboxParam.Label, "Checkbox width will change")
+            self.ipg.update_item(self.width_id, IpgCheckboxParam.IsChecked, False)
 
             # Changing the size of the box with a float value
-            self.ipg.update_item(self.size_id, IpgCheckboxParams.Size, 16.0)
-            self.ipg.update_item(self.size_id, IpgCheckboxParams.Label, "Checkbox size will change")
-            self.ipg.update_item(self.size_id, IpgCheckboxParams.IsChecked, False)
+            self.ipg.update_item(self.size_id, IpgCheckboxParam.Size, 16.0)
+            self.ipg.update_item(self.size_id, IpgCheckboxParam.Label, "Checkbox size will change")
+            self.ipg.update_item(self.size_id, IpgCheckboxParam.IsChecked, False)
 
             # Changing the spacing between box and label with a float value
-            self.ipg.update_item(self.spacing_id, IpgCheckboxParams.Spacing, 15.0)
-            self.ipg.update_item(self.spacing_id, IpgCheckboxParams.Label,
+            self.ipg.update_item(self.spacing_id, IpgCheckboxParam.Spacing, 15.0)
+            self.ipg.update_item(self.spacing_id, IpgCheckboxParam.Label,
                                  "Checkbox spacing will change")
-            self.ipg.update_item(self.spacing_id, IpgCheckboxParams.IsChecked, False)
+            self.ipg.update_item(self.spacing_id, IpgCheckboxParam.IsChecked, False)
 
             # Changing the text_size with a float value
-            self.ipg.update_item(self.txt_size_id, IpgCheckboxParams.TextSize, 16.0)
-            self.ipg.update_item(self.txt_size_id, IpgCheckboxParams.Label,
+            self.ipg.update_item(self.txt_size_id, IpgCheckboxParam.TextSize, 16.0)
+            self.ipg.update_item(self.txt_size_id, IpgCheckboxParam.Label,
                                  "Checkbox text size will change")
-            self.ipg.update_item(self.txt_size_id, IpgCheckboxParams.IsChecked, False)
+            self.ipg.update_item(self.txt_size_id, IpgCheckboxParam.IsChecked, False)
 
             # Changing the text_line_height which increases space around the text label.
-            self.ipg.update_item(self.tlh_id, IpgCheckboxParams.TextLineHeight, 1.3)
-            self.ipg.update_item(self.tlh_id, IpgCheckboxParams.Label, "Text_line_Height")
-            self.ipg.update_item(self.tlh_id, IpgCheckboxParams.IsChecked, False)
+            self.ipg.update_item(self.tlh_id, IpgCheckboxParam.TextLineHeight, 1.3)
+            self.ipg.update_item(self.tlh_id, IpgCheckboxParam.Label, "Text_line_Height")
+            self.ipg.update_item(self.tlh_id, IpgCheckboxParam.IsChecked, False)
 
             # TODO text_shaping
 
             # TODO Changing the style
 
             # Hide the checkbox
-            self.ipg.update_item(self.show_id, IpgCheckboxParams.Show, True)
-            self.ipg.update_item(self.hide_text, IpgTextParams.Content, "")
+            self.ipg.update_item(self.show_id, IpgCheckboxParam.Show, True)
+            self.ipg.update_item(self.hide_text, IpgTextParam.Content, "")
 
 
 # instantiate the class

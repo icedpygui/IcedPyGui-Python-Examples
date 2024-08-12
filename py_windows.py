@@ -1,17 +1,17 @@
-from icedpygui import IPG, IpgWindowThemes, IpgWindowParams, IpgColumnAlignment
+from icedpygui import IPG, IpgWindowTheme, IpgWindowParam, IpgAlignment
 
 ipg = IPG()
 
 
 def change_wnd_theme(pl_id, selected, wnd_id):
     if selected == "Dark":
-        ipg.update_item(wnd_id, IpgWindowParams.Theme, IpgWindowThemes.Dark)
+        ipg.update_item(wnd_id, IpgWindowParam.Theme, IpgWindowTheme.Dark)
     if selected == "Nord":
-        ipg.update_item(wnd_id, IpgWindowParams.Theme, IpgWindowThemes.Nord)
+        ipg.update_item(wnd_id, IpgWindowParam.Theme, IpgWindowTheme.Nord)
     if selected == "SolarizedLight":
-        ipg.update_item(wnd_id, IpgWindowParams.Theme, IpgWindowThemes.SolarizedLight)
+        ipg.update_item(wnd_id, IpgWindowParam.Theme, IpgWindowTheme.SolarizedLight)
     if selected == "TokyoNightLight":
-        ipg.update_item(wnd_id, IpgWindowParams.Theme, IpgWindowThemes.TokyoNightLight)
+        ipg.update_item(wnd_id, IpgWindowParam.Theme, IpgWindowTheme.TokyoNightLight)
 
 
 debug = False
@@ -23,19 +23,19 @@ debug = False
 def set_debug(_btn_id):
     global debug
     debug = not debug
-    ipg.update_item(wnd_id_1, IpgWindowParams.Debug, debug)
+    ipg.update_item(wnd_id_1, IpgWindowParam.Debug, debug)
 
 
 #  The default position is center so a specific position is used to avoid overlaying.
 wnd_id_1 = ipg.add_window("window1", "Window 1", 400, 400,
                            pos_x=100, pos_y=25,
-                          theme=IpgWindowThemes.Nord)
+                          theme=IpgWindowTheme.Nord)
 
 # A column container is added first since all widgets must be placed into a container, column, or row.
 # A container can have only one widget.  Use a column or row for more than one.
 ipg.add_column(window_id="window1", container_id="col_1",
                width_fill=True, height_fill=True,
-               align_items=IpgColumnAlignment.Center)
+               align_items=IpgAlignment.Center)
 
 # Adding some extra spacing
 ipg.add_space(parent_id="col_1")
@@ -57,11 +57,13 @@ ipg.add_button(parent_id="col_1", label="Debug", on_press=set_debug)
 # Second window added with the light theme
 wnd_id_2 = ipg.add_window("window2", "Window 2", 400, 400,
                            pos_x=600, pos_y=25,
-                          theme=IpgWindowThemes.SolarizedLight)
+                          theme=IpgWindowTheme.SolarizedLight)
 
 ipg.add_column(window_id="window2", container_id="col_1",
                width_fill=True, height_fill=True,
-               align_items=IpgColumnAlignment.Center)
+               align_items=IpgAlignment.Center)
+
+ipg.add_space(parent_id="col_1", height=50)
 
 options = ["Dark", "Nord", "SolarizedLight", "TokyoNightLight"]
 ipg.add_pick_list(parent_id="col_1", options=options, placeholder="Select Theme",
