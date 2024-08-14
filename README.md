@@ -35,13 +35,13 @@ https://github.com/icedpygui/IcedPyGui-Python-Examples/assets/163431522/ae248470
     * Space - a widget for helping align content
     * Stack - a container that allows one to stack other containers next minor release
     * Styling - All widget now have styling
-    * SVG - image type
+    * SVG and Png - image types
     * TextEditor - Future, needs modification to work in IPG
     * TextInput - Allows one to input any text, numerical ones coming soon
     * Text - a text widget
     * Toggler - a widget for setting conditions like true/false on/off, etc
     * Tooltip - Only widget now, container ability near future release
-    * Windows multiple - 
+    * Windows - multiple
 * Iced_aw widgets - are moved into IPG due to version conflicts
     * Card - a container with a header and footer
     * ColorPicker - color selector - next minor release
