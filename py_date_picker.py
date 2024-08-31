@@ -1,6 +1,7 @@
 from icedpygui import IPG, IpgTextParam, IpgButtonParam, IpgDatePickerParam
 from icedpygui import IpgAlignment, IpgStyleStandard
 
+
 ipg = IPG()
 
 
@@ -27,7 +28,7 @@ def date_resize(_dp_id: int):
 
 # Add a window first
 ipg.add_window("main", "Date Picker Demo", 800, 800,
-               pos_x=100, pos_y=25)
+                pos_x=100, pos_y=25)
 
 # Add the container to center both x and y.  Holds only one widget.
 ipg.add_container("main", container_id="cont",
@@ -39,8 +40,8 @@ ipg.add_column(window_id="main", container_id="col", parent_id="cont",
 
 # Add info text
 ipg.add_text(parent_id="col", content="Press the first calendar buttons to access the calendar.  "
-                                      "Select a date then press submit.  Do the same for the second button and you "
-                                      "will see another button to resize the calendar")
+             "Select a date then press submit.  Do the same for the second button and you will see another button to "
+                                      "resize the calendar")
 
 # The date picker size can be scaled from > 1.0.  Anything less than 1 will
 # give an error and is not readable anyway.

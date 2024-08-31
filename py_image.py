@@ -2,6 +2,7 @@ from icedpygui import IPG, IpgImageParam, IpgTextParam, IpgSvgParam
 from icedpygui import IpgAlignment
 import os, math
 
+
 ipg = IPG()
 
 # Note: The image is put into a mouse area container, within IPG, where these
@@ -12,6 +13,7 @@ ipg = IPG()
 
 # Setting up the image path
 cwd = os.getcwd()
+
 ferris = cwd + "/resources/ferris_0.png"
 tiger = cwd + "/resources/tiger_0.svg"
 
@@ -56,7 +58,7 @@ def on_mouse_exit(image_id):
 
 
 # On right_press, ferris shows
-# We need to try both because the image_id could be either the tiget or ferris
+# We need to try both because the image_id could be either the tiger or ferris
 def toggle_images(image_id):
     global show_ferris, show_tiger
 
@@ -73,7 +75,7 @@ def toggle_images(image_id):
 
 
 def increment_radians(timer_id: int, counter: int):
-    radians = counter * 0.048481
+    radians = counter*0.048481
     ipg.update_item(ferris_ids[0], IpgImageParam.RotationRadians, radians)
     ipg.update_item(ferris_ids[1], IpgImageParam.RotationRadians, radians)
     ipg.update_item(ferris_ids[2], IpgImageParam.RotationRadians, radians)
@@ -83,6 +85,7 @@ def increment_radians(timer_id: int, counter: int):
     ipg.update_item(tiger_ids[1], IpgSvgParam.RotationRadians, radians)
     ipg.update_item(tiger_ids[2], IpgSvgParam.RotationRadians, radians)
     ipg.update_item(tiger_ids[3], IpgSvgParam.RotationRadians, radians)
+
 
 
 # Add the window
@@ -111,22 +114,23 @@ ipg.add_row(window_id="main", container_id="row1", parent_id="col", spacing=0)
 # Looping to add the images, each will have the same callback
 # but they could be different depending on your needs.
 for i in range(0, 4):
+
     ferris_ids.append(ipg.add_image(parent_id="row1", image_path=ferris,
-                                    width=100.0, height=50.0,
-                                    on_press=image_selected,
-                                    on_move=on_mouse_move,
-                                    on_exit=on_mouse_exit,
-                                    on_right_press=toggle_images,
-                                    show=True))
-
+                                   width=100.0, height=50.0,
+                                   on_press=image_selected,
+                                   on_move=on_mouse_move,
+                                   on_exit=on_mouse_exit,
+                                   on_right_press=toggle_images,
+                                   show=True))
+    
     tiger_ids.append(ipg.add_svg(parent_id="row1", svg_path=tiger,
-                                 width=100.0, height=50.0,
-                                 on_press=image_selected,
-                                 on_move=on_mouse_move,
-                                 on_exit=on_mouse_exit,
-                                 on_right_press=toggle_images,
-                                 show=False))
-
+                                   width=100.0, height=50.0,
+                                   on_press=image_selected,
+                                   on_move=on_mouse_move,
+                                   on_exit=on_mouse_exit,
+                                   on_right_press=toggle_images,
+                                   show=False))
+    
     # Spacing was added last because because the two images occupy the same space
     # So spacing is between the pairs
     ipg.add_space(parent_id="row1", width=10.0)

@@ -1,12 +1,12 @@
 from icedpygui import IPG, IpgProgressBarParam, IpgTextParam
 from icedpygui import IpgAlignment, IpgColor, IpgStyleStandard
 
+
 ipg = IPG()
 
 # global var for callback
 value = 75.0
 hide = True
-
 
 # The callbacks below allow you to change all of the parameters for a widget.
 # They may or may not have frequent usage but it makes the gui very flexible
@@ -65,8 +65,9 @@ def hide_bar(_btn_id: int, pg_id: any):
 
 
 # Add the window
-ipg.add_window("main", "CheckBox Demo",
-               600, 600, 100, 25)
+ipg.add_window(window_id="main", title="CheckBox Demo",
+               width=600, height=600, 
+               pos_centered=True)
 
 # Add the container to help with alignment
 ipg.add_container(window_id="main", container_id="cont", width_fill=True,
@@ -115,13 +116,13 @@ ipg.add_button("value_row", "Press Me to - ",
                on_press=change_value_minus, user_data=pg_id)
 
 # add row for min and max
-ipg.add_row("main", "minmax_row", parent_id="col2")
+ipg.add_row("main", "min_max_row", parent_id="col2")
 
 # text input widgets are used for the inputs which you convert to floats in the callback
 # Numeric input widgets to come.  No error checking done.
-ipg.add_text_input("minmax_row", "Enter Min",
+ipg.add_text_input("min_max_row", "Enter Min",
                    on_submit=change_min, width=150.0, user_data=pg_id)
-ipg.add_text_input("minmax_row", "Enter Max",
+ipg.add_text_input("min_max_row", "Enter Max",
                    on_submit=change_max, width=150.0, user_data=pg_id)
 
 # Add a button the short the bar
@@ -136,13 +137,15 @@ ipg.add_button("col2", "Press Me to to fill the bar width, do the above first",
 ipg.add_button("col2", "Press me to hide/show the bar.",
                on_press=hide_bar, user_data=pg_id)
 
+
 # add some styling to a new bar
-ipg.add_progress_bar_style("border",
-                           border_radius=[8.0],
+ipg.add_progress_bar_style("border", 
+                           border_radius=[8.0], 
                            border_color=IpgColor.BLUE,
                            border_width=3.0,
                            background_color=IpgColor.LIGHT_BLUE,
                            bar_color=IpgColor.ALICE_BLUE)
+
 
 # Adding another bar and styling with a new background, bar color, and border.
 ipg.add_progress_bar("col2", 0.0, 100.0, 50.0,
@@ -155,6 +158,7 @@ ipg.add_progress_bar("col2", 0.0, 100.0, 50.0,
                      style_standard=IpgStyleStandard.Danger)
 
 ipg.add_text(parent_id="col2", content="Styling with Danger standard style only")
+
 
 # Required to be the last widget sent to Iced,  If you start the program
 # and nothing happens, it might mean you forgot to add this command.

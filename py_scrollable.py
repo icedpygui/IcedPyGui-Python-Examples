@@ -84,7 +84,7 @@ class DemoScrollable:
     # We will create 3 containers, a header, a scrollable, and an empty bottom container.
     def create_scroll_vertical(self):
 
-        self.ipg.add_window(self.wnd_v, "Scollable - Vertical",
+        self.ipg.add_window(self.wnd_v, "Scrollable - Vertical",
                             self.wnd_width, self.wnd_height,
                              pos_x=50, pos_y=25)
 

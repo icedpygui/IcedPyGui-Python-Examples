@@ -1,6 +1,7 @@
 from icedpygui import IPG
 
 
+
 # Since user data is include, it will need to be
 # added to all whether used on or.
 def on_press(id, _user_data):
@@ -28,7 +29,7 @@ def on_middle_release(id, _user_data):
 
 
 def on_enter(id, user_data):
-    print("entered", id, user_data)
+    print("entered", id, user_data)    
 
 
 def on_move(id: int, point: dict, _user_data):
@@ -39,12 +40,14 @@ def on_exit(id, _user_data):
     print("on exit", id)
 
 
+    
+
 ipg = IPG()
 
-ipg.add_window(window_id="main", title="Main", width=400, height=400,
+ipg.add_window(window_id="main", title="Main", width=400, height=400, 
                pos_centered=True, debug=True)
 
-ipg.add_container(window_id="main", container_id="cont",
+ipg.add_container(window_id="main", container_id="cont", 
                   width_fill=True, height_fill=True,
                   )
 
