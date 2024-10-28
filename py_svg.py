@@ -7,8 +7,8 @@ width = 400.0
 height = 400.0
 
 
-# Since user data is included, it will need to be
-# added to all callbacks whether used on or.
+# Since user data is include, it will need to be
+# added to all whether used on or.
 def on_press(btn_id, _user_data):
     print("on press", btn_id)
 
@@ -75,8 +75,8 @@ ipg.add_container(window_id="main",
 
 # Setting up the image path
 cwd = os.getcwd()
-tiger_path = cwd + "/resources/tiger.svg"
-print(tiger_path)
+tiger_path = cwd + "/resources/tiger_0.svg"
+
 ipg.add_column(window_id="main", container_id="col",
             align_items=IpgAlignment.Center)
 
