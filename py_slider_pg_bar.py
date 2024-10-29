@@ -60,9 +60,10 @@ def toggle_show(btn_id):
     ipg.update_item(sl_id, IpgSliderParam.Show, show)
 
 
+
 # Add a slider style for the colors
 ipg.add_slider_style(style_id="color",
-                     rail_color=IpgColor.GREEN,
+                     rail_color=IpgColor.GREEN, 
                      rail_color_hovered=IpgColor.GREEN_YELLOW,
                      handle_color=IpgColor.DARK_GREEN,
                      rail_width=10.0,
@@ -70,11 +71,11 @@ ipg.add_slider_style(style_id="color",
                      handle_rectangle_width=20,
                      handle_rectangle_border_radius=[5.0],
                      handle_border_width=2.0,
-                     handle_border_color=IpgColor.DARK_GREEN, )
+                     handle_border_color=IpgColor.DARK_GREEN,)
 
 # Add the window
 ipg.add_window(window_id="main", title="Slider Demo", width=600, height=600,
-               pos_x=100, pos_y=25)
+                pos_x=100, pos_y=25)
 
 # Add the column and center the widgets in it.
 ipg.add_column("main", container_id="col",
@@ -91,11 +92,11 @@ ipg.add_space(parent_id="col", height=10.0)
 bar_id = ipg.add_progress_bar(parent_id="col", min=0.0, max=100.0, value=50.0, width=300.0)
 
 # Add a slide to change the value with two callbacks
-sl_id = ipg.add_slider(parent_id="col",
-                       min=0.0, max=100.0,
+sl_id = ipg.add_slider(parent_id="col", 
+                       min=0.0, max=100.0, 
                        step=0.5, value=50.0,
-                       width=300.0,
-                       on_change=slider_on_change,
+                       width=300.0, 
+                       on_change=slider_on_change, 
                        on_release=slider_on_release,
                        )
 
@@ -132,8 +133,11 @@ ipg.add_button(parent_id="row_3", label="Press Me to Change Value", on_press=cha
 ipg.add_row(window_id="main", container_id="row_4", parent_id="col")
 ipg.add_button(parent_id="row_4", label="Press Me to Add Styling", on_press=add_styling)
 
+
+
 ipg.add_row(window_id="main", container_id="row_10", parent_id="col")
 ipg.add_button(parent_id="row_10", label="Press Me to Toggle Show", on_press=toggle_show)
+
 
 # Required to be the last widget sent to Iced,  If you start the program
 # and nothing happens, it might mean you forgot to add this command.

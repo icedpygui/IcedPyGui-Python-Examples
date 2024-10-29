@@ -1,7 +1,7 @@
 from icedpygui import IPG, IpgTextParam, IpgRadioDirection
 from icedpygui import IpgButtonParam, IpgProgressBarParam
 from icedpygui import IpgAlignment
-from icedpygui import IpgTableRowHighLight
+from icedpygui import IpgTableWidget, IpgTableRowHighLight
 import random
 
 """
@@ -189,14 +189,14 @@ class Demo:
         self.btn_id: int = 0
         self.button_presses: int = 0
         self.btn_text_id: int = 0
-        self.text_id_checkbox: int = 0
+        self.text_id_chkbox: int = 0
         self.bar_id: int = 0
         self.slider_text_id: int = 0
         self.picklist_text_id: int = 0
         self.radio_1_text_id: int = 0
         self.radio_2_text_id: int = 0
         self.selectable_text_id: int = 0
-        self.text_input_id: int = 0
+        self.text_input_id: int= 0
 
         # containers for window 2
         self.l_col_2: str = "left_col_2"
@@ -253,12 +253,12 @@ class Demo:
         self.ipg.add_checkbox(parent_id=self.l_col_1, label="Check Me",
                               on_toggle=self.box_checked_id)
 
-        self.text_id_checkbox = self.ipg.add_text(parent_id=self.l_col_1,
-                                                  content="You Checked the box above",
-                                                  show=False)  # note: show is False
+        self.text_id_chkbox = self.ipg.add_text(parent_id=self.l_col_1,
+                                                content="You Checked the box above",
+                                                show=False)  # note: show is False
 
     def box_checked_id(self, _chk_id, data):
-        self.ipg.update_item(self.text_id_checkbox, IpgTextParam.Show, data)  # show set to True
+        self.ipg.update_item(self.text_id_chkbox, IpgTextParam.Show, data)  # show set to True
 
     # a progress bar and a slider are defined and connected together via the callbacks
     def construct_slider_and_progress_bar(self):
@@ -272,7 +272,7 @@ class Demo:
 
         self.slider_text_id = self.ipg.add_text(self.l_col_1, "Slider content here.")
 
-    # Both callbacks were used in this case for demonstration, but it is
+    # Both callbacks were used in this case for demonstration but it is
     # expected that you probably only will use the release mostly.
     # if you have a costly calculation you are using, you may want to
     # not use the on_change or filter it by using a counter to select
@@ -284,7 +284,7 @@ class Demo:
     def slider_on_release(self, _slider_id, data):
         self.ipg.update_item(self.bar_id, IpgProgressBarParam.Value, data)
 
-        # A picklist is defined here width a placeholder. The option list holder the selections.
+        # A picklist is defined here width a place holder. The option list holder the selections.
 
     def construct_pick_list(self):
         self.ipg.add_pick_list(parent_id=self.l_col_1, options=["one", "two", "three"],
@@ -293,7 +293,7 @@ class Demo:
 
         self.picklist_text_id = self.ipg.add_text(self.l_col_1, "You picked:")
 
-    def picked_item(self, _id, data):
+    def picked_item(self, id, data):
         self.ipg.update_item(self.picklist_text_id, IpgTextParam.Content, f"You Picked: {data}")
 
     # *****************Right Column in Window 1*************************
@@ -357,7 +357,7 @@ class Demo:
 
         self.text_input_id = self.ipg.add_text(self.r_col_1, "Will fill while typing")
 
-        # Only one callback used in this case (two could be used). Determine which callback is based on name.
+        # Only one callback used in this case (two could be used). Determining which callback is based on name.
         # Maybe helpful in some cases where callbacks are similar or there are many.
 
     def text_input_submitted(self, _input_id, data):
@@ -382,7 +382,8 @@ class Demo:
     def construct_date_picker(self):
         self.ipg.add_date_picker(self.l_col_2, on_submit=self.date_selected)
 
-        self.date_text_id = self.ipg.add_text(self.l_col_2, "You selected:")
+        self.date_text_id = self.ipg.add_text(self.l_col_2,
+                                              "You selected:")
 
     def date_selected(self, _date_id, date):
         self.ipg.update_item(self.date_text_id, IpgTextParam.Content, f"You selected: {date}")
@@ -400,6 +401,7 @@ class Demo:
         col3 = []
         col4 = []
         col5 = []
+        col6 = []
 
         # Add some random data of different types
         for i in range(0, 20):
@@ -425,38 +427,40 @@ class Demo:
         # This probably covers the vast majority of needs.  If you need that mixed column, convert
         # the list to a string.  When the final version is displayed, it's converted to a string anyway.
         data = [{"Button": col0},
-                {"ChkBox": col1},
+                {"CheckBox": col1},
                 {"Col2": col2},
                 {"Col3": col3},
                 {"Col4": col4},
                 {"Col5": col5}]
 
+        column_widths = [75.0, 100.0, 100.0, 100.0, 100.0, 100.0]
+        tbl_width = sum(column_widths)
+        
         # The table is added.
         self.ipg.add_table(window_id=self.wnd_2,
-                           table_id="table",
-                           title="My Table",
-                           data=data,
-                           column_widths=[75.0, 50.0, 100.0, 100.0, 100.0, 100.0],
-                           width=600.0, height=300.0,
-                           row_highlight=IpgTableRowHighLight.Lighter,
-                           data_length=len(col0),
-                           button_fill_columns=[0],
-                           checkbox_fill_columns=[1],
-                           on_button=widget_button,
-                           on_checkbox=widget_checkbox,
-                           )
+                            table_id="table", 
+                            title="My Table", 
+                            data=data,
+                            column_widths=column_widths,
+                            width=tbl_width, 
+                            height=300.0, 
+                            row_highlight=IpgTableRowHighLight.Lighter,
+                            data_length=len(col0),
+                            button_fill_columns=[0],
+                            checkbox_fill_columns=[1],
+                            on_button=self.widget_button,
+                            on_checkbox=self.widget_checkbox,
+                            )
 
+    def widget_button(self, tbl_id: int, wid_index: tuple[int, int]):
+        print(tbl_id, wid_index)
 
-def widget_button(tbl_id: int, wid_index: tuple[int, int]):
-    print(tbl_id, wid_index)
+    def widget_checkbox(self, tbl_id: int, wid_index: tuple[int, int], is_checked: bool):
+        print(tbl_id, wid_index, is_checked)
 
+    def on_text_enter(self, tbl_id, text_index: tuple[int, int]):
+        print(tbl_id, text_index)
 
-def widget_checkbox(tbl_id: int, wid_index: tuple[int, int], is_checked: bool):
-    print(tbl_id, wid_index, is_checked)
-
-
-def on_text_enter(tbl_id, text_index: tuple[int, int]):
-    print(tbl_id, text_index)
 
 
 demo = Demo()

@@ -1,4 +1,4 @@
-from icedpygui import IPG, IpgAlignment, IpgHorizontalAlignment, IpgVerticalAlignment
+from icedpygui import IPG, IpgAlignment
 from icedpygui import IpgSvgParam
 import os
 
@@ -69,24 +69,22 @@ ipg.add_window(window_id="main", title="Main",
                width=600, height=600,
                pos_centered=True, debug=True)
 
-ipg.add_container(window_id="main", container_id="cont",
-                  width_fill=True, height_fill=True,
+ipg.add_container(window_id="main", 
+                  container_id="cont",
                   )
 
 # Setting up the image path
 cwd = os.getcwd()
-tiger_path = cwd + "/resources/tiger.svg"
+tiger_path = cwd + "/resources/tiger_0.svg"
 
-ipg.add_row(window_id="main", container_id="row",
+ipg.add_column(window_id="main", container_id="col",
             align_items=IpgAlignment.Center)
 
-ipg.add_button(parent_id="row", label="Increase Size", on_press=increase_size)
-ipg.add_button(parent_id="row", label="Decrease Size", on_press=decrease_size)
 
-svg_id = ipg.add_svg(parent_id="cont",
+svg_id = ipg.add_svg(parent_id="col",
                      svg_path=tiger_path,
-                     width=200.0,
-                     height=200.0,
+                     width=width,
+                     height=height,
                      on_enter=on_enter,
                      on_exit=on_exit,
                      on_move=on_move,
@@ -97,5 +95,8 @@ svg_id = ipg.add_svg(parent_id="cont",
                      on_right_press=on_right_press,
                      on_right_release=on_right_release,
                      user_data="Some Data")
+
+ipg.add_button(parent_id="col", label="Increase Size", on_press=increase_size)
+ipg.add_button(parent_id="col", label="Decrease Size", on_press=decrease_size)
 
 ipg.start_session()

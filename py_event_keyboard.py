@@ -26,7 +26,10 @@ def key_released(_event_id, name: str, key: dict, _user_data: any):
 
 
 # add the event and the two callbacks along with the user_data if needed.
-ipg.add_event_keyboard(enabled=True, on_key_press=key_pressed, on_key_release=key_released, user_data=[25])
+ipg.add_event_keyboard(enabled=True, 
+                       on_key_press=key_pressed, 
+                       on_key_release=key_released, 
+                       user_data=[25])
 
 
 # Unlike widgets, the events can be added at any time since they are not widgets

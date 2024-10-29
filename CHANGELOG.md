@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 None
 
+# [0.3.0] - 2024-10-29
+- upgraded to iced 0.13.1, many changes due to the upgrade
+- added stack see example
+- tables changed but additional changes upcoming in the next release or so
+- add canvas, canvas widgets can be added but dynamic drawing next release or so
+- add ability to move a widget, container moving later
+- add solitaire game to demonstates moving a widget around.  This is not a game using a canvas but containers only.  A canvas version will follow later.
+
 ## [0.2.0] - 2024-08-12
 
 - updated to iced rev="07f94d6"

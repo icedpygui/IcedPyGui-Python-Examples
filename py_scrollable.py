@@ -84,7 +84,7 @@ class DemoScrollable:
     # We will create 3 containers, a header, a scrollable, and an empty bottom container.
     def create_scroll_vertical(self):
 
-        self.ipg.add_window(self.wnd_v, "Scollable - Vertical",
+        self.ipg.add_window(self.wnd_v, "Scrollable - Vertical",
                             self.wnd_width, self.wnd_height,
                              pos_x=50, pos_y=25)
 
@@ -195,8 +195,11 @@ class DemoScrollable:
 
         # Add a column to hold all the widgets
         self.ipg.add_column(window_id=self.wnd_b, container_id="col", parent_id=self.cont_b,
-                            spacing=5)
-
+                            spacing=10, align_items=IpgAlignment.Center)
+        
+        # Display some info
+        self.ipg.add_text(parent_id="col", content="You may have to press buttons many times to see the changes")
+        
         # The scrollable size controls the viewport for the column container.
         self.scroll_id_3 = self.ipg.add_scrollable(window_id=self.wnd_b, container_id=self.scroll_b,
                                                    parent_id="col",

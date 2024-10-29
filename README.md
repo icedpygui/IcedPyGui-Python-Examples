@@ -9,6 +9,8 @@ https://github.com/icedpygui/IcedPyGui-Python-Examples/assets/163431522/ae248470
 
 </div>
 
+## Version
+* Current version is v0.3.0
 ## Features
 
 * Supported Iced widgets
@@ -76,8 +78,8 @@ pip install --force-reinstall path to wheel
 See the Rust code at [IcedPyGui](https://github.com/icedpygui/IcedPyGui).
 
 ## Overview
-* IcedPyGui is based on [Rust Iced](https://github.com/iced-rs/iced) v0.12.1.
-* Widgets for [Iced_aw](https://github.com/iced-rs/iced_aw) v0.8.0 are used too .
+* IcedPyGui is based on [Rust Iced](https://github.com/iced-rs/iced) v0.13.1.
+* Widgets for [Iced_aw](https://github.com/iced-rs/iced_aw) are used too .
 * [Pyo3](https://github.com/pyo3/pyo3) is used as the python wrapper.
 * [Maturin](https://github.com/PyO3/maturin) is used to build and publish the module .
 * The syntax and the design of the callbacks were inspired by the python wrapper of Dear ImGui, [DearPyGui(DPG)](https://github.com/hoffstadt/DearPyGui).
@@ -86,8 +88,6 @@ See the Rust code at [IcedPyGui](https://github.com/icedpygui/IcedPyGui).
 
 ## Intro 
 Iced is a great GUI for Rust but it's still early in the development cycle, more good things will follow.  
-
-Some would probably say it's too early for a python wrap but I though I would give it a try since I wanted a project that would help me improve my Rust skills, which I've only been using a for a short time.
 
 This project is the first I have published and so I expect I'll learn a lot and hopefully you can bare with me.
 
@@ -110,6 +110,8 @@ Each widget in IPG has a used data parameter which passes any additional informa
 * Every widget needs to have a parent container previously defined and every container needs to have a window and optionally a parent container defined.  If the container is placed into a window then no parent_id is required.
 
 * Therefore at least one window needs to be added first and at least one container needs to be added to the window before any widgets are added.  As long as you have defined a parent, you can add a widget.
+
+* During a callback, you may have some python code in your callback that has an error.  Normal you would get a python error and it would tell you the line number and hint at the problem.  However, since rust has the python gil at this point, a rust error will ocur.  The rust error will inform you that a rust error may have occured and will print out the python error.  Unfortunately, sometimes the error is not obvious and if your callback code is complicated, it take a bit to figure out, since no line number is given.  Hopefully in the future I can somehow make this a better situation for the user.  If it's actually a rust error, it usualy is that the number of parameters for the callback are incorrect.  
 
 #### Let's get started with out first program:
 

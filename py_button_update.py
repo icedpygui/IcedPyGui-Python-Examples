@@ -1,5 +1,5 @@
-from icedpygui import IPG, IpgButtonStyles, IpgButtonArrows, IpgButtonParams
-from icedpygui import IpgColumnAlignment, IpgContainerAlignment
+from icedpygui import IPG, IpgButtonArrow, IpgButtonParam, IpgStyleStandard
+from icedpygui import IpgAlignment, IpgAlignment
 
 
 # Normally in larger project, a class or classes would be used.
@@ -16,38 +16,43 @@ ipg = IPG()
 # false and then update it to true in the callback.
 # A callback id is the id of the widget making the callback.  If you need
 # update other widgets, use their ids as show in this callback.
-def update_button(_btn_id: int):
+def update_button(btn_id: int):
     # changing the radius using a float
-    ipg.update_item(radius_btn, IpgButtonParams.CornerRadius, 5.0)
-    ipg.update_item(radius_btn, IpgButtonParams.Label, "Corner Radius Changed")
+    # Since the radius is a style, then we are adding a styling id
+    # which is defined below.
+    ipg.update_item(radius_btn, IpgButtonParam.StyleId, "btn_style")
+    ipg.update_item(radius_btn, IpgButtonParam.Label, "Corner Radius Changed")
 
     # changing the label
-    ipg.update_item(label_btn, IpgButtonParams.Label, "Label Changed")
+    ipg.update_item(label_btn, IpgButtonParam.Label, "Label Changed")
 
     # Changing the width
-    ipg.update_item(width_btn, IpgButtonParams.Width, 300.0)
-    ipg.update_item(width_btn, IpgButtonParams.Label, "Width Changed")
+    ipg.update_item(width_btn, IpgButtonParam.Width, 300.0)
+    ipg.update_item(width_btn, IpgButtonParam.Label, "Width Changed")
 
-    # Changing the heigth
-    ipg.update_item(height_btn, IpgButtonParams.Height, 100.0)
-    ipg.update_item(height_btn, IpgButtonParams.Label, "Heigth Changed")
+    # Changing the height
+    ipg.update_item(height_btn, IpgButtonParam.Height, 100.0)
+    ipg.update_item(height_btn, IpgButtonParam.Label, "Height Changed")
 
     # Changing the padding around the label
-    ipg.update_item(padding_btn, IpgButtonParams.Padding, [30.0])
-    ipg.update_item(padding_btn, IpgButtonParams.Label, "Padding Changed")
+    ipg.update_item(padding_btn, IpgButtonParam.Padding, [30.0])
+    ipg.update_item(padding_btn, IpgButtonParam.Label, "Padding Changed")
 
     # Changing the style
-    ipg.update_item(style_btn, IpgButtonParams.Style, IpgButtonStyles.Secondary)
-    ipg.update_item(style_btn, IpgButtonParams.Label, "Styling Changed")
+    ipg.update_item(style_btn, IpgButtonParam.StyleStandard, IpgStyleStandard.Danger)
+    ipg.update_item(style_btn, IpgButtonParam.Label, "Styling Changed")
 
     # Changing the Arrow
-    ipg.update_item(arrow_btn, IpgButtonParams.ArrowStyle, IpgButtonArrows.ArrowDown)
+    ipg.update_item(arrow_btn, IpgButtonParam.ArrowStyle, IpgButtonArrow.ArrowDown)
 
     # Hide the button
-    ipg.update_item(show_btn, IpgButtonParams.Show, False)
+    ipg.update_item(show_btn, IpgButtonParam.Show, False)
 
 
-# A window widget needs to be added first.
+# Add styling to change the border radius or many other styles.
+ipg.add_button_style(style_id="btn_style", border_radius=[5.0])
+
+# A window widget needs to be added first, except for styles.
 ipg.add_window("main", "Button Update", width=500, height=650,
                pos_x=100, pos_y=25)
 
@@ -56,8 +61,9 @@ ipg.add_window("main", "Button Update", width=500, height=650,
 # to center so these are not needed in this case but put in to show use.
 # A container can have only one widget, so generally a column or row follows.
 # THis container may or may not be needed, it depends on your layout.
-ipg.add_container("main", "cont", align_x=IpgContainerAlignment.Center,
-                  align_y=IpgContainerAlignment.Center, width_fill=True, height_fill=True)
+ipg.add_container("main", "cont",
+                  width_fill=True, 
+                  height_fill=True)
 
 # A column is added next because the plan is to arrange then in a column.
 # If you  set the width_fill or height_fill to true when the outer container
@@ -65,7 +71,7 @@ ipg.add_container("main", "cont", align_x=IpgContainerAlignment.Center,
 # The containers width_fill defaults to shrink to keep it that way unless needed.
 # Sometime you'll need to give them specific amounts to get alignments correct for your layout
 ipg.add_column("main", container_id="col", parent_id="cont",
-               align_items=IpgColumnAlignment.Center)
+               align_items=IpgAlignment.Center)
 
 # This is the only active button needed for this demo, so it's the only one with a callback
 # On some IDE setting, when you type in the callback name, it puts a () after the name.
@@ -74,13 +80,14 @@ ipg.add_column("main", container_id="col", parent_id="cont",
 # passed to rust to let it know what function needs to be called from rust.
 ipg.add_button("col", "Press to Change Buttons Below", on_press=update_button)
 
-radius_btn = ipg.add_button("col", "Radius Will Change")
+radius_btn = ipg.add_button("col", "Radius Will Change",
+                            style_id="btn_style")
 
 label_btn = ipg.add_button("col", "Label Will Change")
 
 width_btn = ipg.add_button("col", "Width Will Change")
 
-height_btn = ipg.add_button("col", "Heigth Will Change")
+height_btn = ipg.add_button("col", "Height Will Change")
 
 padding_btn = ipg.add_button("col", "Padding Will Change")
 
@@ -88,10 +95,10 @@ style_btn = ipg.add_button("col", "Styling Will Change")
 
 # On many parameters that are updated, you will need to import the proper
 # dataclass so that the parameter can be selected.  In this case, you are working
-# with a button arrow, so import the IpgButtonArrows and select the one you want.
+# with a button arrow, so import the IpgButtonArrow and select the one you want.
 # This method greatly cuts down on typos, if you had to use strings for the parameters.
-arrow_btn = ipg.add_button("col", "", corner_radius=0.0,
-                           arrow_style=IpgButtonArrows.ArrowUp)
+arrow_btn = ipg.add_button("col", "",
+                           style_arrow=IpgButtonArrow.ArrowUp)
 
 show_btn = ipg.add_button("col", "This button will disappear")
 

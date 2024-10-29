@@ -3,9 +3,11 @@ from icedpygui import IpgAlignment, IpgAlignment
 
 ipg = IPG()
 
+
+
 # Add the window
-ipg.add_window("main", "Toggler Demo",
-               700, 625,
+ipg.add_window("main", "Toggler Demo", 
+               700, 625,  
                pos_x=100.0, pos_y=25.0)
 
 # Add a main column to hold everything
@@ -29,6 +31,8 @@ tog_id = ipg.add_toggler("col",
                          text_size=25.0,
                          style_id="tog_style"
                          )
+
+
 
 # Required to be the last widget sent to Iced,  If you start the program
 # and nothing happens, it might mean you forgot to add this command.

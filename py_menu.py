@@ -1,6 +1,7 @@
 from icedpygui import IPG, IpgMenuType, IpgWindowTheme
 from collections import OrderedDict
 
+
 ipg = IPG()
 
 
@@ -11,17 +12,16 @@ ipg = IPG()
 def menu_pressed(menu_id, bar_index, menu_index, toggled, user_data):
     print(f"menu id={menu_id} bar_index={bar_index} menu_index={menu_index} toggled={toggled} user_data={user_data}")
 
-
-# Adding two windows to show color contrasts
+# Adding two windows to show color contrasts 
 # Add the 1st window, the default theme is Dark
-ipg.add_window("main-dark", "Menu",
-               400, 400,
+ipg.add_window("main-dark", "Menu", 
+               400, 400,  
                pos_x=100, pos_y=25,
                )
 
 # Add the 2nd window with a lighter theme
-ipg.add_window("main-light", "Menu",
-               400, 400,
+ipg.add_window("main-light", "Menu", 
+               400, 400,  
                pos_x=600, pos_y=25,
                theme=IpgWindowTheme.GruvboxLight
                )
@@ -37,18 +37,18 @@ ipg.add_column("main-light", container_id="col-light")
 # Use the IpgMenuType to select the different types of items.
 # The Text is the standard type.
 items = OrderedDict({"Menu0": [(None, IpgMenuType.Dot),
-                               ("item0-1", IpgMenuType.Text),
-                               ("item0-2", IpgMenuType.Text),
+                               ("item0-1", IpgMenuType.Text), 
+                               ("item0-2", IpgMenuType.Text), 
                                ("item0-3", IpgMenuType.Text),
                                ],
-                     "Menu1": [("item1-0", IpgMenuType.Text),
-                               (None, IpgMenuType.Line),
-                               ("item1-2", IpgMenuType.Text),
+                     "Menu1": [("item1-0", IpgMenuType.Text), 
+                               (None, IpgMenuType.Line), 
+                               ("item1-2", IpgMenuType.Text), 
                                ("item1-3", IpgMenuType.Button),
                                ],
                      "Menu2": [("Label-0", IpgMenuType.Label),
-                               ("item2-1", IpgMenuType.Text),
-                               ("item2-2", IpgMenuType.Checkbox),
+                               ("item2-1", IpgMenuType.Text), 
+                               ("item2-2", IpgMenuType.Checkbox), 
                                ("item2-3", IpgMenuType.Toggler),
                                (None, IpgMenuType.Circle),
                                ]})
@@ -65,12 +65,12 @@ item_spacings = [5.0]
 # Finally, we add the menus to each window.
 windows = ["col-dark", "col-light"]
 for col in windows:
-    ipg.add_menu(col, items,
-                 bar_widths,
-                 item_widths,
-                 item_spacings=item_spacings,
-                 on_select=menu_pressed,
-                 user_data=col)
+    ipg.add_menu(col, items, 
+                bar_widths, 
+                item_widths,
+                item_spacings=item_spacings,
+                on_select=menu_pressed, 
+                user_data=col)
 
 # Required to be the last widget sent to Iced,  If you start the program
 # and nothing happens, it might mean you forgot to add this command.
