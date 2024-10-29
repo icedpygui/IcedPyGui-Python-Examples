@@ -9,6 +9,8 @@ https://github.com/icedpygui/IcedPyGui-Python-Examples/assets/163431522/ae248470
 
 </div>
 
+## Version
+* Current version is v0.3.0
 ## Features
 
 * Supported Iced widgets
@@ -76,8 +78,8 @@ pip install --force-reinstall path to wheel
 See the Rust code at [IcedPyGui](https://github.com/icedpygui/IcedPyGui).
 
 ## Overview
-* IcedPyGui is based on [Rust Iced](https://github.com/iced-rs/iced) v0.12.1.
-* Widgets for [Iced_aw](https://github.com/iced-rs/iced_aw) v0.8.0 are used too .
+* IcedPyGui is based on [Rust Iced](https://github.com/iced-rs/iced) v0.13.1.
+* Widgets for [Iced_aw](https://github.com/iced-rs/iced_aw) are used too .
 * [Pyo3](https://github.com/pyo3/pyo3) is used as the python wrapper.
 * [Maturin](https://github.com/PyO3/maturin) is used to build and publish the module .
 * The syntax and the design of the callbacks were inspired by the python wrapper of Dear ImGui, [DearPyGui(DPG)](https://github.com/hoffstadt/DearPyGui).
