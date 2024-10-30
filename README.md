@@ -9,8 +9,6 @@ https://github.com/icedpygui/IcedPyGui-Python-Examples/assets/163431522/ae248470
 
 </div>
 
-## Version
-* Current version is v0.3.0
 ## Features
 
 * Supported Iced widgets
@@ -64,13 +62,10 @@ https://github.com/icedpygui/IcedPyGui-Python-Examples/assets/163431522/ae248470
     * @dataclass needs to be supported (support soon)
 
 ## Installation (PiPy)
-* Code not published to PiPy yet.  Download one of the wheels attached to the [release page](https://github.com/icedpygui/IcedPyGui-Python-Examples/releases), or see below for installation via rust
 * Open one of the example using your favorite IDE.
 * Create and activate a virtual environment
  ```python
-pip install path to wheel
-# or if already installed previously
-pip install --force-reinstall path to wheel
+pip install IcedPyGui
  ```
 
 ## Installation (Rust)
