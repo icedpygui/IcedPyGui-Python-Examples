@@ -1,0 +1,488 @@
+[
+  {
+    "name": "Bezier",
+    "content": "",
+    "points": [
+      {
+        "x": 228.58179,
+        "y": 137.53366
+      },
+      {
+        "x": 312.47626,
+        "y": 122.45032
+      },
+      {
+        "x": 314.05084,
+        "y": 51.868713
+      }
+    ],
+    "poly_points": 0,
+    "mid_point": {
+      "x": 270.52902,
+      "y": 129.99199
+    },
+    "other_point": {
+      "x": 0.0,
+      "y": 0.0
+    },
+    "rotation": 169.80771,
+    "radius": 0.0,
+    "color": {
+      "r": 0.961,
+      "g": 0.871,
+      "b": 0.702,
+      "a": 1.0
+    },
+    "fill_color": {
+      "r": 0.0,
+      "g": 0.0,
+      "b": 0.0,
+      "a": 0.0
+    },
+    "width": 2.0,
+    "horizontal_alignment": "None",
+    "vertical_alignment": "None"
+  },
+  {
+    "name": "Arc",
+    "content": "",
+    "points": [
+      {
+        "x": 171.70178,
+        "y": 136.30255
+      },
+      {
+        "x": 94.319275,
+        "y": 98.495056
+      },
+      {
+        "x": 151.67984,
+        "y": 52.537514
+      }
+    ],
+    "poly_points": 0,
+    "mid_point": {
+      "x": 171.70178,
+      "y": 136.30255
+    },
+    "other_point": {
+      "x": 3.596062,
+      "y": 4.477766
+    },
+    "rotation": 0.0,
+    "radius": 86.12467,
+    "color": {
+      "r": 0.961,
+      "g": 0.871,
+      "b": 0.702,
+      "a": 1.0
+    },
+    "fill_color": {
+      "r": 0.0,
+      "g": 0.0,
+      "b": 0.0,
+      "a": 0.0
+    },
+    "width": 2.0,
+    "horizontal_alignment": "None",
+    "vertical_alignment": "None"
+  },
+  {
+    "name": "PolyLine",
+    "content": "",
+    "points": [
+      {
+        "x": 268.02484,
+        "y": 435.79456
+      },
+      {
+        "x": 289.82977,
+        "y": 375.47162
+      },
+      {
+        "x": 330.38196,
+        "y": 426.10626
+      },
+      {
+        "x": 361.167,
+        "y": 379.71338
+      },
+      {
+        "x": 395.2068,
+        "y": 429.9671
+      },
+      {
+        "x": 433.27393,
+        "y": 375.3982
+      },
+      {
+        "x": 460.21704,
+        "y": 421.17224
+      },
+      {
+        "x": 496.39807,
+        "y": 376.34442
+      }
+    ],
+    "poly_points": 8,
+    "mid_point": {
+      "x": 382.21146,
+      "y": 402.20905
+    },
+    "other_point": {
+      "x": 482.21146,
+      "y": 402.20905
+    },
+    "rotation": 180.0,
+    "radius": 0.0,
+    "color": {
+      "r": 0.961,
+      "g": 0.871,
+      "b": 0.702,
+      "a": 1.0
+    },
+    "fill_color": {
+      "r": 0.0,
+      "g": 0.0,
+      "b": 0.0,
+      "a": 0.0
+    },
+    "width": 2.0,
+    "horizontal_alignment": "None",
+    "vertical_alignment": "None"
+  },
+  {
+    "name": "RightTriangle",
+    "content": "",
+    "points": [
+      {
+        "x": 613.4336,
+        "y": 367.9928
+      },
+      {
+        "x": 613.4336,
+        "y": 431.3908
+      },
+      {
+        "x": 705.7289,
+        "y": 431.3908
+      },
+      {
+        "x": 613.4336,
+        "y": 367.9928
+      }
+    ],
+    "poly_points": 3,
+    "mid_point": {
+      "x": 613.4336,
+      "y": 431.3908
+    },
+    "other_point": {
+      "x": 521.1383,
+      "y": 431.3908
+    },
+    "rotation": 0.0,
+    "radius": 0.0,
+    "color": {
+      "r": 0.961,
+      "g": 0.871,
+      "b": 0.702,
+      "a": 1.0
+    },
+    "fill_color": {
+      "r": 0.0,
+      "g": 0.0,
+      "b": 0.0,
+      "a": 0.0
+    },
+    "width": 2.0,
+    "horizontal_alignment": "None",
+    "vertical_alignment": "None"
+  },
+  {
+    "name": "Ellipse",
+    "content": "",
+    "points": [
+      {
+        "x": 159.00989,
+        "y": 243.35373
+      },
+      {
+        "x": 104.528625,
+        "y": 243.35373
+      },
+      {
+        "x": 159.00989,
+        "y": 226.28949
+      }
+    ],
+    "poly_points": 0,
+    "mid_point": {
+      "x": 159.00989,
+      "y": 243.35373
+    },
+    "other_point": {
+      "x": 0.0,
+      "y": 0.0
+    },
+    "rotation": 0.0,
+    "radius": 0.0,
+    "color": {
+      "r": 0.961,
+      "g": 0.871,
+      "b": 0.702,
+      "a": 1.0
+    },
+    "fill_color": {
+      "r": 0.35,
+      "g": 0.7,
+      "b": 0.2,
+      "a": 1.0
+    },
+    "width": 2.0,
+    "horizontal_alignment": "None",
+    "vertical_alignment": "None"
+  },
+  {
+    "name": "Line",
+    "content": "",
+    "points": [
+      {
+        "x": 574.52124,
+        "y": 257.1091
+      },
+      {
+        "x": 657.495,
+        "y": 256.13022
+      }
+    ],
+    "poly_points": 0,
+    "mid_point": {
+      "x": 616.0081,
+      "y": 256.61966
+    },
+    "other_point": {
+      "x": 0.0,
+      "y": 0.0
+    },
+    "rotation": 179.32408,
+    "radius": 0.0,
+    "color": {
+      "r": 0.961,
+      "g": 0.871,
+      "b": 0.702,
+      "a": 1.0
+    },
+    "fill_color": {
+      "r": 0.0,
+      "g": 0.0,
+      "b": 0.0,
+      "a": 0.0
+    },
+    "width": 2.0,
+    "horizontal_alignment": "None",
+    "vertical_alignment": "None"
+  },
+  {
+    "name": "Polygon",
+    "content": "",
+    "points": [
+      {
+        "x": 106.3397,
+        "y": 457.10736
+      },
+      {
+        "x": 152.49396,
+        "y": 431.6149
+      },
+      {
+        "x": 153.49399,
+        "y": 378.89795
+      },
+      {
+        "x": 108.33974,
+        "y": 351.6734
+      },
+      {
+        "x": 62.185486,
+        "y": 377.16586
+      },
+      {
+        "x": 61.185463,
+        "y": 429.8828
+      },
+      {
+        "x": 106.3397,
+        "y": 457.10736
+      }
+    ],
+    "poly_points": 6,
+    "mid_point": {
+      "x": 107.33972,
+      "y": 404.39038
+    },
+    "other_point": {
+      "x": 160.0567,
+      "y": 405.39038
+    },
+    "rotation": 181.08673,
+    "radius": 0.0,
+    "color": {
+      "r": 0.961,
+      "g": 0.871,
+      "b": 0.702,
+      "a": 1.0
+    },
+    "fill_color": {
+      "r": 0.0,
+      "g": 0.0,
+      "b": 0.0,
+      "a": 0.0
+    },
+    "width": 2.0,
+    "horizontal_alignment": "None",
+    "vertical_alignment": "None"
+  },
+  {
+    "name": "Text",
+    "content": "Some Text",
+    "points": [],
+    "poly_points": 0,
+    "mid_point": {
+      "x": 0.0,
+      "y": 0.0
+    },
+    "other_point": {
+      "x": 307.9265,
+      "y": 530.5069
+    },
+    "rotation": 0.0,
+    "radius": 0.0,
+    "color": {
+      "r": 0.961,
+      "g": 0.871,
+      "b": 0.702,
+      "a": 1.0
+    },
+    "fill_color": {
+      "r": 0.0,
+      "g": 0.0,
+      "b": 0.0,
+      "a": 0.0
+    },
+    "width": 0.0,
+    "horizontal_alignment": "Center",
+    "vertical_alignment": "Center"
+  },
+  {
+    "name": "Circle",
+    "content": "",
+    "points": [
+      {
+        "x": 469.78174,
+        "y": 109.824005
+      }
+    ],
+    "poly_points": 0,
+    "mid_point": {
+      "x": 427.51318,
+      "y": 114.85077
+    },
+    "other_point": {
+      "x": 469.78174,
+      "y": 109.824005
+    },
+    "rotation": 0.0,
+    "radius": 42.566406,
+    "color": {
+      "r": 0.961,
+      "g": 0.871,
+      "b": 0.702,
+      "a": 1.0
+    },
+    "fill_color": {
+      "r": 0.0,
+      "g": 0.0,
+      "b": 0.0,
+      "a": 0.0
+    },
+    "width": 2.0,
+    "horizontal_alignment": "None",
+    "vertical_alignment": "None"
+  },
+  {
+    "name": "Ellipse",
+    "content": "",
+    "points": [
+      {
+        "x": 388.66327,
+        "y": 256.6746
+      },
+      {
+        "x": 322.49548,
+        "y": 256.6746
+      },
+      {
+        "x": 388.66327,
+        "y": 224.84875
+      }
+    ],
+    "poly_points": 0,
+    "mid_point": {
+      "x": 388.66327,
+      "y": 256.6746
+    },
+    "other_point": {
+      "x": 0.0,
+      "y": 0.0
+    },
+    "rotation": 0.0,
+    "radius": 0.0,
+    "color": {
+      "r": 0.961,
+      "g": 0.871,
+      "b": 0.702,
+      "a": 1.0
+    },
+    "fill_color": {
+      "r": 0.0,
+      "g": 0.0,
+      "b": 0.0,
+      "a": 0.0
+    },
+    "width": 2.0,
+    "horizontal_alignment": "None",
+    "vertical_alignment": "None"
+  },
+  {
+    "name": "Text",
+    "content": "More text",
+    "points": [],
+    "poly_points": 0,
+    "mid_point": {
+      "x": 0.0,
+      "y": 0.0
+    },
+    "other_point": {
+      "x": 443.82996,
+      "y": 528.36633
+    },
+    "rotation": 0.0,
+    "radius": 0.0,
+    "color": {
+      "r": 0.961,
+      "g": 0.871,
+      "b": 0.702,
+      "a": 1.0
+    },
+    "fill_color": {
+      "r": 0.0,
+      "g": 0.0,
+      "b": 0.0,
+      "a": 0.0
+    },
+    "width": 0.0,
+    "horizontal_alignment": "Center",
+    "vertical_alignment": "Center"
+  }
+]

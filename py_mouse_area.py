@@ -44,14 +44,23 @@ def on_exit(id, _user_data):
 
 ipg = IPG()
 
-ipg.add_window(window_id="main", title="Main", width=400, height=400, 
-               pos_centered=True, debug=True)
+ipg.add_window(
+        window_id="main", 
+        title="Main", 
+        width=400, 
+        height=400, 
+        pos_centered=True, 
+        debug=True)
 
-ipg.add_container(window_id="main", container_id="cont", 
-                  width_fill=True, height_fill=True,
-                  )
+ipg.add_container(
+        window_id="main", 
+        container_id="cont", 
+        width_fill=True, 
+        height_fill=True)
 
-ipg.add_mousearea(window_id="main", container_id="ma", parent_id="cont",
+ipg.add_mousearea(window_id="main", 
+                  container_id="ma", 
+                  parent_id="cont",
                   on_enter=on_enter,
                   on_exit=on_exit,
                   on_move=on_move,
@@ -61,7 +70,8 @@ ipg.add_mousearea(window_id="main", container_id="ma", parent_id="cont",
                   on_middle_release=on_middle_release,
                   on_right_press=on_right_press,
                   on_right_release=on_right_release,
-                  user_data="Some Data")
+                  user_data="Some Data"
+                  )
 
 # A text widget was added here but you can also add containers or other widgets too.
 ipg.add_text("ma", content="my content 1")
