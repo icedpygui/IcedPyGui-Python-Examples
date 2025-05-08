@@ -5,7 +5,7 @@ Python wrapper for Rust Iced Gui
    
    # Iced + Python == IcedPyGui (IPG)
 
-https://github.com/icedpygui/IcedPyGui-Python-Examples/assets/163431522/ae248470-82ee-4260-a63e-2f80af2593ee
+![ipg_intro](https://github.com/user-attachments/assets/d3935c3c-f471-4ca5-8e46-26f5d99de549)
 
 </div>
 
